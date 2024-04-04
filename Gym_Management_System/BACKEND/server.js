@@ -33,6 +33,9 @@ app.use("/proPackage", proPackageRouter);
 const userPackage = require("./routes/userPkgRoute.js");
 app.use("/userPkg", userPackage);
 
+const userProPackage = require("./routes/userProPkgRoute.js");
+app.use("/userProPkg", userProPackage);
+
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`)
 })

@@ -1,17 +1,22 @@
-import AddPackage from './Pages/AddPackage/AddPackage';
-import AddProPackage from './Pages/AddProPackage/AddProPackage';
-import UserPackage from './Pages/UserPackage/UserPackage';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ViewPackage from './Pages/viewPackage/ViewPackage';
+import UpdatePackage from './Pages/UpdatePackage/UpdatePackage';
 
 function App() {
   return (
-    <div>
-      {/* <AddPackage/> */}
-      {/* <AddProPackage/> */}
-      <UserPackage/>
-      
-
-    </div>
+    // <div>
+    //   {/* <AddPackage/> */}
+    //   {/* <AddProPackage/> */}
+    //   {/* <UserPackage/> */}
+    //   {/* <UserProPackage/> */}
+    //   <ViewPackage/>
+    // </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<ViewPackage/>} />
+        <Route path="/update/:id" element={<UpdatePackage />} />
+      </Routes>
+    </Router>
   );
 }
 
