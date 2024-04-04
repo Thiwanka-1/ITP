@@ -1,10 +1,13 @@
+import AddPackage from './Pages/AddPackage/AddPackage';
 import SelectPackage from './Pages/SelectPackage/SelectPackage';
 
 
 function App() {
   return (
     <div>
-      <SelectPackage/>
+      <AddPackage/>
+      
+
     </div>
   );
 }

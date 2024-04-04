@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const packageSchema = new Schema({
-    packageNumber : {
-        type: Number,
+    packageType : {
+        type: String,
         required: true
     },
 
@@ -13,19 +13,14 @@ const packageSchema = new Schema({
         required: true
     },
 
-    price : {
-        type: Number,
-        required : true
-    },
-
     duration : {
         type : String,
         required: true
     },
 
-    packageType:{
-        type : String,
-        required: true
+    price : {
+        type: Number,
+        required : true
     },
 
     description : {

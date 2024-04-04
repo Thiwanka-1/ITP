@@ -4,19 +4,17 @@ let Package = require("../models/PackageModel.js");
 //insert part
 
 router.route("/add").post((req, res) => {
-    const packageNumber = Number(req.body.packageNumber);
-    const packageName = req.body.packageName;
-    const price = Number(req.body.price);
-    const duration = req.body.duration;
     const packageType = req.body.packageType;
+    const packageName = req.body.packageName;
+    const duration = req.body.duration;
+    const price = Number(req.body.price);
     const description = req.body.description;
 
     const newPackage = new Package({
-        packageNumber,
-        packageName,
-        price,
-        duration,
         packageType,
+        packageName,
+        duration,
+        price,
         description
     })
 
@@ -41,14 +39,13 @@ router.route("/").get((req,res) => {
 
 router.route("/update/:id").put(async(req,res) => {
     let packageId = req.params.id;
-    const{packageNumber, packageName, price, duration, packageType, description} = req.body;
+    const{packageType, packageName, duration,price, description} = req.body;
 
     const updatePackage = {
-        packageNumber,
-        packageName,
-        price,
-        duration,
         packageType,
+        packageName,
+        duration,
+        price,
         description
     }
 
