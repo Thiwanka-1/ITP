@@ -51,7 +51,7 @@ function UserPackage() {
         width: "100%",
       }}/>
       <div style={{
-        backgroundImage: "url('/Images/SelectPackage.jpg')",
+        backgroundImage: "url('/Images/UserPackage.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         flex: "1",
