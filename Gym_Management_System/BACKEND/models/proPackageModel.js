@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const packageSchema = new Schema({
-    proPackageID : {
-        type: Number,
+    packageType:{
+        type : String,
         required: true
     },
 
@@ -23,12 +23,7 @@ const packageSchema = new Schema({
         required: true
     },
 
-    packageType:{
-        type : String,
-        required: true
-    },
-
-    description : {
+    reason : {
         type: String,
         required: true
     }

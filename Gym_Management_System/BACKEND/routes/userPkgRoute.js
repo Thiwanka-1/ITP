@@ -7,13 +7,15 @@ router.route("/add").post((req, res) => {
     const cusName = req.body.cusName;
     const email = req.body.email;
     const phone = req.body.phone;
-    const memberid = req.body.memberid;
+    const date = req.body.date;
+    const selectedPackage = req.body.selectedPackage;
     
     const newPackage = new userPackage({
         cusName,
         email,
         phone,
-        memberid
+        date,
+        selectedPackage
     })
 
     newPackage.save().then(() => {

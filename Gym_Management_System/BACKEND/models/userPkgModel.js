@@ -18,7 +18,12 @@ const packageSchema = new Schema({
         required : true
     },
 
-    memberid : {
+    date : {
+        type : String,
+        required: true
+    },
+
+    selectedPackage : {
         type : String,
         required: true
     }

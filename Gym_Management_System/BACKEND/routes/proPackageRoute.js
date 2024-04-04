@@ -4,20 +4,18 @@ let proPackage = require("../models/proPackageModel.js");
 //insert part
 
 router.route("/add").post((req, res) => {
-    const proPackageID = Number(req.body.proPackageID);
+    const packageType = req.body.packageType;
     const proPackageName = req.body.proPackageName;
     const proPrice = Number(req.body.proPrice);
     const proDuration = req.body.proDuration;
-    const packageType = req.body.packageType;
-    const description = req.body.description;
+    const reason = req.body.reason;
 
     const newPackage = new proPackage({
-        proPackageID,
+        packageType,
         proPackageName,
         proPrice,
         proDuration,
-        packageType,
-        description
+        reason
     })
 
     newPackage.save().then(() => {
@@ -41,15 +39,14 @@ router.route("/").get((req,res) => {
 
 router.route("/update/:id").put(async(req,res) => {
     let packageId = req.params.id;
-    const{proPackageID, proPackageName, proPrice, proDuration, packageType, description} = req.body;
+    const{packageType, proPackageName, proPrice, proDuration, reason} = req.body;
 
     const updatePackage = {
-        proPackageID,
+        packageType,
         proPackageName,
         proPrice,
         proDuration,
-        packageType,
-        description
+        reason
     }
 
     const update = await proPackage.findByIdAndUpdate(packageId,updatePackage).then(() => {
