@@ -3,32 +3,32 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../../Component/Header/Header';
 
-function UpdatePackage() {
-  const [packageData, setPackageData] = useState({ packageName: '', duration: '', price: '', description: '' });
+function UpdateProPackage() {
+  const [proPackageData, setproPackageData] = useState({ proPackageName: '', proPrice: '', proDuration: '', reason: '' });
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchPackageDetails = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8070/proPackage/${id}`);
+        setproPackageData(response.data);
+      } catch (error) {
+        console.error('Error fetching package details:', error);
+      }
+    };
+  
     fetchPackageDetails();
-  }, []);
-
-  const fetchPackageDetails = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8070/package/${id}`);
-      setPackageData(response.data);
-    } catch (error) {
-      console.error('Error fetching package details:', error);
-    }
-  };
+  }, [id]);
 
   const handleChange = (e) => {
-    setPackageData({ ...packageData, [e.target.name]: e.target.value });
+    setproPackageData({ ...proPackageData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8070/package/update/${id}`, packageData);
+      await axios.put(`http://localhost:8070/proPackage/update/${id}`, proPackageData);
       alert('Package updated successfully');
       navigate('/');
     } catch (error) {
@@ -46,19 +46,19 @@ function UpdatePackage() {
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '10px' }}>
               <label style={{ marginRight: '10px' }}>Package Name:</label>
-              <input name="packageName" value={packageData.packageName} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
-            </div>
-            <div style={{ marginBottom: '10px' }}>
-              <label style={{ marginRight: '10px' }}>Duration:</label>
-              <input name="duration" value={packageData.duration} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
+              <input name="proPackageName" value={proPackageData.proPackageName} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
               <label style={{ marginRight: '10px' }}>Price:</label>
-              <input name="price" type="number" value={packageData.price} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
+              <input name="proPrice" type="number" value={proPackageData.proPrice} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
+            </div>
+            <div style={{ marginBottom: '10px' }}>
+              <label style={{ marginRight: '10px' }}>Duration:</label>
+              <input name="proDuration"  value={proPackageData.proDuration} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
             </div>
             <div style={{ marginBottom: '20px' }}>
-              <label style={{ marginRight: '10px' }}>Description:</label>
-              <textarea name="description" value={packageData.description} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}></textarea>
+              <label style={{ marginRight: '10px' }}>Reason:</label>
+              <textarea name="reason" value={proPackageData.reason} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}></textarea>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button type="submit" style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>Update Package</button>
@@ -71,4 +71,4 @@ function UpdatePackage() {
   );
 }
 
-export default UpdatePackage;
+export default UpdateProPackage;
