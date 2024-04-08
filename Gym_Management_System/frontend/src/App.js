@@ -19,21 +19,25 @@ function App() {
     //    {/* <UserProPackage/> */}
     //   <ViewProOrders />
     //  </div>
-    // <Router>
-    //   <Routes>
-    //     <Route path="/" element={<ViewProPackage/>} />
-    //     <Route path="/update/:id" element={<UpdateProPackage />} />
-    //   </Routes>
-    // </Router>
+     <Router>
+      <Header/>
+       <Routes>
+        <Route path="/" element={<ViewPackage/>} />
+        <Route path="/update/:id" element={<UpdatePackage />} />
+        <Route path='/packages' element={<SelectPackage/>}/>
+        <Route path='/promotion' element={<UserProPackage/>}/>
+        <Route path='/standard' element={<UserPackage/>}/>
+      </Routes>
+     </Router>
 
-    <Router>
+    /*<Router>
       <Header/>
       <Routes>
         <Route path='/packages' element={<SelectPackage/>}/>
         <Route path='/promotion' element={<UserProPackage/>}/>
         <Route path='/standard' element={<UserPackage/>}/>
       </Routes>
-    </Router>
+    </Router>*/
 
   );
 }

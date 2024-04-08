@@ -39,7 +39,7 @@ function ViewPackage() {
 
   return (
     <div style={{ backgroundImage:"url('Images/PackageList.jpg')",backgroundSize: "cover" ,minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <Header style={{ width: "100%" }}/>
+      {/* <Header style={{ width: "100%" }}/> */}
       <div style={{ padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         <h2 style={{ textAlign: "center", margin: "20px 0" , color: "white"}}>Package List</h2>
         <table style={{ width: "70%", border: "1px solid white", borderCollapse: "collapse" }}>
