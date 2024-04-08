@@ -5,7 +5,7 @@ import { signoutSuccess } from "../redux/user/userSilce";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt,faDatabase,faWrench } from '@fortawesome/free-solid-svg-icons';
 
 export default function DashSidebar() {
   const location = useLocation();
@@ -13,8 +13,11 @@ export default function DashSidebar() {
   const { currentUser } = useSelector((state) => state.user);
   const [tab, setTab] = useState("");
  
+  const [showSubPackages, setShowSubPackages] = useState(false);
 
-
+  const toggleSubPackages = () => {
+    setShowSubPackages(!showSubPackages);
+  };
 
 
 
@@ -46,6 +49,55 @@ export default function DashSidebar() {
           <Link to="/absent" className={`block py-2 px-4 rounded-lg text-white hover:bg-yellow-300 hover:text-black `}>
           <FontAwesomeIcon icon={faCalendarAlt} className="inline-block w-5 h-5 mr-2" />
             Leave
+          </Link>
+        </li>
+
+
+        <li className="relative" onClick={toggleSubPackages}>
+      <Link to="" className={`block py-2 px-4 rounded-lg text-white hover:bg-yellow-300 hover:text-black `}>
+        <FontAwesomeIcon icon={faDatabase} className="inline-block w-5 h-5 mr-2" />
+        Packages
+      </Link>
+      {showSubPackages && (
+        <ul className="absolute left-0 mt-2 bg-white shadow-md rounded-lg">
+          <li>
+            <Link to="/sub-package-1" className="block py-2 px-4 text-gray-800 hover:bg-yellow-300">
+              Add Package
+            </Link>
+          </li>
+          <li>
+            <Link to="/sub-package-2" className="block py-2 px-4 text-gray-800 hover:bg-yellow-300">
+              Add Pramotional Package
+            </Link>
+          </li>
+          <li>
+            <Link to="/sub-package-3" className="block py-2 px-4 text-gray-800 hover:bg-yellow-300">
+              View Package
+            </Link>
+          </li>
+          <li>
+            <Link to="/sub-package-3" className="block py-2 px-4 text-gray-800 hover:bg-yellow-300">
+              View Pramotional Package
+            </Link>
+          </li>
+          <li>
+            <Link to="/sub-package-3" className="block py-2 px-4 text-gray-800 hover:bg-yellow-300">
+              View Order
+            </Link>
+          </li>
+          <li>
+            <Link to="/sub-package-3" className="block py-2 px-4 text-gray-800 hover:bg-yellow-300">
+              View Pramotional Order
+            </Link>
+          </li>
+        </ul>
+      )}
+    </li>
+
+        <li className="">
+          <Link to="/" className={`block py-2 px-4 rounded-lg text-white hover:bg-yellow-300 hover:text-black `}>
+          <FontAwesomeIcon icon={faWrench} className="inline-block w-5 h-5 mr-2" />
+            Maintenance
           </Link>
         </li>
       </ul>
