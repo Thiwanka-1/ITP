@@ -5,6 +5,9 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
 require("dotenv").config();
+import UserRoutes from './routes/user.route.js';
+import authRoutes from './routes/auth.route.js';
+import employe from './routes/employe.route.js';
 
 const PORT = process.env.PORT || 8070;
 
@@ -35,6 +38,10 @@ app.use("/userPkg", userPackage);
 
 const userProPackage = require("./routes/userProPkgRoute.js");
 app.use("/userProPkg", userProPackage);
+
+app.use('/api/user', UserRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/employe', employe);
 
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`)
