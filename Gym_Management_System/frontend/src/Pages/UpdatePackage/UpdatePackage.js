@@ -39,7 +39,7 @@ function UpdatePackage() {
 
   return (
     <div style={{backgroundImage:"url('Images/AddPackage.png')",backgroundSize: "cover" , minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Header style={{ width: "100%" }}/>
+      {/* <Header style={{ width: "100%" }}/> */}
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: '400px', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', margin: '20px' }}>
           <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Update Package</h1>
