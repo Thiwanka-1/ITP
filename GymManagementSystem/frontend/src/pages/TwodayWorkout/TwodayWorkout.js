@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
       <form >
         <label className='label'>
         Email:
-          <input  className='input3' type="text" value={CustomerID} onChange={(e) => setCustomerID(e.target.value)} />
+          <input  className='input3' type="text" value={Email} onChange={(e) => setCustomerID(e.target.value)} />
         </label>
         <br />
         <label className='label'>
