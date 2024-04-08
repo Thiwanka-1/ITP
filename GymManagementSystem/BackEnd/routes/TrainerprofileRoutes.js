@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let TrainerProfile = require("../models/TrainerProfile.js");
+let TrainerProfile = require("../modles/TrainerProfile.js");
 
 router.route("/add").post((req, res) => {
     const { Name, Email, Gender, PhoneNumber, Address, ProfilePhoto, CertificatePhoto, Categories } = req.body;
