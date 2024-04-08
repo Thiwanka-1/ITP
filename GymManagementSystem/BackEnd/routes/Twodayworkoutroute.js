@@ -4,12 +4,12 @@ let workoutplan = require("../modles/Twodayworkout.js") ;
 router.route("/add").post((req, res) => {
 
     
-    const CustomerID= req.body.CustomerID;
+    const Email= req.body.Email;
     const Gender = req.body.Gender;
     const exercises1  = req.body.exercises1;
     const exercises2 = req.body.exercises2;
 
-    if (!CustomerID || !Gender || !exercises1 || !exercises2 || !Array.isArray(exercises1) || !Array.isArray(exercises2)) {
+    if (!Email || !Gender || !exercises1 || !exercises2 || !Array.isArray(exercises1) || !Array.isArray(exercises2)) {
         return res.status(400).json({ error: "Missing or invalid fields in the request." });
     }
 
@@ -26,7 +26,7 @@ router.route("/add").post((req, res) => {
 
     const newWorkout = new workoutplan({
         
-        CustomerID,
+        Email,
         Gender,
         exercises1,
         exercises2
@@ -58,7 +58,7 @@ router.route("/update/:id").put(async (req, res) => {
         const workoutId = req.params.id;
         const { exercises1,exercises2 } = req.body;
 
-        if (!CustomerID || !Gender || !exercises1 || !exercises2 || !Array.isArray(exercises1) || !Array.isArray(exercises2)) {
+        if (!Email || !Gender || !exercises1 || !exercises2 || !Array.isArray(exercises1) || !Array.isArray(exercises2)) {
             return res.status(400).json({ error: "Missing or invalid fields in the request." });
         }
     

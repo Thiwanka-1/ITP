@@ -6,9 +6,10 @@ const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
     
 
-    CustomerID:{
+    Email:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     Gender:{

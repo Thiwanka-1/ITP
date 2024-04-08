@@ -5,7 +5,7 @@ import './AddWorkoutForm.css';
 
 
 function AddWorkoutForm() {
-  const [CustomerID, setCustomerID] = useState('');
+  const [Email, setCustomerID] = useState('');
   const [Gender, setGender] = useState('');
   const [exercises, setExercises] = useState([
     { exercise: '', sets: '', reps: '' },
@@ -31,7 +31,7 @@ function AddWorkoutForm() {
 
     try {
       const response = await axios.post('http://localhost:8070/workoutplan/add', {
-        CustomerID,
+        Email,
         Gender,
         exercises
       });
@@ -54,7 +54,7 @@ function AddWorkoutForm() {
       {errorMessage && <div>{errorMessage}</div>}
       <form onSubmit={handleSubmit}>
         <label className='label'>
-          Customer ID:
+        Email:
           <input  className='input3' type="text" value={CustomerID} onChange={(e) => setCustomerID(e.target.value)} />
         </label>
         <br />

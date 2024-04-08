@@ -6,9 +6,10 @@ const Schema = mongoose.Schema;
 const schedulechange = new Schema({
     
 
-    TrainerID:{
+    Email:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     Request:{

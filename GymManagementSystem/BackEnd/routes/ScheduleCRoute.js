@@ -4,17 +4,17 @@ let Schedule = require("../modles/ScheduleChange.js") ;
 router.route("/add").post((req, res) => {
 
     
-    const TrainerID= req.body.TrainerID;
+    const Email= req.body.Email;
     const Request = req.body.Request;
     
 
-    if (!TrainerID || !Request) {
-        return res.status(400).json({ error: "TrainerID and Request are required fields." });
+    if (!Email || !Request) {
+        return res.status(400).json({ error: "Email and Request are required fields." });
     }
 
     const newSchedule = new Schedule({
         
-        TrainerID,
+        Email,
         Request
             
     });

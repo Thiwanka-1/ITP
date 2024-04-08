@@ -4,11 +4,11 @@ let workoutplan = require("../modles/Workoutplan.js") ;
 router.route("/add").post((req, res) => {
 
     
-    const CustomerID= req.body.CustomerID;
+    const Email= req.body.Email;
     const Gender = req.body.Gender;
     const exercises  = req.body.exercises;
 
-    if (!CustomerID || !Gender || !exercises || !Array.isArray(exercises)) {
+    if (!Email || !Gender || !exercises || !Array.isArray(exercises)) {
         return res.status(400).json({ error: "Missing or invalid fields in the request." });
     }
 
@@ -19,7 +19,7 @@ router.route("/add").post((req, res) => {
 
     const newWorkout = new workoutplan({
         
-        CustomerID,
+        Email,
         Gender,
         exercises
             
