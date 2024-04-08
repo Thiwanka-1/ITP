@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Header from '../../Component/Header/Header';
 
-function ViewPackage() {
-  const [packages, setPackages] = useState([]);
-  const navigate = useNavigate();
+function ViewProOrders() {
+  const [proOrders, setOrders] = useState([]);
 
   useEffect(() => {
     fetchPackages();
@@ -13,27 +11,27 @@ function ViewPackage() {
 
   const fetchPackages = async () => {
     try {
-      const response = await axios.get('http://localhost:8070/package');
-      setPackages(response.data);
+      const response = await axios.get('http://localhost:8070/userProPkg');
+      setOrders(response.data);
     } catch (error) {
-      console.error('Error fetching packages:', error);
+      console.error('Error fetching Orders:', error);
     }
   };
 
   const confirmDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this package?')) {
+    if (window.confirm('Are you sure you want to delete this Order?')) {
       await deletePackage(id);
     }
   };
 
   const deletePackage = async (id) => {
     try {
-      await axios.delete(`http://localhost:8070/package/delete/${id}`);
-      alert('Package deleted successfully');
+      await axios.delete(`http://localhost:8070/userProPkg/delete/${id}`);
+      alert('Order deleted successfully');
       fetchPackages(); // Refresh the list after deletion
     } catch (error) {
-      console.error('Error deleting package:', error);
-      alert('Error deleting package');
+      console.error('Error deleting Order:', error);
+      alert('Error deleting order');
     }
   };
 
@@ -45,24 +43,23 @@ function ViewPackage() {
         <table style={{ width: "70%", border: "1px solid white", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ backgroundColor: "#007bff", color: "white" }}>
-              <th style={tableHeaderStyle}>Package Type</th>
-              <th style={tableHeaderStyle}>Package Name</th>
-              <th style={tableHeaderStyle}>Duration</th>
-              <th style={tableHeaderStyle}>Price</th>
-              <th style={tableHeaderStyle}>Description</th>
-              <th style={tableHeaderStyle}>Actions</th>
+              <th style={tableHeaderStyle}>Customer Name</th>
+              <th style={tableHeaderStyle}>Email</th>
+              <th style={tableHeaderStyle}>Phone</th>
+              <th style={tableHeaderStyle}>Date</th>
+              <th style={tableHeaderStyle}>Package</th>
+              <th style={tableHeaderStyle}>Action</th>
             </tr>
           </thead>
           <tbody>
-            {packages.map((pkg) => (
+            {proOrders.map((pkg) => (
               <tr style={{color: "white" }} key={pkg._id}>
-                <td style={tableCellStyle}>{pkg.packageType}</td>
-                <td style={tableCellStyle}>{pkg.packageName}</td>
-                <td style={tableCellStyle}>{pkg.duration}</td>
-                <td style={tableCellStyle}>Rs.{pkg.price}</td>
-                <td style={tableCellStyle}>{pkg.description}</td>
+                <td style={tableCellStyle}>{pkg.custName}</td>
+                <td style={tableCellStyle}>{pkg.proEmail}</td>
+                <td style={tableCellStyle}>{pkg.proPhone}</td>
+                <td style={tableCellStyle}>{pkg.proDate}</td>
+                <td style={tableCellStyle}>{pkg.selectedProPackage}</td>
                 <td style={tableCellStyle}>
-                  <button style={actionButtonStyle} onClick={() => navigate(`/update/${pkg._id}`)}>Edit</button>
                   <button style={actionButtonStyle} onClick={() => confirmDelete(pkg._id)}>Delete</button>
                 </td>
               </tr>
@@ -96,4 +93,4 @@ const actionButtonStyle = {
   cursor: "pointer",
 };
 
-export default ViewPackage;
+export default ViewProOrders;

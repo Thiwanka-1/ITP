@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../Component/Header/Header';
 
-function ProPackageList() {
+function ViewProPackage() {
   const [proPackages, setPackages] = useState([]);
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ function ProPackageList() {
               <tr style={{color: "white" }} key={pkg._id}>
                 <td style={tableCellStyle}>{pkg.packageType}</td>
                 <td style={tableCellStyle}>{pkg.proPackageName}</td>
-                <td style={tableCellStyle}>${pkg.proPrice}</td>
+                <td style={tableCellStyle}>Rs.{pkg.proPrice}</td>
                 <td style={tableCellStyle}>{pkg.proDuration}</td>
                 <td style={tableCellStyle}>{pkg.reason}</td>
                 <td style={tableCellStyle}>
@@ -96,4 +96,4 @@ const actionButtonStyle = {
   cursor: "pointer",
 };
 
-export default ProPackageList;
+export default ViewProPackage;

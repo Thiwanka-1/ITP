@@ -35,7 +35,12 @@ function UserPackage() {
     }
 
     axios.post('http://localhost:8070/userPkg/add', newPackage).then(()=>{
-        alert("Package Added")
+        alert("Package Added");
+        setCustomerName('');
+        setEmail('');
+        setPhoneNumber('');
+        setDate('');
+        setSelectedPackage('');
     }).catch((err)=>{
         alert(err)
     })
@@ -47,9 +52,7 @@ function UserPackage() {
       display: "flex",
       flexDirection: "column",
     }}>
-      <Header style={{
-        width: "100%",
-      }}/>
+      
       <div style={{
         backgroundImage: "url('/Images/UserPackage.jpg')",
         backgroundSize: "cover",

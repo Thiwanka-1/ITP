@@ -22,7 +22,13 @@ function AddPackage() {
         }
 
         axios.post('http://localhost:8070/package/add', newPackage).then(()=>{
-            alert("Package Added")
+            alert("Package Added");
+            setType('');
+            setName('');
+            setDuration('');
+            setPrice('');
+            setDescription('');
+
         }).catch((err)=>{
             alert(err)
         })

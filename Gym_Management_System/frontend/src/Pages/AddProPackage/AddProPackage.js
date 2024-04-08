@@ -23,7 +23,13 @@ function AddProPackage() {
         }
 
         axios.post('http://localhost:8070/proPackage/add', newProPackage).then(()=>{
-            alert("Promotional Package Added")
+            alert("Promotional Package Added");
+            setType('');
+            setName('');
+            setPrice('');
+            setDuration('');
+            setReason('');
+
         }).catch((err)=>{
             alert(err)
         })

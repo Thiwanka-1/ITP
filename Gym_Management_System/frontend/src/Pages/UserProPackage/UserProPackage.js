@@ -23,23 +23,32 @@ function UserProPackage() {
     }
   };
 
-  function handleSubmit(e){
-    e.preventDefault();
+function handleSubmit(e) {
+  e.preventDefault();
 
-    const newPackage={
-        custName,
-        proEmail,
-        proPhone,
-        proDate,
-        selectedProPackage
-    }
+  const newPackage = {
+    custName,
+    proEmail,
+    proPhone,
+    proDate,
+    selectedProPackage
+  };
 
-    axios.post('http://localhost:8070/userProPkg/add', newPackage).then(()=>{
-        alert("Package Added")
-    }).catch((err)=>{
-        alert(err)
+  axios.post('http://localhost:8070/userProPkg/add', newPackage)
+    .then(() => {
+      alert("Package Added");
+      // Reset form fields after successful submission
+      setCustomerName('');
+      setEmail('');
+      setPhoneNumber('');
+      setDate('');
+      setSelectedPackage('');
     })
+    .catch((err) => {
+      alert(err);
+    });
 }
+
 
   return (
     <div style={{
@@ -47,9 +56,6 @@ function UserProPackage() {
       display: "flex",
       flexDirection: "column",
     }}>
-      <Header style={{
-        width: "100%",
-      }}/>
       <div style={{
         backgroundImage: "url('/Images/UserProPackage.jpg')",
         backgroundSize: "cover",
