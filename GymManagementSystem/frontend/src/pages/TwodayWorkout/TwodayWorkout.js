@@ -78,7 +78,7 @@ function AddTwodayWorkoutform() {
         <div>
           <h1 className='h1'>Two Days Workout Plan</h1>
           {errorMessage && <div>{errorMessage}</div>}
-          <form>
+          <form className='form'>
             <label className='label'>
               Email:
               <input className={`input3 ${isValidEmail ? '' : 'invalid'}`} type="text" value={email} onChange={handleEmailChange} />

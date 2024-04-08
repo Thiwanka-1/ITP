@@ -5,6 +5,8 @@
   background-repeat: no-repeat;
   text-align: center;
   padding: 30px;
+  
+  background-size: cover;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -14,7 +16,7 @@
 }
 
 .label {
-  color: #f6f1f1;
+  color: #100f0f;
   font-size: 20px;
   font-family: 'Times New Roman', Times, serif;
 }
