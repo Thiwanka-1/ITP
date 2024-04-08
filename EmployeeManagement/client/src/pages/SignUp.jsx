@@ -58,8 +58,8 @@ export default function SignUp() {
             <Dash />
           </div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-14 mt-5">
-            <div className=" mt-[-100px] w-[1200px] h-[550px] bg-black rounded-lg bg-opacity-70 border border-white">
-              <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5 ">
+            <div className=" mt-[-100px] w-[1200px] h-[550px] bg-blue-700 rounded-lg bg-opacity-50 border border-white">
+              <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5  ">
                 <div className="flex-1">
                   <form className="flex flex-col " onSubmit={handleSubmit}>
                     <div className="flex gap-8 mt-8 ml-[-110px]">
@@ -69,7 +69,7 @@ export default function SignUp() {
                             FirstName
                           </h3>
                           <input
-                            className={`bg-slate-200 bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
+                            className={`bg-black bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
                               formData.FirstName ? "text-white" : ""
                             }`}
                             type="text"
@@ -83,7 +83,7 @@ export default function SignUp() {
                             LastName
                           </h3>
                           <input
-                            className={`bg-slate-200 bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
+                            className={`bg-black bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
                               formData.LastName ? "text-white" : ""
                             }`}
                             type="text"
@@ -100,7 +100,7 @@ export default function SignUp() {
                             Email
                           </h3>
                           <input
-                            className={`bg-slate-200 bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
+                            className={`bg-black bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
                               formData.email ? "text-white" : ""
                             }`}
                             type="email"
@@ -114,7 +114,7 @@ export default function SignUp() {
                             Password
                           </h3>
                           <input
-                            className={`bg-slate-200 bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
+                            className={`bg-black bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
                               formData.password ? "text-white" : ""
                             }`}
                             type="password"
@@ -130,11 +130,11 @@ export default function SignUp() {
                     <div className="flex gap-8  mt-7 ml-[-110px]">
                       <div>
                       <div>
-                          <h3 className="font-semibold text-slate-400 ml-1">
+                          <h3 className="font-semibold text-slate-400 ml-1 text-white">
                             BirthDate
                           </h3>
                           <input
-                            className={`bg-slate-200 bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
+                            className={`bg-black bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
                               formData.BirthDate ? "text-white" : ""
                             }`}
                             type="date"
@@ -146,11 +146,11 @@ export default function SignUp() {
 
 
                         <div>
-                          <h3 className="font-semibold text-slate-400 ml-1">
+                          <h3 className="font-semibold text-slate-400 ml-1 text-white">
                             Gender
                           </h3>
                           <select
-                            className={`bg-slate-200 bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
+                            className={`bg-black bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
                               formData.Gender ? "text-white" : ""
                             }`}
                             id="Gender"
@@ -167,11 +167,11 @@ export default function SignUp() {
 
                       <div>
                         <div>
-                          <h3 className="font-semibold text-slate-400 ml-1">
+                          <h3 className="font-semibold text-slate-400 ml-1 text-white">
                             Contact
                           </h3>
                           <input
-                            className={`bg-slate-200 bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
+                            className={`bg-black bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
                               formData.Contact ? "text-white" : ""
                             }`}
                             type="text"
@@ -183,11 +183,11 @@ export default function SignUp() {
                         </div>
 
                         <div>
-                        <h3 className="font-semibold text-slate-400 ml-1">
+                        <h3 className="font-semibold text-slate-400 ml-1 text-white">
                             Address
                           </h3>
                           <input
-                            className={`bg-slate-200 bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-12 ${
+                            className={`bg-black bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-12 ${
                               formData.Address ? "text-white" : ""
                             }`}
                             type="text"
@@ -199,11 +199,11 @@ export default function SignUp() {
                         </div>
 
                         <div>
-                          <h3 className="font-semibold text-slate-400 ml-1">
+                          <h3 className="font-semibold text-slate-400 ml-1 text-white">
                             Position
                           </h3>
                           <select
-                            className={`bg-slate-200 bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
+                            className={`bg-black bg-opacity-30 border border-slate-100 p-3 rounded-lg w-[460px] h-11 ${
                               formData.Position ? "text-white" : ""
                             }`}
                             id="Position"
@@ -233,7 +233,7 @@ export default function SignUp() {
                       </div>
                     </div>
                     <button
-                      className=" bg-blue-800 border  mt-10 ml-64 font-semibold text-slate text-white p-3 rounded-lg w-[200px] h-11 hover:opacity-90 hover:bg-yellow-300 hover:text-black"
+                      className=" bg-green-600 border  mt-10 ml-64 font-semibold text-slate text-white p-3 rounded-lg w-[200px] h-11 hover:opacity-90 hover:bg-yellow-300 hover:text-black"
                       type="submit"
                     >
                       Add Employee

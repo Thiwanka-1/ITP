@@ -59,7 +59,7 @@ export default function DashSidebar() {
         Packages
       </Link>
       {showSubPackages && (
-        <ul className="absolute left-0 mt-2 bg-white shadow-md rounded-lg">
+        <ul className="absolute left-0 mt-2 bg-blue-300 shadow-md rounded-lg text-white divide-y divide-white">
           <li>
             <Link to="/sub-package-1" className="block py-2 px-4 text-gray-800 hover:bg-yellow-300">
               Add Package
