@@ -19,7 +19,7 @@
   opacity: 0.8;
 }
 .label {
-  color: #f6f1f1;
+  color: #f4f1f1;
   font-size: 20px;
   font-family: 'Times New Roman', Times, serif;
 }
@@ -27,7 +27,8 @@
   width: 1000px;
 }
 .label2{
-  color: #f5f5f5;
+  color: #0e0d0d;
+  
 }
 .select {
   font: inherit;
@@ -49,6 +50,7 @@
   margin: 10px auto;
   padding: 10px;
   border-radius: 5px;
+  
 }
 
 .input

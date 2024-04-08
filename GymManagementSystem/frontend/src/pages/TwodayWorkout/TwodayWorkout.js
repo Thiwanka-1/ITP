@@ -108,7 +108,7 @@ function AddTwodayWorkoutform() {
         </div>
       </div>
       <div className='container'>
-        <form onSubmit={handleSubmit}>
+        <form className='form' onSubmit={handleSubmit}>
           <div>
             <label className='label2'>
               Second Day
