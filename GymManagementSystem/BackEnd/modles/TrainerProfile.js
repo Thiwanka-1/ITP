@@ -25,11 +25,13 @@ const ProfileSchema = new Schema({
         type: String
     },
     ProfilePhoto: {
-        type: String  
-    },
-    CertificatePhoto: {
-        type: String  
-    },
+        data: Buffer, // Binary data for profile photo
+        contentType: String // Mime type of the image
+      },
+      CertificatePhoto: {
+        data: Buffer, // Binary data for certificate photo
+        contentType: String // Mime type of the image
+      },
     Categories: {
         type: String  
     }

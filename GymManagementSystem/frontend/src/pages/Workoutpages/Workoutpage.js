@@ -1,15 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import './Workoutpage.css';
 
-function Workoutpage(){
-
-return(
-    <div className='container'>
-    <h1>Workout Plan</h1>
-    <button id="button1">Button 1</button>
-    <button id="button2">Button 2</button>
-    <button id="button3">Button 3</button>
-
+function Workoutpage() {
+  return (
+    <div className='container-a'>
+      <h1>Workout Plan</h1>
+      {/* Use Link component with 'to' prop to navigate to different pages */}
+      <Link to="/add" className="button-link">
+        <button id="button11">One Day Workout Plan</button>
+      </Link>
+      <Link to="/twoadd" className="button-link">
+        <button id="button22">Two Day Workout Plan</button>
+      </Link>
+      <Link to="/threeadd" className="button-link">
+        <button id="button33">Three Day Workout Plan</button>
+      </Link>
     </div>
-);
+  );
 }
+
 export default Workoutpage;

@@ -10,29 +10,24 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
-.h1 {
-  color: #007bff;
+h1 {
+  color: #007bff; /* Fixed class name */
 }
-.form{
+
+.form {
   background-color:#f5f3f389;
   opacity: 0.8;
+  padding: 20px;
+  border-radius: 8px;
 }
+
 .label {
   color: #f4f1f1;
   font-size: 20px;
   font-family: 'Times New Roman', Times, serif;
 }
-.label1{
-  width: 1000px;
-}
-.label2{
-  color: #0e0d0d;
-  
-}
-.select {
-  font: inherit;
-  color: #080707;
+
+.select, .input, .input1, .input3 {
   background-color: #fff;
   border: 1px solid #007bff;
   border-radius: 5px;
@@ -41,40 +36,11 @@
   width: 50%;
 }
 
-.label1 {
-  background-color: #f5f5f5;
-  opacity: 0.8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px auto;
-  padding: 10px;
-  border-radius: 5px;
-  
-}
-
-.input
- {
-  background-color: #fff;
-  border: 1px solid #007bff;
-  border-radius: 5px;
-  padding: 8px;
-  margin: 10px auto;
-  width: 50%;
-}
-.input1,
-.input3{
-  background-color: #fff;
-  border: 1px solid #007bff;
-  border-radius: 5px;
-  padding: 8px;
-  margin: 10px auto;
+.input1, .input3 {
   width: 15%;
 }
 
-.button1,
-.button2,
-.button3 {
+.button1, .button2, .button3 {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
