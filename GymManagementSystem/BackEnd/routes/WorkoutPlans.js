@@ -48,6 +48,15 @@ router.route("/").get((req, res) => {
     })
 })
 
+router.route("/trainer/:email").get((req, res) => {
+    const trainerEmail = req.params.email;
+    workoutplan.find({ Email: trainerEmail }).then((workouts) => {
+        res.json(workouts)
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
 router.route("/update/:id").put(async (req, res) => {
     try {
         const workoutId = req.params.id;

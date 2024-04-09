@@ -1,6 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './AddWorkoutForm.css';
+import { Document, Page, Text, View, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
+
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: 'column',
+    backgroundColor: '#E4E4E4',
+    padding: 20
+  },
+  section: {
+    marginBottom: 10
+  },
+  label: {
+    fontWeight: 'bold'
+  }
+});
 
 function AddWorkoutForm() {
   const [email, setEmail] = useState('');
@@ -12,6 +27,8 @@ function AddWorkoutForm() {
   ]);
   const [errorMessage, setErrorMessage] = useState('');
   const [isValidEmail, setIsValidEmail] = useState(true);
+  const [pdfData, setPdfData] = useState(null); // State to hold generated PDF data
+  
 
   const handleExerciseChange = (index, key, value) => {
     const newExercises = [...exercises];
@@ -38,6 +55,36 @@ function AddWorkoutForm() {
         exercises: exercises
       });
       alert(response.data); 
+
+      // Generate PDF
+      const pdfDoc = (
+        <Document>
+          <Page size="A4" style={styles.page}>
+            <View style={styles.section}>
+              <Text style={styles.label}>Email:</Text>
+              <Text>{email}</Text>
+            </View>
+            <View style={styles.section}>
+              <Text style={styles.label}>Gender:</Text>
+              <Text>{gender}</Text>
+            </View>
+            <View style={styles.section}>
+              <Text style={styles.label}>Exercises:</Text>
+              {exercises.map((exercise, index) => (
+                <View key={index} style={styles.section}>
+                  <Text>{`${exercise.exercise}, Sets: ${exercise.sets}, Reps: ${exercise.reps}`}</Text>
+                </View>
+              ))}
+            </View>
+          </Page>
+        </Document>
+      );
+      setPdfData(pdfDoc);
+
+      // Clear form fields
+      setEmail('');
+      setGender('');
+      setExercises([{ exercise: '', sets: '', reps: '' }]);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.error) {
         setErrorMessage(error.response.data.error);
@@ -91,6 +138,14 @@ function AddWorkoutForm() {
           <button className='button2' type="submit">Add Workout Plan</button>
         </form>
       </div>
+      {pdfData && (
+        <div className="generated-pdf">
+          <h2 className="generated-pdf-heading">Generated PDF:</h2>
+          <PDFDownloadLink document={pdfData} fileName="workout_plan.pdf">
+            {({ blob, url, loading, error }) => (loading ? 'Generating PDF...' : <button className="download-pdf-button">Download PDF</button>)}
+          </PDFDownloadLink>
+        </div>
+      )}
     </div>
   );
 }

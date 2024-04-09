@@ -59,7 +59,17 @@ router.route("/").get((req, res) => {
     }).catch((err) => {
         console.log(err);
     })
+});
+
+router.route("/trainer/:email").get((req, res) => {
+    const trainerEmail = req.params.email;
+    workoutplan.find({ Email: trainerEmail }).then((workouts) => {
+        res.json(workouts)
+    }).catch((err) => {
+        console.log(err);
+    })
 })
+
 
 router.route("/update/:id").put(async (req, res) => {
     try {
@@ -116,4 +126,4 @@ router.route("/get/:id").get(async (req, res) => {
     })
 })
 
-module.exports = router;
+module.exports = router; 

@@ -38,8 +38,7 @@ app.use("/Threedayworkoutplan",Threedayworkoutrouter);
 const ScheduleCRoute = require("./routes/ScheduleCRoute.js");
 app.use("/shedulech",ScheduleCRoute);
 
-const TrainerProfile = require("./routes/TrainerprofileRoutes.js");
-app.use("/trainerpro",TrainerProfile);
+
 
 
 app.listen(PORT,()=>{

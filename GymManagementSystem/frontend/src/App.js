@@ -15,6 +15,7 @@ function App() {
       <Route path='/threeadd' element={<Threedayworkoutplan/>}/>
       <Route path='/wpage' element={<Workoutpage/>}/>
       <Route path='/trainerdiplay' element={<Trainerdiplay/>}/>
+      
     </Routes>
     </Router>
   );
