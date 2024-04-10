@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../Component/Header/Header';
 
 function ViewProPackage() {
   const [proPackages, setPackages] = useState([]);
@@ -39,7 +38,6 @@ function ViewProPackage() {
 
   return (
     <div style={{ backgroundImage:"url('Images/PackageList.jpg')",backgroundSize: "cover" ,minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <Header style={{ width: "100%" }}/>
       <div style={{ padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         <h2 style={{ textAlign: "center", margin: "20px 0" , color: "white"}}>Promotional Package List</h2>
         <table style={{ width: "70%", border: "1px solid white", borderCollapse: "collapse" }}>

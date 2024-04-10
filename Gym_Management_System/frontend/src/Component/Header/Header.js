@@ -8,17 +8,17 @@ function Header() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
       <div className="container-fluid">
-        <NavLink className="navbar-brand" to="/">
+        <NavLink className="navbar-brand" to="/home">
           <img src="Images/Gymflex_Logo_1.jpg" alt="Logo" height="100" style={{ marginRight: '10px' }} />
         </NavLink>
-        <NavLink className="navbar-brand" to="/"><b style={{ fontSize: '36px', fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>Gymflex</b></NavLink>
+        <NavLink className="navbar-brand" to="/home"><b style={{ fontSize: '36px', fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>Gymflex</b></NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item me-3">
-              <NavLink className={setActiveClass} to="/" end style={{ fontSize: '20px' }}>Home</NavLink>
+              <NavLink className={setActiveClass} to="/home" end style={{ fontSize: '20px' }}>Home</NavLink>
             </li>
             <li className="nav-item me-3">
               <NavLink className={setActiveClass} to="/contact" style={{ fontSize: '20px' }}>Contact</NavLink>
