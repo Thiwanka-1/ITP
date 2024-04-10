@@ -13,6 +13,8 @@ import SelectPackage from './Pages/SelectPackage/SelectPackage';
 import UserProPackage from './Pages/UserProPackage/UserProPackage';
 import UserPackage from './Pages/UserPackage/UserPackage';
 import Header from './Component/Header/Header';
+import Updaterequest from './Pages/Updaterequest/Updaterequest';
+import Updatetask from './Pages/UpdateTask/UpdateTask';
 
 function App() {
   return (
@@ -36,7 +38,10 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path='/req' element={<Addrequest/>}/>
+        <Route path='/' element={<Addtask/>}/>
+        <Route path='/task' element={<Displaytask/>}/>
+        <Route path='/update/:id' element={<Updatetask/>}/>
+
       </Routes>
     </Router>
 

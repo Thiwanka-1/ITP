@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Header1 from '../../componenet/Header1';
+import Header from '../../Component/Header/Header';
 
 function Updaterequest() {
   const [requestData, setrequestData] = useState({  EmpId: '', Type0fEquipment: '', Date: '', Description: '' });
@@ -40,7 +40,7 @@ function Updaterequest() {
   return (
      
     <div style={{backgroundImage:"url('Images/photo3.jpg')",backgroundSize: "cover" , minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Header1 style={{ width: "100%" }}/>
+      <Header style={{ width: "100%" }}/>
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: '400px', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', margin: '20px' }}>
           <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Update Request</h1>
