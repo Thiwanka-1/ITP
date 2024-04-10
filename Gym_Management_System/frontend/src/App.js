@@ -11,8 +11,8 @@ import UserPackage from './Pages/UserPackage/UserPackage';
 import Header from './Component/Header/Header';
 import Updaterequest from './Pages/Updaterequest/Updaterequest';
 import Updatetask from './Pages/UpdateTask/UpdateTask';
-import Addtask from "./pages/Addtask/Addtask";
-import Displaytask from "./pages/Displaytask/Displaytask";
+import Addtask from "./Pages/Addtask/Addtask";
+import Displaytask from "./Pages/Displaytask/Displaytask";
 
 function App() {
   return (
