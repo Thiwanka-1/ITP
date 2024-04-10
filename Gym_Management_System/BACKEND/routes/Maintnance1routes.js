@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let maintenance1 = require("../modles/Maintenace1modles.js");
+let maintenance1 = require("../models/Maintenace1modles.js");
 
 router.route("/add").post((req,res)=>{
     
