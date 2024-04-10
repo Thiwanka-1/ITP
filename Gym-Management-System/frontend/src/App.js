@@ -4,14 +4,15 @@ import Addrequest from './pages/Addrequest/Addrequest';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import Displayrequest from './pages/Displayrequest/displayrequest';
 import Addtask from './pages/Addtask/Addtask';
-import Displaytask from './pages/Displaytask/Displaytask';
+import Updaterequest from './pages/Updaterequest/Updaterequest';
+import Updatetask from './pages/Updatetask/Updatdetask';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path= "/" element ={<Displaytask/>}/>
-        {/*<Route path= "/update/:id" element ={<Displayrequest/>}/>*/}
+        <Route path= "/" element ={<Displayrequest/>}/>
+        <Route path= "/update/:id" element ={<Updaterequest/>}/>
         
       </Routes>
     </Router>
