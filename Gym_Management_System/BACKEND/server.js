@@ -13,16 +13,23 @@ app.use(bodyParser.json());
 
 const URL = process.env.MONGODB_URL;
 
+
 mongoose.connect(URL,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 });
 
-
 const connection = mongoose.connection;
-connection.once("open", () => {
-    console.log("Mongodb Connection Success!");
+connection.once('open' , () =>{
+    console.log("Mongodb Connection success!");
+
 })
+
+const maintenanceRouter = require("./routes/Maintenanceroutes.js");
+app.use("/maintenance" , maintenanceRouter );
+
+const maintenance1Router = require("./routes/Maintnance1routes.js");
+app.use("/maintenance1" , maintenance1Router );
 
 const packageRouter = require("./routes/packagesRoute.js");
 app.use("/package", packageRouter);
