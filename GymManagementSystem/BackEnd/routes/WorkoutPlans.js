@@ -83,7 +83,7 @@ router.route("/update/:id").put(async (req, res) => {
 });
 
 
-router.route("/delete/:id").delete(async(req, res) => {
+router.route("/delete/:email").delete(async(req, res) => {
     let userid = req.params.id;
 
     await workoutplan.findByIdAndDelete(userid).then(() => {
