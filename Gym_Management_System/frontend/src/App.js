@@ -1,9 +1,8 @@
-import Header1 from './componenet/Header1';
-import Addrequest from './pages/Addrequest/Addrequest';
+import Addrequest from './Pages/Addrequest/Addrequest';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import Displayrequest from './pages/Displayrequest/displayrequest';
-import Addtask from './pages/Addtask/Addtask';
-import Displaytask from './pages/Displaytask/Displaytask';
+import Displayrequest from './Pages/Displayrequest/displayrequest';
+import Addtask from './Pages/Addtask/Addtask';
+import Displaytask from './Pages/Displaytask/Displaytask';
 import ViewProPackage from './Pages/ViewProPackage/ViewProPackage';
 import UpdatePackage from './Pages/UpdatePackage/UpdatePackage';
 import UpdateProPackage from './Pages/UpdateProPackage/UpdateProPackage';
@@ -24,7 +23,7 @@ function App() {
     //    {/* <UserProPackage/> */}
     //   <ViewProOrders />
     //  </div>
-     <Router>
+     /*<Router>
       <Header/>
        <Routes>
         <Route path='/' element={<ViewProPackage/>} />
@@ -33,16 +32,13 @@ function App() {
         <Route path='/promotion' element={<UserProPackage/>}/>
         <Route path='/standard' element={<UserPackage/>}/>
       </Routes>
-     </Router>
+     </Router>*/
 
-    /*<Router>
-      <Header/>
+    <Router>
       <Routes>
-        <Route path='/packages' element={<SelectPackage/>}/>
-        <Route path='/promotion' element={<UserProPackage/>}/>
-        <Route path='/standard' element={<UserPackage/>}/>
+        <Route path='/req' element={<Addrequest/>}/>
       </Routes>
-    </Router>*/
+    </Router>
 
   );
 }

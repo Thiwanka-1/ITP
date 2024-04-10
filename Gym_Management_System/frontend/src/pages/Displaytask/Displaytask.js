@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Header1 from '../../componenet/Header1';
 import {useNavigate} from 'react-router-dom';
+import Header from '../../Component/Header/Header';
 
 function Displaytask() {
     const [tasks, settasks] = useState([]);
@@ -39,7 +39,7 @@ function Displaytask() {
 
     return (
         <div style={{ position: "relative" }}>
-            <Header1 style={{ position: "fixed", top: 0, width: "100%" }} />
+            <Header style={{ position: "fixed", top: 0, width: "100%" }} />
             <div
                 style={{
                     backgroundImage: "url('Images/p.jpg')",

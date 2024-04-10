@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Header1 from "../../componenet/Header1";
+import Header from "../../Component/Header/Header";
 
 function Addrequest() {
     
@@ -30,7 +30,7 @@ function Addrequest() {
 
     return (
         <div className="main-container">
-            <Header1 />
+            <Header />
             <div className="form-container">
                 <h2 className="form-title">Maintain Request</h2>
                 <form onSubmit={sendData}>
