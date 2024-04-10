@@ -3,7 +3,6 @@ import axios from "axios";
 import Header from "../../Component/Header/Header";
 
 function Addrequest() {
-    
     const [EmpId, setEmpId] = useState("");
     const [Type0fEquipment, setTypeofEquipment] = useState("");
     const [Date, setDate] = useState("");
@@ -22,6 +21,11 @@ function Addrequest() {
         axios.post('http://localhost:8070/maintenance/add', newmaintenance)
             .then(() => {
                 alert("Request Added");
+                // Clear input fields after successful submission
+                setEmpId("");
+                setTypeofEquipment("");
+                setDate("");
+                setDescription("");
             })
             .catch((err) => {
                 alert(err);
@@ -41,6 +45,7 @@ function Addrequest() {
                             className="form-control"
                             id="EmployeeId"
                             placeholder="Enter Employee ID"
+                            value={EmpId}
                             onChange={(e) => setEmpId(e.target.value)}
                         />
                     </div>
@@ -52,6 +57,7 @@ function Addrequest() {
                             className="form-control"
                             id="Type0fEquipment"
                             placeholder="Enter Type of Equipment"
+                            value={Type0fEquipment}
                             onChange={(e) => setTypeofEquipment(e.target.value)}
                         />
                     </div>
@@ -62,7 +68,7 @@ function Addrequest() {
                             type="date"
                             className="form-control"
                             id="Date"
-                            placeholder="Enter Date"
+                            value={Date}
                             onChange={(e) => setDate(e.target.value)}
                         />
                     </div>
@@ -74,6 +80,7 @@ function Addrequest() {
                             className="form-control"
                             id="Description"
                             placeholder="Enter Description"
+                            value={Description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
