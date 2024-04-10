@@ -18,8 +18,6 @@ function App() {
       <Route path='/trainerdiplay' element={<Trainerdiplay/>}/>
       <Route path='/UpdateWorkout' element={<UpdateWorkout/>}/>
       <Route path='/Update' element={<Update/>}/>
-      
-      
     </Routes>
     </Router>
   );
