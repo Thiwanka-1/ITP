@@ -1,8 +1,4 @@
-import Addrequest from './Pages/Addrequest/Addrequest';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import Displayrequest from './Pages/Displayrequest/displayrequest';
-import Addtask from './Pages/Addtask/Addtask';
-import Displaytask from './Pages/Displaytask/Displaytask';
 import ViewProPackage from './Pages/ViewProPackage/ViewProPackage';
 import UpdatePackage from './Pages/UpdatePackage/UpdatePackage';
 import UpdateProPackage from './Pages/UpdateProPackage/UpdateProPackage';
@@ -15,6 +11,8 @@ import UserPackage from './Pages/UserPackage/UserPackage';
 import Header from './Component/Header/Header';
 import Updaterequest from './Pages/Updaterequest/Updaterequest';
 import Updatetask from './Pages/UpdateTask/UpdateTask';
+import Addtask from "./pages/Addtask/Addtask";
+import Displaytask from "./pages/Displaytask/Displaytask";
 
 function App() {
   return (
@@ -38,7 +36,7 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path='/' element={<Addtask/>}/>
+        <Route path='/' element={<Addtask />}/>
         <Route path='/task' element={<Displaytask/>}/>
         <Route path='/update/:id' element={<Updatetask/>}/>
 
