@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 function Update() {
   const [requests, setRequests] = useState([]);
-  const [email, setEmail] = useState('');
+  const [Email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const fetchRequests = async (email) => {
+  const fetchRequests = async (Email) => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:8070/workoutplan/trainer/${email}`);
+      const response = await axios.get(`http://localhost:8070/workoutplan/trainer/${Email}`);
       setRequests(response.data);
       setError('');
     } catch (error) {
@@ -24,8 +24,8 @@ function Update() {
   };
 
   useEffect(() => {
-    fetchRequests(email);
-  }, [email]);
+    fetchRequests(Email);
+  }, [Email]);
 
   const handleChange = (e) => {
     setEmail(e.target.value);
@@ -33,22 +33,22 @@ function Update() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email.trim() !== '') {
-      fetchRequests(email);
+    if (Email.trim() !== '') {
+      fetchRequests(Email);
     }
   };
 
-  const confirmDelete = async (email) => {
+  const confirmDelete = async (Email) => {
     if (window.confirm('Are you sure you want to delete this request?')) {
-      await deleteRequest(email);
+      await deleteRequest(Email);
     }
   };
 
-  const deleteRequest = async (email) => {
+  const deleteRequest = async (Email) => {
     try {
-      await axios.delete(`http://localhost:8070/workoutplan/delete/${email}`);
+      await axios.delete(`http://localhost:8070/workoutplan/delete/${Email}`);
       alert('Request deleted successfully');
-      fetchRequests(email); // Refresh the list after deletion
+      fetchRequests(Email); // Refresh the list after deletion
     } catch (error) {
       console.error('Error deleting request:', error);
       alert('Error deleting request');
@@ -56,14 +56,14 @@ function Update() {
   };
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div >
       <div>
         <div className="container">
           <h2>Request Details</h2>
           <form onSubmit={handleSubmit}>
             <label>
               Enter Email:
-              <input type="email" value={email} onChange={handleChange} />
+              <input type="email" value={Email} onChange={handleChange} />
             </label>
             <button type="submit">Fetch Requests</button>
           </form>
