@@ -22,8 +22,8 @@ function App() {
      <Router>
       <Header/>
        <Routes>
-        <Route path="/" element={<ViewPackage/>} />
-        <Route path="/update/:id" element={<UpdatePackage />} />
+        <Route path='/' element={<ViewProPackage/>} />
+        <Route path='/update/:id' element={<UpdateProPackage />} />
         <Route path='/packages' element={<SelectPackage/>}/>
         <Route path='/promotion' element={<UserProPackage/>}/>
         <Route path='/standard' element={<UserPackage/>}/>
