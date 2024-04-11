@@ -16,7 +16,7 @@ function Update() {
             setRequests(response.data);
         } catch (error) {
             console.error('Error fetching maintenance requests:', error);
-            // It's better to handle errors more gracefully, maybe show a message to the user
+            
         }
     };
 

@@ -6,6 +6,7 @@ import Workoutpage from './pages/Workoutpages/Workoutpage';
 import Trainerdiplay from './pages/Trainerprofile/Trainerpro';
 import UpdateWorkout from './pages/UpdateWorkoutplan/Updateworkout';
 import Update from './pages/UpdateWorkoutplan/updateordelete';
+import Report from './pages/TrainerReport/TrainersReport';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path='/trainerdiplay' element={<Trainerdiplay/>}/>
       <Route path='/UpdateWorkout' element={<UpdateWorkout/>}/>
       <Route path='/Update' element={<Update/>}/>
+      <Route path='/Report' element={<Report/>}/>
     </Routes>
     </Router>
   );

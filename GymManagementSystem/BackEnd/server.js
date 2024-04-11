@@ -38,6 +38,9 @@ app.use("/Threedayworkoutplan",Threedayworkoutrouter);
 const ScheduleCRoute = require("./routes/ScheduleCRoute.js");
 app.use("/shedulech",ScheduleCRoute);
 
+const ReportRoute = require("./routes/TrainerReportRoutes.js");
+app.use("/Report",ReportRoute);
+
 
 
 
