@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {  useNavigate, useParams } from "react-router-dom";
 
-
+import Cat from "./dfdfdf.jpg";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -82,7 +82,17 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen mt-20">
+    <div className="h-[700px] relative">
+        {" "}
+        {/* Added relative class */}
+        <img src={Cat} alt="" className="w-full h-full object-cover" />
+        <div className="absolute top-0 left-0">
+          {" "}
+          {/* Positioned Dash component here */}
+        </div>{" "}
+        {/* Added object-cover class */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-14 mt-5">
+        <div className="w-[490px]  mt-[-40px]  h-[650px] bg-white rounded-3xl">
       <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
         
 
@@ -136,7 +146,7 @@ export default function SignUp() {
              
             </div>
             <button
-              className=" bg-blue-700 text-white p-3 rounded-lg w-[460px] h-11 hover:opacity-90"
+              className=" bg-yellow-300 text-black shadow-md shadow-black p-3 rounded-lg w-[460px] h-11 hover:opacity-90"
               type="submit"
              
             >
@@ -151,6 +161,8 @@ export default function SignUp() {
             </p>
           )}
         </div>
+      </div>
+      </div>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-
+import Cat from "./fff.jpg";
 
 export default function DashUsers() {
   
@@ -99,11 +99,16 @@ export default function DashUsers() {
 
   return (
    
-   <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+   <div className="h-[600px] relative">
      <div className="ml-8 mt-7 flex justify-center items-center">
-        
-        
+     <img src={Cat} alt="" className="w-full h-full object-cover" />  
+     
       </div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 flex justify-center items-center gap-14 mt-5">
+        
+        <div className="w-[1000px]  h-[400px] bg-white rounded-3xl">
+        <div className="max-h-80 mt-4 overflow-y-auto">
+        <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500"></div>
       {Feed && Feed.length > 0 ? (
         <>
           <table className="w-full divide-y divide-gray-200 shadow-md">
@@ -189,8 +194,12 @@ export default function DashUsers() {
           </table>
         </>
       ) : (
-        <p>You have no users yet!</p>
+        <p>No Feedback please  <Link to="/feed">
+        <button className='text-yellow-300 '>click here!</button>
+      </Link></p>
       )}
     </div>
+    </div>
+    </div> </div>
   );
 }
