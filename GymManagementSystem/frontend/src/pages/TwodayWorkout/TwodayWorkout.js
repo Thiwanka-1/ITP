@@ -1,21 +1,46 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Document, Page, Text, View, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
-import './AddWorkoutForm.css';
+import './AddWorkoutFormtwo.css';
 
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'column',
-    backgroundColor: '#E4E4E4',
-    padding: 20
+    backgroundColor: '#ffffff',
+    padding: 20,
+    fontSize: 12,
   },
   section: {
-    marginBottom: 10
+    marginBottom: 20,
   },
   label: {
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  table: {
+    display: 'table',
+    width: 'auto',
+    borderStyle: 'solid',
+    borderColor: '#000',
+    borderWidth: 1,
+    borderCollapse: 'collapse',
+  },
+  tableRow: {
+    flexDirection: 'row',
+  },
+  tableCell: {
+    flex: 1,
+    padding: 8,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderColor: '#000',
+    textAlign: 'center',
+  },
+  headerCell: {
+    backgroundColor: '#f0f0f0',
+  },
 });
+
 
 function AddTwodayWorkoutform() {
   const [email, setEmail] = useState('');
@@ -68,28 +93,42 @@ function AddTwodayWorkoutform() {
         <Document>
           <Page size="A4" style={styles.page}>
             <View style={styles.section}>
-              <Text style={styles.label}>Email:</Text>
-              <Text>{email}</Text>
-            </View>
-            <View style={styles.section}>
-              <Text style={styles.label}>Gender:</Text>
-              <Text>{gender}</Text>
+              <Text style={styles.label}>Email: {email}</Text>
+              <Text style={styles.label}>Gender: {gender}</Text>
             </View>
             <View style={styles.section}>
               <Text style={styles.label}>Exercises for Day 1:</Text>
-              {exercises1.map((exercise, index) => (
-                <View key={index} style={styles.section}>
-                  <Text>{`${exercise.exercise}, Sets: ${exercise.sets}, Reps: ${exercise.reps}`}</Text>
+              <View style={styles.table}>
+                <View style={[styles.tableRow, styles.headerCell]}>
+                  <Text style={styles.tableCell}>Exercise</Text>
+                  <Text style={styles.tableCell}>Sets</Text>
+                  <Text style={styles.tableCell}>Reps</Text>
                 </View>
-              ))}
+                {exercises1.map((exercise, index) => (
+                  <View key={index} style={styles.tableRow}>
+                    <Text style={styles.tableCell}>{exercise.exercise}</Text>
+                    <Text style={styles.tableCell}>{exercise.sets}</Text>
+                    <Text style={styles.tableCell}>{exercise.reps}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
             <View style={styles.section}>
               <Text style={styles.label}>Exercises for Day 2:</Text>
-              {exercises2.map((exercise, index) => (
-                <View key={index} style={styles.section}>
-                  <Text>{`${exercise.exercise}, Sets: ${exercise.sets}, Reps: ${exercise.reps}`}</Text>
+              <View style={styles.table}>
+                <View style={[styles.tableRow, styles.headerCell]}>
+                  <Text style={styles.tableCell}>Exercise</Text>
+                  <Text style={styles.tableCell}>Sets</Text>
+                  <Text style={styles.tableCell}>Reps</Text>
                 </View>
-              ))}
+                {exercises2.map((exercise, index) => (
+                  <View key={index} style={styles.tableRow}>
+                    <Text style={styles.tableCell}>{exercise.exercise}</Text>
+                    <Text style={styles.tableCell}>{exercise.sets}</Text>
+                    <Text style={styles.tableCell}>{exercise.reps}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
           </Page>
         </Document>
@@ -121,7 +160,7 @@ function AddTwodayWorkoutform() {
 
   return (
     <div>
-      <div className='container'>
+      <div className='container1'>
         <div>
           <h1 className='h1'>Two Days Workout Plan</h1>
           {errorMessage && <div>{errorMessage}</div>}
