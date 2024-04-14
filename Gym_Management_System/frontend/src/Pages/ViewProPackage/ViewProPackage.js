@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 function ViewProPackage() {
   const [proPackages, setPackages] = useState([]);
@@ -36,6 +38,19 @@ function ViewProPackage() {
     }
   };
 
+  const downloadReport = () => {
+    const doc = new jsPDF();
+    doc.text(' Promotional Packages Report', 14, 22);
+    doc.autoTable({
+      startY: 30,
+      theme: 'striped',
+      columnStyles: { 0: { cellWidth: 30 }, 1: { cellWidth: 50 }, 2: { cellWidth: 40 }, 3: { cellWidth: 30 }, 4: { cellWidth: 'auto' } },
+      head: [['Type', 'Name', 'Price', 'Duration', 'Reason']],
+      body: proPackages.map(pkg => [pkg.packageType, pkg.proPackageName,`Rs.${pkg.proPrice}`, pkg.proDuration, pkg.reason]),
+    });
+    doc.save('pro_packages_report.pdf');
+  };
+
   return (
     <div style={{ backgroundImage:"url('Images/PackageList.jpg')",backgroundSize: "cover" ,minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <div style={{ padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
@@ -53,20 +68,23 @@ function ViewProPackage() {
           </thead>
           <tbody>
             {proPackages.map((pkg) => (
-              <tr style={{color: "white" }} key={pkg._id}>
+              <tr key={pkg._id}>
                 <td style={tableCellStyle}>{pkg.packageType}</td>
                 <td style={tableCellStyle}>{pkg.proPackageName}</td>
                 <td style={tableCellStyle}>Rs.{pkg.proPrice}</td>
                 <td style={tableCellStyle}>{pkg.proDuration}</td>
                 <td style={tableCellStyle}>{pkg.reason}</td>
                 <td style={tableCellStyle}>
-                  <button style={actionButtonStyle} onClick={() => navigate(`/update/${pkg._id}`)}>Edit</button>
+                  <button style={actionButtonStyle} onClick={() => navigate(`/updatepropkg/${pkg._id}`)}>Edit</button>
                   <button style={actionButtonStyle} onClick={() => confirmDelete(pkg._id)}>Delete</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <button onClick={downloadReport} style={{ marginTop: '20px', backgroundColor: '#007bff', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '4px', cursor: 'pointer', alignSelf: 'center' }}>
+          Download Report
+        </button>
       </div>
     </div>
   );
@@ -82,6 +100,7 @@ const tableHeaderStyle = {
 const tableCellStyle = {
   padding: "10px",
   borderBottom: "1px solid #ddd",
+  backgroundColor : "rgba(255, 255, 255, 0.9)",
 };
 
 const actionButtonStyle = {

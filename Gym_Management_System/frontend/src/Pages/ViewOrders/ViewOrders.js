@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../../Component/Header/Header';
-import { useParams, useNavigate } from 'react-router-dom';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 
 function ViewOrders() {
@@ -37,9 +38,21 @@ function ViewOrders() {
     }
   };
 
+  const downloadReport = () => {
+    const doc = new jsPDF();
+    doc.text('Order Report', 14, 22);
+    doc.autoTable({
+      startY: 30,
+      theme: 'striped',
+      columnStyles: { 0: { cellWidth: 30 }, 1: { cellWidth: 50 }, 2: { cellWidth: 40 }, 3: { cellWidth: 30 }, 4: { cellWidth: 'auto' } },
+      head: [['Customer Name', 'Email', 'Phone', 'Date', 'Package']],
+      body: orders.map(pkg => [pkg.cusName, pkg.email, pkg.phone, pkg.date, pkg.selectedPackage]),
+    });
+    doc.save('order_report.pdf');
+  };
+
   return (
     <div style={{ backgroundImage:"url('Images/PackageList.jpg')",backgroundSize: "cover" ,minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <Header style={{ width: "100%" }}/>
       <div style={{ padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         <h2 style={{ textAlign: "center", margin: "20px 0" , color: "white"}}>Package List</h2>
         <table style={{ width: "70%", border: "1px solid white", borderCollapse: "collapse" }}>
@@ -55,7 +68,7 @@ function ViewOrders() {
           </thead>
           <tbody>
             {orders.map((pkg) => (
-              <tr style={{color: "white" }} key={pkg._id}>
+              <tr key={pkg._id}>
                 <td style={tableCellStyle}>{pkg.cusName}</td>
                 <td style={tableCellStyle}>{pkg.email}</td>
                 <td style={tableCellStyle}>{pkg.phone}</td>
@@ -68,6 +81,9 @@ function ViewOrders() {
             ))}
           </tbody>
         </table>
+        <button onClick={downloadReport} style={{ marginTop: '20px', backgroundColor: '#007bff', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '4px', cursor: 'pointer', alignSelf: 'center' }}>
+          Download Report
+        </button>
       </div>
     </div>
   );
@@ -83,6 +99,7 @@ const tableHeaderStyle = {
 const tableCellStyle = {
   padding: "10px",
   borderBottom: "1px solid #ddd",
+  backgroundColor : "rgba(255, 255, 255, 0.9)",
 };
 
 const actionButtonStyle = {

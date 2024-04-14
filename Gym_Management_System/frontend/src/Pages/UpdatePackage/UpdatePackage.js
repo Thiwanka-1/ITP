@@ -67,7 +67,7 @@ function UpdatePackage() {
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button type="submit" style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>Update Package</button>
-              <button type="button" onClick={() => navigate('/')} style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#ccc', color: 'black', border: 'none', cursor: 'pointer' }}>Cancel</button>
+              <button type="button" onClick={() => navigate('/view')} style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#ccc', color: 'black', border: 'none', cursor: 'pointer' }}>Cancel</button>
             </div>
           </form>
         </div>

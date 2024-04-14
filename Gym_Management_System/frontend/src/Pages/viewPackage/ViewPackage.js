@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../Component/Header/Header';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 function ViewPackage() {
   const [packages, setPackages] = useState([]);
@@ -37,9 +38,21 @@ function ViewPackage() {
     }
   };
 
+  const downloadReport = () => {
+    const doc = new jsPDF();
+    doc.text('Packages Report', 14, 22);
+    doc.autoTable({
+      startY: 30,
+      theme: 'striped',
+      columnStyles: { 0: { cellWidth: 30 }, 1: { cellWidth: 50 }, 2: { cellWidth: 40 }, 3: { cellWidth: 30 }, 4: { cellWidth: 'auto' } },
+      head: [['Type', 'Name', 'Duration', 'Price', 'Description']],
+      body: packages.map(pkg => [pkg.packageType, pkg.packageName, pkg.duration, `Rs.${pkg.price}`, pkg.description]),
+    });
+    doc.save('packages_report.pdf');
+  };
+
   return (
-    <div style={{ backgroundImage:"url('Images/PackageList.jpg')",backgroundSize: "cover" ,minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      {/* <Header style={{ width: "100%" }}/> */}
+    <div style={{ backgroundImage:"url('Images/PackageList.jpg')", backgroundSize: "cover", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <div style={{ padding: "20px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         <h2 style={{ textAlign: "center", margin: "20px 0" , color: "white"}}>Package List</h2>
         <table style={{ width: "70%", border: "1px solid white", borderCollapse: "collapse" }}>
@@ -54,27 +67,29 @@ function ViewPackage() {
             </tr>
           </thead>
           <tbody>
-            {packages.map((pkg) => (
-              <tr style={{color: "white" }} key={pkg._id}>
+            {packages.map(pkg => (
+              <tr key={pkg._id}>
                 <td style={tableCellStyle}>{pkg.packageType}</td>
                 <td style={tableCellStyle}>{pkg.packageName}</td>
                 <td style={tableCellStyle}>{pkg.duration}</td>
                 <td style={tableCellStyle}>Rs.{pkg.price}</td>
                 <td style={tableCellStyle}>{pkg.description}</td>
                 <td style={tableCellStyle}>
-                  <button style={actionButtonStyle} onClick={() => navigate(`/update/${pkg._id}`)}>Edit</button>
+                  <button style={actionButtonStyle} onClick={() => navigate(`/updatepkg/${pkg._id}`)}>Edit</button>
                   <button style={actionButtonStyle} onClick={() => confirmDelete(pkg._id)}>Delete</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <button onClick={downloadReport} style={{ marginTop: '20px', backgroundColor: '#007bff', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '4px', cursor: 'pointer', alignSelf: 'center' }}>
+          Download Report
+        </button>
       </div>
     </div>
   );
 }
 
-// Styles
 const tableHeaderStyle = {
   padding: "10px",
   textAlign: "left",
@@ -84,6 +99,7 @@ const tableHeaderStyle = {
 const tableCellStyle = {
   padding: "10px",
   borderBottom: "1px solid #ddd",
+  backgroundColor : "rgba(255, 255, 255, 0.9)",
 };
 
 const actionButtonStyle = {

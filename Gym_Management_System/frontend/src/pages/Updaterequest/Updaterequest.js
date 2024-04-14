@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Header from '../../Component/Header/Header';
+import backgroundImage from './userProPackage.jpg'
+
 
 function Updaterequest() {
   const [requestData, setrequestData] = useState({  EmpId: '', Type0fEquipment: '', Date: '', Description: '' });
@@ -39,31 +40,30 @@ function Updaterequest() {
 
   return (
      
-    <div style={{backgroundImage:"url('Images/photo3.jpg')",backgroundSize: "cover" , minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Header style={{ width: "100%" }}/>
+    <div style={{backgroundImage:`url(${backgroundImage})`,backgroundSize: "cover" , minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ width: '400px', padding: '20px', border: '1px solid #ccc', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', margin: '20px' }}>
-          <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Update Request</h1>
+          <h1 style={{ textAlign: 'center', marginBottom: '20px',color: 'white' }}>Update Request</h1>
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '10px' }}>
-              <label style={{ marginRight: '10px' }}>Employee Id :</label>
+              <label style={{ marginRight: '10px',color: 'white' }}>Employee Id :</label>
               <input name="EmpId" value={requestData.EmpId} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
-              <label style={{ marginRight: '10px' }}>Type of Equipment:</label>
+              <label style={{ marginRight: '10px',color: 'white' }}>Type of Equipment:</label>
               <input name="Type0fEquipment" value={requestData.Type0fEquipment} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
             </div>
             <div style={{ marginBottom: '10px' }}>
-              <label style={{ marginRight: '10px' }}>Date:</label>
+              <label style={{ marginRight: '10px' ,color: 'white'}}>Date:</label>
               <input name="Date" type="date" value={requestData.Date} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }} />
             </div>
             <div style={{ marginBottom: '20px' }}>
-              <label style={{ marginRight: '10px' }}>Description:</label>
+              <label style={{ marginRight: '10px',color: 'white' }}>Description:</label>
               <textarea name="Description" value={requestData.Description} onChange={handleChange} style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}></textarea>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button type="submit" style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>Update Request</button>
-              <button type="button" onClick={() => navigate('/')} style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#ccc', color: 'white', border: 'none', cursor: 'pointer' }}>Cancel</button>
+              <button type="button" onClick={() => navigate('/viewreq')} style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#ccc', color: 'white', border: 'none', cursor: 'pointer' }}>Cancel</button>
             </div>
           </form>
         </div>

@@ -13,36 +13,35 @@ import Updaterequest from './Pages/Updaterequest/Updaterequest';
 import Updatetask from './Pages/UpdateTask/UpdateTask';
 import Addtask from "./Pages/Addtask/Addtask";
 import Displaytask from "./Pages/Displaytask/Displaytask";
+import AddPackage from "./Pages/AddPackage/AddPackage";
+import AddProPackage from "./Pages/AddProPackage/AddProPackage";
+import Addrequest from "./Pages/Addrequest/Addrequest";
+import Displayrequest from "./Pages/Displayrequest/displayrequest";
 
 function App() {
   return (
-    //  <div>
-    //    {/* <AddPackage/> */}
-    //   {/* <AddProPackage/> */}
-    //   {/* <UserPackage/> */}
-    //    {/* <UserProPackage/> */}
-    //   <ViewProOrders />
-    //  </div>
-     /*<Router>
+     <Router>
       <Header/>
        <Routes>
         <Route path='/' element={<ViewProPackage/>} />
-        <Route path='/update/:id' element={<UpdateProPackage />} />
+        <Route path='/view' element={<ViewPackage />} />
+        <Route path='/add' element={<AddPackage />} />
+        <Route path='/addpro' element={<AddProPackage />} />
+        <Route path='/updatepropkg/:id' element={<UpdateProPackage />} />
         <Route path='/packages' element={<SelectPackage/>}/>
         <Route path='/promotion' element={<UserProPackage/>}/>
         <Route path='/standard' element={<UserPackage/>}/>
+        <Route path='/order' element={<ViewOrders/>}/>
+        <Route path='/proorder' element={<ViewProOrders/>}/>
+        <Route path='/task' element={<Addtask />}/>
+        <Route path='/viewtask' element={<Displaytask/>}/>
+        <Route path='/updatetsk/:id' element={<Updatetask/>}/>
+        <Route path='/req' element={<Addrequest />}/>
+        <Route path='/viewreq' element={<Displayrequest />}/>
+        <Route path='/updatereq/:id' element={<Updaterequest/>}/>
+        
       </Routes>
-     </Router>*/
-
-    <Router>
-      <Routes>
-        <Route path='/' element={<Addtask />}/>
-        <Route path='/task' element={<Displaytask/>}/>
-        <Route path='/update/:id' element={<Updatetask/>}/>
-
-      </Routes>
-    </Router>
-
+     </Router>
   );
 }
 

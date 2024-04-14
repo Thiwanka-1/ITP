@@ -3,17 +3,23 @@ import axios from "axios";
 import Header from "../../Component/Header/Header";
 
 function Addtask() {
-    
     const [equipmentname, setequipmentname] = useState("");
     const [taskname, settaskname] = useState("");
     const [description, setdescription] = useState("");
     const [scheduledate, setscheduledate] = useState("");
     const [completionstatus, setcompletionstatus] = useState("");
-       
+
+    function resetForm() {
+        setequipmentname("");
+        settaskname("");
+        setdescription("");
+        setscheduledate("");
+        setcompletionstatus("");
+    }
 
     function sendData(e) {
         e.preventDefault();
-        
+
         const newtask = {
             equipmentname,
             taskname,
@@ -22,9 +28,10 @@ function Addtask() {
             completionstatus
         };
 
-       axios.post('http://localhost:8070/maintenance1/add', newtask)
+        axios.post('http://localhost:8070/maintenance1/add', newtask)
             .then(() => {
                 alert("Task Added");
+                resetForm(); // Reset the form after successful submission
             })
             .catch((err) => {
                 alert(err);
@@ -67,6 +74,7 @@ function Addtask() {
                                 className="form-control"
                                 id="equipmentname"
                                 placeholder="Enter equipment name"
+                                value={equipmentname}
                                 onChange={(e) => setequipmentname(e.target.value)}
                                 style={{ marginBottom: "10px", backgroundColor: "#a6a8a6", color: "#000" }}
                             />
@@ -79,6 +87,7 @@ function Addtask() {
                                 className="form-control"
                                 id="taskname"
                                 placeholder="Enter task name"
+                                value={taskname}
                                 onChange={(e) => settaskname(e.target.value)}
                                 style={{ marginBottom: "10px", backgroundColor: "#a6a8a6", color: "#000" }}
                             />
@@ -91,6 +100,7 @@ function Addtask() {
                                 className="form-control"
                                 id="description"
                                 placeholder="Enter description"
+                                value={description}
                                 onChange={(e) => setdescription(e.target.value)}
                                 style={{ marginBottom: "10px", backgroundColor: "#a6a8a6", color: "#000" }}
                             />
@@ -102,6 +112,7 @@ function Addtask() {
                                 type="date"
                                 className="form-control"
                                 id="scheduledate"
+                                value={scheduledate}
                                 onChange={(e) => setscheduledate(e.target.value)}
                                 style={{ marginBottom: "10px", backgroundColor: "#a6a8a6", color: "#000" }}
                             />
@@ -114,6 +125,7 @@ function Addtask() {
                                 className="form-control"
                                 id="completionstatus"
                                 placeholder="Enter completion status"
+                                value={completionstatus}
                                 onChange={(e) => setcompletionstatus(e.target.value)}
                                 style={{ marginBottom: "10px", backgroundColor: "#a6a8a6", color: "#000" }}
                             />
