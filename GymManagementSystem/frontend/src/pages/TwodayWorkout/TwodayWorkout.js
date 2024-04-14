@@ -161,10 +161,10 @@ function AddTwodayWorkoutform() {
   return (
     <div>
       <div className='container1'>
-        <div>
+        <div >
           <h1 className='h1'>Two Days Workout Plan</h1>
           {errorMessage && <div>{errorMessage}</div>}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} >
             <label className='label'>
               Email:
               <input className={`input3 ${isValidEmail ? '' : 'invalid'}`} type="text" value={email} onChange={handleEmailChange} />
@@ -194,7 +194,7 @@ function AddTwodayWorkoutform() {
             </div>
             <br />
             <div className='label2'>
-              <div>
+              <div >
                 <h3>Second Day</h3>
                 {exercises2.map((exercise, index) => (
                   <div className='label1' key={index}>
