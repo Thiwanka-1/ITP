@@ -70,11 +70,11 @@ function Update() {
                             </thead>
                             <tbody>
                                 {workoutPlanRequests.map(request => (
-                                    <tr key={`${request.id}-${request._id}`}>
+                                    <tr key={request._id}>
                                         <td>{request.CustomerId}</td>
                                         <td>{request.Gender}</td>
                                         <td>
-                                            <button onClick={() => navigate(`/update/${request.id}`)}>Edit</button>
+                                            <button onClick={() => navigate(`/update/${request._id}`)}>Edit</button>
                                             <button onClick={() => confirmDelete(request.id)}>Delete</button>
                                         </td>
                                     </tr>
@@ -93,7 +93,7 @@ function Update() {
                             </thead>
                             <tbody>
                                 {twoDayWorkoutPlanRequests.map(request => (
-                                    <tr key={`${request.id}-${request._id}`}>
+                                    <tr key={request.id}>
                                         <td>{request.CustomerId}</td>
                                         <td>{request.Gender}</td>
                                         <td>
@@ -116,7 +116,7 @@ function Update() {
                             </thead>
                             <tbody>
                                 {threeDayWorkoutPlanRequests.map(request => (
-                                    <tr key={`${request.id}-${request._id}`}>
+                                    <tr key={request.id}>
                                         <td>{request.CustomerId}</td>
                                         <td>{request.Gender}</td>
                                         <td>

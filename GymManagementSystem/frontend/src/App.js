@@ -21,7 +21,7 @@ function App() {
       <Route path='/UpdateWorkout' element={<UpdateWorkout/>}/>
       <Route path='/Report' element={<Report/>}/>
       <Route path='/Trainers' element={<Display/>}/>
-      <Route path='/Update/:id' element={<oneUpdate/>}/>
+      <Route path='/update/:id' element={<oneUpdate/>}/>
     </Routes>
     </Router>
   );

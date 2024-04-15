@@ -10,7 +10,8 @@ function UpdatePage() {
 
     useEffect(() => {
         fetchWorkoutPlan();
-    }, [id]);
+    }, []);
+
 
     const fetchWorkoutPlan = async () => {
         try {
