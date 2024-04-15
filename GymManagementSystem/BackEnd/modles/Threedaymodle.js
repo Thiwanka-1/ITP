@@ -12,6 +12,11 @@ const ThreedayworkoutSchema = new Schema({
         unique: true
     },
 
+    CustomerId:{
+        type: String,
+    },
+
+
     Gender:{
         type: String
     },

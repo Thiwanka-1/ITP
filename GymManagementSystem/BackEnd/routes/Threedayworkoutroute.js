@@ -5,13 +5,14 @@ router.route("/add").post((req, res) => {
 
     
     const Email= req.body.Email;
+    const CustomerId = req.body.CustomerId;
     const Gender = req.body.Gender;
     const exercises1  = req.body.exercises1;
     const exercises2 = req.body.exercises2;
     const exercises3 = req.body.exercises3;
 
 
-    if (!Email || !Gender || !exercises1 || !exercises2 || !exercises3 || !Array.isArray(exercises1) || !Array.isArray(exercises2) || !Array.isArray(exercises3)) {
+    if (!Email ||!CustomerId ||  !Gender || !exercises1 || !exercises2 || !exercises3 || !Array.isArray(exercises1) || !Array.isArray(exercises2) || !Array.isArray(exercises3)) {
         return res.status(400).json({ error: "Missing or invalid fields in the request." });
     }
 
@@ -34,6 +35,7 @@ router.route("/add").post((req, res) => {
     const newWorkout = new workoutplan({
         
         Email,
+        CustomerId,
         Gender,
         exercises1,
         exercises2,
@@ -76,7 +78,7 @@ router.route("/update/:id").put(async (req, res) => {
         const workoutId = req.params.id;
         const { exercises1,exercises2,exercises3 } = req.body;
 
-        if (!Email || !Gender || !exercises1 || !exercises2 || !exercises3 || !Array.isArray(exercises1) || !Array.isArray(exercises2) || !Array.isArray(exercises3)) {
+        if (!Email ||!CustomerId || !Gender || !exercises1 || !exercises2 || !exercises3 || !Array.isArray(exercises1) || !Array.isArray(exercises2) || !Array.isArray(exercises3)) {
             return res.status(400).json({ error: "Missing or invalid fields in the request." });
         }
 

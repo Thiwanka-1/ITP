@@ -5,10 +5,11 @@ router.route("/add").post((req, res) => {
 
     
     const Email= req.body.Email;
+    const CustomerId = req.body.CustomerId;
     const Gender = req.body.Gender;
     const exercises  = req.body.exercises;
 
-    if (!Email || !Gender || !exercises || !Array.isArray(exercises)) {
+    if (!Email || !CustomerId || !Gender || !exercises || !Array.isArray(exercises)) {
         return res.status(400).json({ error: "Missing or invalid fields in the request." });
     }
 
@@ -20,6 +21,7 @@ router.route("/add").post((req, res) => {
     const newWorkout = new workoutplan({
         
         Email,
+        CustomerId,
         Gender,
         exercises
             
@@ -83,7 +85,7 @@ router.route("/update/:id").put(async (req, res) => {
 });
 
 
-router.route("/delete/:email").delete(async(req, res) => {
+router.route("/delete/:id").delete(async(req, res) => {
     let userid = req.params.id;
 
     await workoutplan.findByIdAndDelete(userid).then(() => {

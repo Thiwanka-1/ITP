@@ -11,6 +11,10 @@ const TwodayworkoutSchema = new Schema({
         required: true,
         unique: true
     },
+    CustomerId:{
+        type: String,
+    },
+
 
     Gender:{
         type: String

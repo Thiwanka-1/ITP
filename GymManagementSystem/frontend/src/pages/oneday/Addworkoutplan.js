@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 
 function AddWorkoutForm() {
   const [email, setEmail] = useState('');
+  const [CustomerId ,setcustomerId] = useState('');
   const [gender, setGender] = useState('');
   const [exercises, setExercises] = useState([
     { exercise: '', sets: '', reps: '' },
@@ -51,6 +52,7 @@ function AddWorkoutForm() {
     try {
       const response = await axios.post('http://localhost:8070/workoutplan/add', {
         Email: email,
+        CustomerId:CustomerId,
         Gender: gender,
         exercises: exercises
       });
@@ -63,6 +65,10 @@ function AddWorkoutForm() {
             <View style={styles.section}>
               <Text style={styles.label}>Email:</Text>
               <Text>{email}</Text>
+            </View>
+            <View style={styles.section}>
+              <Text style={styles.label}>CustomerId:</Text>
+              <Text>{CustomerId}</Text>
             </View>
             <View style={styles.section}>
               <Text style={styles.label}>Gender:</Text>
@@ -83,6 +89,7 @@ function AddWorkoutForm() {
 
       // Clear form fields
       setEmail('');
+      setcustomerId('');
       setGender('');
       setExercises([{ exercise: '', sets: '', reps: '' }]);
     } catch (error) {
@@ -112,6 +119,10 @@ function AddWorkoutForm() {
           <label className='label'>
             Email:
             <input className={`input3 ${isValidEmail ? '' : 'invalid'}`} type="text" value={email} onChange={handleEmailChange} />
+          </label>
+          <label className='label'>
+          CustomerId:
+            <input className='input' value={CustomerId} onChange={(e) => setcustomerId(e.target.value)}  />
           </label>
           <br />
           <label className='label'>

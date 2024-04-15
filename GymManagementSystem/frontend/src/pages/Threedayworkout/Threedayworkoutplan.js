@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
 
 function Threedayworkoutplanform() {
   const [email, setEmail] = useState('');
+  const [CustomerId ,setcustomerId] = useState('');
   const [gender, setGender] = useState('');
   const [exercises1, setExercises1] = useState([{ exercise: '', sets: '', reps: '' }]);
   const [exercises2, setExercises2] = useState([{ exercise: '', sets: '', reps: '' }]);
@@ -82,6 +83,7 @@ function Threedayworkoutplanform() {
     try {
       const response = await axios.post('http://localhost:8070/Threedayworkoutplan/add', {
         Email: email,
+        CustomerId:CustomerId,
         Gender: gender,
         exercises1: exercises1,
         exercises2: exercises2,
@@ -93,9 +95,13 @@ function Threedayworkoutplanform() {
       const pdfDoc = (
         <Document>
           <Page size="A4" style={styles.page}>
-            <View style={styles.section}>
+          <View style={styles.section}>
               <Text style={styles.label}>Email:</Text>
               <Text>{email}</Text>
+            </View>
+            <View style={styles.section}>
+              <Text style={styles.label}>CustomerId:</Text>
+              <Text>{CustomerId}</Text>
             </View>
             <View style={styles.section}>
               <Text style={styles.label}>Gender:</Text>
@@ -132,6 +138,7 @@ function Threedayworkoutplanform() {
 
       // Clear form fields
       setEmail('');
+      setcustomerId('');
       setGender('');
       setExercises1([{ exercise: '', sets: '', reps: '' }]);
       setExercises2([{ exercise: '', sets: '', reps: '' }]);
@@ -166,6 +173,10 @@ function Threedayworkoutplanform() {
               <input className={`input3 ${isValidEmail ? '' : 'invalid'}`} type="text" value={email} onChange={handleEmailChange} />
             </label>
             <br />
+            <label className='label'>
+          CustomerId:
+            <input className='input' value={CustomerId} onChange={(e) => setcustomerId(e.target.value)}  />
+          </label>
             <label className='label'>
               Gender:
               <select className='select' value={gender} onChange={(e) => setGender(e.target.value)}>

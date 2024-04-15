@@ -12,6 +12,10 @@ const workoutSchema = new Schema({
         unique: true
     },
 
+    CustomerId:{
+        type: String,
+    },
+
     Gender:{
         type: String
     },

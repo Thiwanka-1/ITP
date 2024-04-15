@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
 
 function AddTwodayWorkoutform() {
   const [email, setEmail] = useState('');
+  const [CustomerId ,setcustomerId] = useState('');
   const [gender, setGender] = useState('');
   const [exercises1, setExercises1] = useState([{ exercise: '', sets: '', reps: '' }]);
   const [exercises2, setExercises2] = useState([{ exercise: '', sets: '', reps: '' }]);
@@ -82,6 +83,7 @@ function AddTwodayWorkoutform() {
     try {
       const response = await axios.post('http://localhost:8070/Twodayworkoutplan/add', {
         Email: email,
+        CustomerId:CustomerId,
         Gender: gender,
         exercises1: exercises1,
         exercises2: exercises2
@@ -92,11 +94,18 @@ function AddTwodayWorkoutform() {
       const pdfDoc = (
         <Document>
           <Page size="A4" style={styles.page}>
-            <View style={styles.section}>
-              <Text style={styles.label}>Email: {email}</Text>
-              <Text style={styles.label}>Gender: {gender}</Text>
+          <View style={styles.section}>
+              <Text style={styles.label}>Email:</Text>
+              <Text>{email}</Text>
             </View>
             <View style={styles.section}>
+              <Text style={styles.label}>CustomerId:</Text>
+              <Text>{CustomerId}</Text>
+            </View>
+            <View style={styles.section}>
+              <Text style={styles.label}>Gender:</Text>
+              <Text>{gender}</Text>
+            </View>
               <Text style={styles.label}>Exercises for Day 1:</Text>
               <View style={styles.table}>
                 <View style={[styles.tableRow, styles.headerCell]}>
@@ -112,7 +121,7 @@ function AddTwodayWorkoutform() {
                   </View>
                 ))}
               </View>
-            </View>
+            
             <View style={styles.section}>
               <Text style={styles.label}>Exercises for Day 2:</Text>
               <View style={styles.table}>
@@ -137,6 +146,7 @@ function AddTwodayWorkoutform() {
 
       // Clear form fields
       setEmail('');
+      setcustomerId('');
       setGender('');
       setExercises1([{ exercise: '', sets: '', reps: '' }]);
       setExercises2([{ exercise: '', sets: '', reps: '' }]);
@@ -170,6 +180,10 @@ function AddTwodayWorkoutform() {
               <input className={`input3 ${isValidEmail ? '' : 'invalid'}`} type="text" value={email} onChange={handleEmailChange} />
             </label>
             <br />
+            <label className='label'>
+          CustomerId:
+            <input className='input' value={CustomerId} onChange={(e) => setcustomerId(e.target.value)}  />
+          </label>
             <label className='label'>
               Gender:
               <select className='select' value={gender} onChange={(e) => setGender(e.target.value)}>
