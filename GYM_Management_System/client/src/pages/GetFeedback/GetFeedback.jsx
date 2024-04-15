@@ -100,10 +100,10 @@ export default function DashUsers() {
   return (
    
    <div className="h-[600px] relative">
-     <div className="ml-8 mt-7 flex justify-center items-center">
-     <img src={Cat} alt="" className="w-full h-full object-cover" />  
+     {/* <div className="ml-8 mt-7 flex justify-center items-center"> */}
+     <img src={Cat} alt="" className="w-full h-600px object-cover" />  
      
-      </div>
+      {/* </div> */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 flex justify-center items-center gap-14 mt-5">
         
         <div className="w-[1000px]  h-[400px] bg-white rounded-3xl">
@@ -112,7 +112,7 @@ export default function DashUsers() {
       {Feed && Feed.length > 0 ? (
         <>
           <table className="w-full divide-y divide-gray-200 shadow-md">
-            <thead className="bg-gray-50">
+            <thead className="bg-black bg-opacity-20">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                  Name
@@ -194,7 +194,7 @@ export default function DashUsers() {
           </table>
         </>
       ) : (
-        <p>No Feedback please  <Link to="/feed">
+        <p>You have No Feedback please  <Link to="/feed">
         <button className='text-yellow-300 '>click here!</button>
       </Link></p>
       )}

@@ -2,7 +2,7 @@ import express from "express";
 import User from "../models/user.model.js";
 import coform from "../models/Form.js";
 import bcryptjs from "bcryptjs";
-import { errorHandle } from "../utils/error.js";
+import { errorHandle } from "./error.js";
 import jwt from 'jsonwebtoken';
 import feed from "../models/Feedback.js";
 import Notification from "../models/Notification.js";
@@ -148,9 +148,9 @@ router.get('/gefeed/:CurrentuseId', async (req, res, next) => {
     const { CurrentuseId } = req.params;
     const Feed = await feed.find({ CurrentuseId });
     if (Feed.length > 0) {
-      res.json({ message: "Employee details retrieved successfully", Feed });
+      res.json({ message: "   successfull", Feed });
     } else {
-      return res.status(404).json({ error: "House not found" });
+      return res.status(404).json({ error: " not found" });
     }
   } catch (error) {
     next(error);
@@ -190,9 +190,9 @@ router.delete('/deletefeed/:FeeddId', async (req, res, next) => {
   try {
     const deletedEmployee = await feed.findByIdAndDelete(req.params.FeeddId);
     if (!deletedEmployee) {
-      return res.status(404).json({ error: 'Employee not found' });
+      return res.status(404).json({ error: 'feedback not found' });
     }
-    res.status(200).json({ message: 'The Employee has been deleted' });
+    res.status(200).json({ message: 'The feedback has been deleted' });
   } catch (error) {
     next(error);
   }

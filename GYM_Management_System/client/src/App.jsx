@@ -4,10 +4,10 @@ import Signin from "./pages/Signin/Signin";
 import SignUp from "./pages/SignUp/SignUp";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import CheckBMI from "./components/CheckBMI";
-import DashProfile from "./components/DashProfile";
-import PrivateRoute from "./components/PrivateRoute";
-import PrivateManger from "./components/PrivateManger";
+import CheckBMI from "./pages/CheckBMI/CheckBMI";
+import DashProfile from "./pages/DashProfile/DashProfile";
+import PrivateRoute from "./pages/PrivateRoute/PrivateRoute";
+import PrivateManger from "./pages/PrivateManager/PrivateManger";
 
 import Feed from "./pages/Feedback/Feedback";
 import Getfeed from "./pages/GetFeedback/GetFeedback";

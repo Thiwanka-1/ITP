@@ -2,7 +2,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 
 
-import Dash from "../../components/sideDash";
+import Dash from "../sideDash/sideDash";
 import Cat from "./fff.jpg";
 import  { useState, useEffect } from 'react';
 

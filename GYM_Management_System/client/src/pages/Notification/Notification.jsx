@@ -2,7 +2,7 @@
 import { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import Cat from "./fff.jpg";
-import Dash from "../../components/sideDash";
+import Dash from "../sideDash/sideDash";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});

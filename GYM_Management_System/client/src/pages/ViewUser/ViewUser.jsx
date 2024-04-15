@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Dash from "../../components/sideDash";
+import Dash from "../sideDash/sideDash";
 import Cat from "./fff.jpg";
 
 export default function DashUsers() {

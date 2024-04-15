@@ -6,7 +6,7 @@ import {
   signInStart,
   signInSuccess,
   signInFailure,
-} from "../../redux/user/userSilce";
+} from "../redux/user/userSilce";
 import Cat from "./fff.jpg";
 
 export default function SignIn() {
