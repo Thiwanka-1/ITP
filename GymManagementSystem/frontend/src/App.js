@@ -7,7 +7,7 @@ import Trainerdiplay from './pages/Trainerprofile/Trainerpro';
 import UpdateWorkout from './pages/UpdateWorkoutplan/Updateworkout';
 import Report from './pages/TrainerReport/TrainersReport';
 import Display from './pages/Trainerprofile/Trainerpro';
-import oneUpdate from './pages/OnedayUpdate/OnedayUpdate';
+import OneUpdate from './pages/OnedayUpdate/OnedayUpdate';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
       <Route path='/UpdateWorkout' element={<UpdateWorkout/>}/>
       <Route path='/Report' element={<Report/>}/>
       <Route path='/Trainers' element={<Display/>}/>
-      <Route path='/update/:id' element={<oneUpdate/>}/>
+      <Route path='/update/oneday/:id' element={<OneUpdate/>}/>
     </Routes>
     </Router>
   );

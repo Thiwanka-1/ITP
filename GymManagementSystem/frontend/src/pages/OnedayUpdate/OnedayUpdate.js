@@ -6,19 +6,22 @@ function UpdatePage() {
     const { id } = useParams();
     const [exercises, setExercises] = useState([]);
     const [exerciseInputs, setExerciseInputs] = useState([{ exercise: '', sets: '', reps: '' }]);
-    
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetchWorkoutPlan();
     }, []);
 
-
     const fetchWorkoutPlan = async () => {
         try {
             const response = await axios.get(`http://localhost:8070/workoutplan/get/${id}`);
-            setExercises(response.data.exercises);
+            setExercises(response.data.exercises || []);
+            setLoading(false);
         } catch (error) {
             console.error('Error fetching workout plan:', error);
+            setError('Error fetching workout plan. Please try again.');
+            setLoading(false);
         }
     };
 
@@ -42,12 +45,14 @@ function UpdatePage() {
         try {
             await axios.put(`http://localhost:8070/workoutplan/update/${id}`, { exercises });
             alert('Workout plan updated successfully');
-            
         } catch (error) {
             console.error('Error updating workout plan:', error);
             alert('Error updating workout plan');
         }
     };
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>{error}</div>;
 
     return (
         <div>

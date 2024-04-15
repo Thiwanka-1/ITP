@@ -30,15 +30,16 @@ function Update() {
         }
     };
 
-    const confirmDelete = async (id) => {
+    const confirmDelete = async (id, type) => {
         if (window.confirm('Are you sure you want to delete this request?')) {
-            await deleteRequest(id);
+            await deleteRequest(id, type);
         }
     };
+    
 
-    const deleteRequest = async (id) => {
+    const deleteRequest = async (id, type) => {
         try {
-            await axios.delete(`http://localhost:8070/workoutplan/delete/${id}`);
+            await axios.delete(`http://localhost:8070/${type}/delete/${id}`);
             alert('Request deleted successfully');
             fetchRequests(); // Refresh the list after deletion
         } catch (error) {
@@ -46,7 +47,7 @@ function Update() {
             alert('Error deleting request');
         }
     };
-
+    
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
@@ -74,8 +75,9 @@ function Update() {
                                         <td>{request.CustomerId}</td>
                                         <td>{request.Gender}</td>
                                         <td>
-                                            <button onClick={() => navigate(`/update/${request._id}`)}>Edit</button>
-                                            <button onClick={() => confirmDelete(request.id)}>Delete</button>
+                                        <button onClick={() => navigate(`/update/oneday/${request._id}`)}>Edit</button>
+                                        <button onClick={() => confirmDelete(request._id, 'workoutplan')}>Delete</button>
+
                                         </td>
                                     </tr>
                                 ))}
@@ -97,8 +99,8 @@ function Update() {
                                         <td>{request.CustomerId}</td>
                                         <td>{request.Gender}</td>
                                         <td>
-                                            <button onClick={() => navigate(`/update/${request.id}`)}>Edit</button>
-                                            <button onClick={() => confirmDelete(request.id)}>Delete</button>
+                                        <button onClick={() => navigate(`/update/twoday/${request._id}`)}>Edit</button>
+                                        <button onClick={() => confirmDelete(request._id, 'Twodayworkoutplan')}>Delete</button>
                                         </td>
                                     </tr>
                                 ))}
@@ -120,8 +122,8 @@ function Update() {
                                         <td>{request.CustomerId}</td>
                                         <td>{request.Gender}</td>
                                         <td>
-                                            <button onClick={() => navigate(`/update/${request.id}`)}>Edit</button>
-                                            <button onClick={() => confirmDelete(request.id)}>Delete</button>
+                                        <button onClick={() => navigate(`/update/threeday/${request._id}`)}>Edit</button>
+                                        <button onClick={() => confirmDelete(request._id, 'Threedayworkoutplan')}>Delete</button>
                                         </td>
                                     </tr>
                                 ))}
