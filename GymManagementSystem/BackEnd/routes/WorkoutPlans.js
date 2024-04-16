@@ -62,12 +62,16 @@ router.route("/trainer/:email").get((req, res) => {
 router.route("/update/:id").put(async (req, res) => {
     try {
         const workoutId = req.params.id;
+        const Email= req.body.Email;
+    const CustomerId = req.body.CustomerId;
+    const Gender = req.body.Gender; 
         const { exercises } = req.body;
 
         // Ensure the request body contains the necessary fields
-        if (!exercises || !Array.isArray(exercises)) {
-            return res.status(400).json({ error: "Invalid request. Missing or invalid 'exercises' data." });
+        if (!Email || !CustomerId || !Gender || !exercises || !Array.isArray(exercises)) {
+            return res.status(400).json({ error: "Missing or invalid fields in the request." });
         }
+    
 
         // Validate the exercises data
         const invalidExercise = exercises.find(({ exercise, sets, reps }) => !exercise || isNaN(sets) || isNaN(reps));

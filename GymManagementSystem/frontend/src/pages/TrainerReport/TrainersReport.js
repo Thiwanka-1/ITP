@@ -16,6 +16,37 @@ const pdfStyles = StyleSheet.create({
     fontWeight: 'bold'
   }
 });
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+    paddingTop: '50px',
+    backgroundImage: 'url("https://img.freepik.com/free-photo/womans-hands-typing-laptop-workplace_1163-4324.jpg?w=1060&t=st=1713295358~exp=1713295958~hmac=2819df93582bbc5238a09764d4d062d0df2aa7378ba40381ef7f1f18e41723bd")',
+    backgroundSize: 'cover',
+    backdropFilter: 'blur(8px)', // Apply a blur effect
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '50%',
+    padding: '20px',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent background
+    borderRadius: '10px',
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+  },
+  button: {
+    marginTop: '10px',
+  },
+  pdfViewer: {
+    margin: '10px auto',
+  },
+  pdfDownloadLink: {
+    margin: '10px',
+  },
+};
 
 const AddMonthlyReport = () => {
   const [formData, setFormData] = useState({
@@ -148,9 +179,9 @@ const AddMonthlyReport = () => {
   );
 
   return (
-    <div className="select-container">
+    <div style={styles.container}>
       <h2>Add Monthly Report</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={styles.form}>
         <label>Month:</label>
         <select name="month" value={formData.month} onChange={handleChange} required>
           {monthOptions.map(option => (
@@ -201,7 +232,7 @@ const AddMonthlyReport = () => {
             <input type="text" name="average_attendance_rate" value={trainer.average_attendance_rate} onChange={(e) => handleTrainerChange(index, e)} required />
           </div>
         ))}
-        <button type="button" onClick={addTrainer}>Add Trainer</button>
+        <button type="button" onClick={addTrainer} style={styles.button}>Add Trainer</button>
         
         <label>Highlights:</label>
         <textarea name="highlights" value={formData.highlights} onChange={handleChange} required />
@@ -221,7 +252,7 @@ const AddMonthlyReport = () => {
         <label>Conclusion:</label>
         <textarea name="conclusion" value={formData.conclusion} onChange={handleChange} required />
         
-        <button type="submit">Submit</button>
+        <button type="submit" style={styles.button}>Submit</button>
       </form>
 
       {/* PDF viewer */}
@@ -237,6 +268,7 @@ const AddMonthlyReport = () => {
       </PDFDownloadLink>
     </div>
   );
+  
 };
 
 export default AddMonthlyReport;
