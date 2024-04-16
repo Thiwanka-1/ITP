@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const DoctorAppointment = require("../modles/AppointmentModles.js");
+const DoctorAppointment = require("../models/AppointmentModles.js");
 
 router.route("/add").post((req, res) => {
     const { name,DoctorName, age, gender, date, time } = req.body;

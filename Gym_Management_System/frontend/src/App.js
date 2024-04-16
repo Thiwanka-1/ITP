@@ -1,11 +1,9 @@
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom"; 
 import Header from './Component/Header/Header';
 
-
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom"; 
-import AddAppointment from "./pages/AddAppointment/AddAppointment";
-import DisplayAppointment from "./pages/DisplayAppointment/DisplayAppointment";
-import UpdateAppointment from "./pages/UpdateAppointment/UpdateAppointment";
+import AddAppointment from "./Pages/AddAppointment/AddAppointment";
+import DisplayAppointment from "./Pages/DisplayAppointment/DisplayAppointment";
+import UpdateAppointment from "./Pages/UpdateAppointment/UpdateAppointment";
 
 
 
