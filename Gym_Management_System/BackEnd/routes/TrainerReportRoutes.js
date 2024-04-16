@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const MonthlyReport = require("../modles/TrainerReport.js");
+const MonthlyReport = require("../TrainerReport.js");
 
 router.route("/add").post((req, res) => {
   const month = req.body.month;
