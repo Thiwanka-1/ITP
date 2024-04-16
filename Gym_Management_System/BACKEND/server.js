@@ -25,6 +25,9 @@ connection.once('open' , () =>{
 
 })
 
+const AppoinmentRouter = require("./routes/AppoinmentRoutes.js");
+app.use("/appointment", AppoinmentRouter );
+
 const maintenanceRouter = require("./routes/Maintenanceroutes.js");
 app.use("/maintenance" , maintenanceRouter );
 

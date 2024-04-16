@@ -1,6 +1,14 @@
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import Header from './Component/Header/Header';
 
+
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom"; 
+import AddAppointment from "./pages/AddAppointment/AddAppointment";
+import DisplayAppointment from "./pages/DisplayAppointment/DisplayAppointment";
+import UpdateAppointment from "./pages/UpdateAppointment/UpdateAppointment";
+
+
+
 import ViewProPackage from './Pages/ViewProPackage/ViewProPackage';
 import UpdatePackage from './Pages/UpdatePackage/UpdatePackage';
 import UpdateProPackage from './Pages/UpdateProPackage/UpdateProPackage';
@@ -26,7 +34,7 @@ function App() {
      <Router>
       <Header/>
        <Routes>
-        <Route path='/viewpro' element={<ViewProPackage/>} />
+        <Route path='/' element={<ViewProPackage/>} />
         <Route path='/view' element={<ViewPackage />} />
         <Route path='/updatepkg/:id' element={<UpdatePackage />} />
         <Route path='/add' element={<AddPackage />} />
@@ -45,6 +53,11 @@ function App() {
         <Route path='/req' element={<Addrequest />}/>
         <Route path='/viewreq' element={<Displayrequest />}/>
         <Route path='/updatereq/:id' element={<Updaterequest/>}/>
+          
+          
+        <Route path='/addapoint' element={<AddAppointment />}/>
+        <Route path='/display' element={<DisplayAppointment />}/>
+        <Route path='/update/:id' element={<UpdateAppointment />}/>  
       </Routes>
      </Router>
   );
