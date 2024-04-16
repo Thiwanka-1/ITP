@@ -31,7 +31,7 @@ function Updaterequest() {
     try {
       await axios.put(`http://localhost:8070/maintenance/update/${id}`, requestData);
       alert('Request updated successfully');
-      navigate('/');
+      navigate('/viewreq');
     } catch (error) {
       console.error('Error updating request:', error);
       alert('Error updating request');

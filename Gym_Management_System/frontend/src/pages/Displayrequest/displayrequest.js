@@ -82,7 +82,7 @@ function Displayrequest() {
                     </tbody>
                 </table>
                 <button onClick={downloadReport} style={{ marginTop: '20px', backgroundColor: '#007bff', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
-                    Export to PDF
+                Download Report
                 </button>
             </div>
         </div>

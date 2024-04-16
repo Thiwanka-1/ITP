@@ -52,7 +52,6 @@ function UserPackage() {
       display: "flex",
       flexDirection: "column",
     }}>
-      
       <div style={{
         backgroundImage: "url('/Images/UserPackage.jpg')",
         backgroundSize: "cover",
@@ -100,7 +99,7 @@ function UserPackage() {
                 ))}
               </select>
             </div>
-            <div style={{ textAlign: "center" }}>
+            <div style={{ display: "flex", marginRight: "100px" }}>
               <button type="submit" className="btn btn-primary">Submit</button>
             </div>
           </form>

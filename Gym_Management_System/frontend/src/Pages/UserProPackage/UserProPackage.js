@@ -103,9 +103,10 @@ function handleSubmit(e) {
                 ))}
               </select>
             </div>
-            <div style={{ textAlign: "center" }}>
-              <button type="submit" className="btn btn-primary">Submit</button>
+            <div style={{ textAlign: "center", display: "flex", marginRight: "100px" }}>
+  <           button type="submit" className="btn btn-primary">Submit</button>
             </div>
+
           </form>
         </div>
       </div>

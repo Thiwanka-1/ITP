@@ -40,7 +40,6 @@ function Addtask() {
 
     return (
         <div style={{ position: "relative" }}>
-            <Header style={{ position: "fixed", top: 0, width: "100%" }} />
             <div
                 style={{
                     backgroundImage: "url('Images/photo.jpg')",

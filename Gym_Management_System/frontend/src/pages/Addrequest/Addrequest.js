@@ -34,7 +34,6 @@ function Addrequest() {
 
     return (
         <div className="main-container">
-            <Header />
             <div className="form-container">
                 <h2 className="form-title">Maintain Request</h2>
                 <form onSubmit={sendData}>

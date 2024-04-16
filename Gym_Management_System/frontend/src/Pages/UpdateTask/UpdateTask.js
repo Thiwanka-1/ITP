@@ -30,7 +30,7 @@ function Updatetask() {
     try {
       await axios.put(`http://localhost:8070/maintenance1/update/${id}`, taskData);
       alert('Task updated successfully');
-      navigate('/');
+      navigate('/viewtask');
     } catch (error) {
       console.error('Error updating task:', error);
       alert('Error updating task');

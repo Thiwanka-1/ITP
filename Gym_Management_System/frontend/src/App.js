@@ -12,7 +12,6 @@ import UserProPackage from './Pages/UserProPackage/UserProPackage';
 import AddProPackage from "./Pages/AddProPackage/AddProPackage";
 import UserPackage from './Pages/UserPackage/UserPackage';
 import AddPackage from "./Pages/AddPackage/AddPackage";
-import AddProPackage from "./Pages/AddProPackage/AddProPackage";
 
 
 import Updaterequest from './Pages/Updaterequest/Updaterequest';
@@ -27,7 +26,7 @@ function App() {
      <Router>
       <Header/>
        <Routes>
-        <Route path='/' element={<ViewProPackage/>} />
+        <Route path='/viewpro' element={<ViewProPackage/>} />
         <Route path='/view' element={<ViewPackage />} />
         <Route path='/updatepkg/:id' element={<UpdatePackage />} />
         <Route path='/add' element={<AddPackage />} />
