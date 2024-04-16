@@ -13,7 +13,8 @@ app.use(bodyParser.json());
 
 const URL = process.env.MONGODB_URL;
 
-mongoose.connect(URL, {
+
+mongoose.connect(URL,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
 });
@@ -27,8 +28,27 @@ connection.once('open' , () =>{
 const AppoinmentRouter = require("./routes/AppoinmentRoutes.js");
 app.use("/appointment", AppoinmentRouter );
 
+const maintenanceRouter = require("./routes/Maintenanceroutes.js");
+app.use("/maintenance" , maintenanceRouter );
 
-app.listen(PORT, () =>{
-    console.log(`Server is up and running on prot number: ${PORT}`)
+const maintenance1Router = require("./routes/Maintnance1routes.js");
+app.use("/maintenance1" , maintenance1Router );
+
+const packageRouter = require("./routes/packagesRoute.js");
+app.use("/package", packageRouter);
+
+const proPackageRouter = require("./routes/proPackageRoute.js");
+app.use("/proPackage", proPackageRouter);
+
+const userPackage = require("./routes/userPkgRoute.js");
+app.use("/userPkg", userPackage);
+
+const userProPackage = require("./routes/userProPkgRoute.js");
+app.use("/userProPkg", userProPackage);
+
+app.listen(PORT, () => {
+    console.log(`Server is up and running on port number: ${PORT}`)
 })
+
+
 
