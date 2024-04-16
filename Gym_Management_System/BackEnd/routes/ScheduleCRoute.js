@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let Schedule = require("../ScheduleChange.js") ;
+let Schedule = require("../models/ScheduleChange.js") ;
 
 router.route("/add").post((req, res) => {
 

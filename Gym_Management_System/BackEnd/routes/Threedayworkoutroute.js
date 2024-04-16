@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let workoutplan = require("../Threedaymodle.js") ;
+let workoutplan = require("../models/Threedaymodle.js") ;
 
 router.route("/add").post((req, res) => {
 
