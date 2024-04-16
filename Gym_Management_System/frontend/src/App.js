@@ -74,7 +74,7 @@ function App() {
         <Route path='/update/:id' element={<UpdateAppointment />}/> 
           
           
-       <Route path='/' element={<Addworkoutplan/>}/>
+       <Route path='/addworkout' element={<Addworkoutplan/>}/>
        <Route path='/twoadd' element={<TwodayWorkout/>}/>
        <Route path='/threeadd' element={<Threedayworkoutplan/>}/>
        <Route path='/wpage' element={<Workoutpage/>}/>

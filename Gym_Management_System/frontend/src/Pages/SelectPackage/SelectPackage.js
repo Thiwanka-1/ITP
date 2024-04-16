@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../../Component/Header/Header";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -19,7 +18,6 @@ function SelectPackage() {
       justifyContent: "center",
       paddingTop: "50px", // Add space on top if needed
       }}>
-      {/* <Header /> */}
       <div className="container mt-5">
       <center><h2 style={{ color: "white", marginBottom: "70px" }}>Package Types</h2></center>
       <div className="row justify-content-center">

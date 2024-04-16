@@ -163,7 +163,7 @@ function Threedayworkoutplanform() {
 
   return (
     <div>
-      <div className='container'>
+      <div className='container1'>
         <div>
           <h1 className='h1'>Three Days Workout Plan</h1>
           {errorMessage && <div>{errorMessage}</div>}

@@ -4,7 +4,7 @@ import './Workoutpage.css';
 
 function Workoutpage() {
   return (
-    <div className='container-a'>
+    <div className='container2'>
       <h1>Workout Plan</h1>
       {/* Use Link component with 'to' prop to navigate to different pages */}
       <Link to="/" className="button-link">
