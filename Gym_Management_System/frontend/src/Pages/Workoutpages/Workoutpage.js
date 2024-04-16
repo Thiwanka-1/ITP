@@ -7,7 +7,7 @@ function Workoutpage() {
     <div className='container-a'>
       <h1>Workout Plan</h1>
       {/* Use Link component with 'to' prop to navigate to different pages */}
-      <Link to="/add" className="button-link">
+      <Link to="/" className="button-link">
         <button id="button11">One Day Workout Plan</button>
       </Link>
       <Link to="/twoadd" className="button-link">

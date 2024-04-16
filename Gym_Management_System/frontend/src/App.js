@@ -1,22 +1,22 @@
-import Addworkoutplan from './pages/oneday/Addworkoutplan';
+import Addworkoutplan from './Pages/oneday/Addworkoutplan';
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"; 
-import TwodayWorkout from './pages/TwodayWorkout/TwodayWorkout';
-import Threedayworkoutplan from './pages/Threedayworkout/Threedayworkoutplan';
-import Workoutpage from './pages/Workoutpages/Workoutpage';  
-import UpdateWorkout from './pages/UpdateWorkoutplan/Updateworkout';
-import Report from './pages/TrainerReport/TrainersReport';
-import Display from './pages/Trainerprofile/Trainerpro';
-import OneUpdate from './pages/OnedayUpdate/OnedayUpdate';
-import TwoUpdate from './pages/TwodayUpdate/TwodayUpdate';
-import ThreeUpdate from './pages/ThreedayUpdate/ThreedayUpdate';
-import TrainerRequest from './pages/TrainerRequest/TrainerRequest';
-import SheduleRequest from './pages/SheduleRequest/SheduleRequest'; 
+import TwodayWorkout from './Pages/TwodayWorkout/TwodayWorkout';
+import Threedayworkoutplan from './Pages/Threedayworkout/Threedayworkoutplan';
+import Workoutpage from './Pages/Workoutpages/Workoutpage';  
+import UpdateWorkout from './Pages/UpdateWorkoutplan/Updateworkout';
+import Report from './Pages/TrainerReport/TrainersReport';
+import Display from './Pages/Trainerprofile/Trainerpro';
+import OneUpdate from './Pages/OnedayUpdate/OnedayUpdate';
+import TwoUpdate from './Pages/TwodayUpdate/TwodayUpdate';
+import ThreeUpdate from './Pages/ThreedayUpdate/ThreedayUpdate';
+import TrainerRequest from './Pages/TrainerRequest/TrainerRequest';
+import SheduleRequest from './Pages/SheduleRequest/SheduleRequest'; 
 
 function App() {
   return (
     <Router>
     <Routes>
-      <Route path='/add' element={<Addworkoutplan/>}/>
+      <Route path='/' element={<Addworkoutplan/>}/>
       <Route path='/twoadd' element={<TwodayWorkout/>}/>
       <Route path='/threeadd' element={<Threedayworkoutplan/>}/>
       <Route path='/wpage' element={<Workoutpage/>}/>
