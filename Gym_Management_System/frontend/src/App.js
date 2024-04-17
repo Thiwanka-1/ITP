@@ -1,6 +1,8 @@
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"; 
 import Header from './Component/Header/Header';
 import DashBoard from "./Pages/DashBoard/DashBoard";
+import UserDash from "./Pages/UserDash/UserDash";
+
 
 
 
@@ -57,7 +59,9 @@ function App() {
      <Router>
       <Header/>
        <Routes>
+
        <Route path='/' element={<DashBoard />} />
+       <Route path='/user' element={<UserDash />} />
 
         <Route path='/viewpro' element={<ViewProPackage/>} />
         <Route path='/viewpkg' element={<ViewPackage />} />
@@ -81,7 +85,7 @@ function App() {
           
           
         <Route path='/addapoint' element={<AddAppointment />}/>
-        <Route path='/display' element={<DisplayAppointment />}/>
+        <Route path='/appoint' element={<DisplayAppointment />}/>
         <Route path='/update/:id' element={<UpdateAppointment />}/> 
           
           

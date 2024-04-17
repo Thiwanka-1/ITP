@@ -112,7 +112,7 @@ function AddWorkoutForm() {
 
   return (
     <div>
-      <div className='container4'>
+      <div className='container1'>
         <h1 className='h1'>One Day Workout Plan</h1>
         {errorMessage && <div>{errorMessage}</div>}
         <form onSubmit={handleSubmit}>

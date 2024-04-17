@@ -67,23 +67,23 @@ return (
                 <form onSubmit={sendData}>
                     <div className="mb-4">
                         <label htmlFor="packageType" className="form-label">Package Type</label>
-                        <input type="text" className="form-control" id="packageType" aria-describedby="packageTypeHelp" onChange={(e)=>{setType(e.target.value)}}></input>
+                        <input type="text" className="form-control" id="packageType" aria-describedby="packageTypeHelp" onChange={(e)=>{setType(e.target.value)}} required></input>
                     </div>
                     <div className="mb-4">
                         <label htmlFor="packageName" className="form-label">Package Name</label>
-                        <input type="text" className="form-control" id="packageName" onChange={(e)=>{setName(e.target.value)}}></input>
+                        <input type="text" className="form-control" id="packageName" onChange={(e)=>{setName(e.target.value)}} required></input>
                     </div>
                     <div className="mb-4">
                         <label htmlFor="price" className="form-label">Price</label>
-                        <input type="text" className="form-control" id="price" onChange={(e)=>{setPrice(e.target.value)}}></input>
+                        <input type="number" className="form-control" id="price" onChange={(e)=>{setPrice(e.target.value)}} required></input>
                     </div>
                     <div className="mb-4">
                         <label htmlFor="duration" className="form-label">Duration</label>
-                        <input type="text" className="form-control" id="duration" onChange={(e)=>{setDuration(e.target.value)}}></input>
+                        <input type="text" className="form-control" id="duration" onChange={(e)=>{setDuration(e.target.value)}} required></input>
                     </div>
                     <div className="mb-4">
                      <label htmlFor="reason" className="form-label">Reason</label>
-                      <textarea className="form-control" id="reason" onChange={(e)=>{setReason(e.target.value)}}></textarea>
+                      <textarea className="form-control" id="reason" onChange={(e)=>{setReason(e.target.value)}} required></textarea>
                  </div>
                     <div style={{ textAlign: "center" }}>
                         <button type="submit" className="btn btn-primary">Submit</button>

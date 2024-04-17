@@ -76,23 +76,23 @@ function UserPackage() {
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="customerName" className="form-label">Customer Name</label>
-              <input type="text" className="form-control" id="customerName" value={cusName} onChange={(e) => setCustomerName(e.target.value)} />
+              <input type="text" className="form-control" id="customerName" value={cusName} onChange={(e) => setCustomerName(e.target.value)} required />
             </div>
             <div className="mb-4">
               <label htmlFor="email" className="form-label">Email</label>
-              <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
             </div>
             <div className="mb-4">
               <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-              <input type="tel" className="form-control" id="phoneNumber" value={phone} onChange={(e) => setPhoneNumber(e.target.value)} />
+              <input type="tel" className="form-control" id="phoneNumber" value={phone} onChange={(e) => setPhoneNumber(e.target.value)} required/>
             </div>
             <div className="mb-4">
               <label htmlFor="date" className="form-label">Date</label>
-              <input type="date" className="form-control" id="date" value={date} onChange={(e) => setDate(e.target.value)} />
+              <input type="date" className="form-control" id="date" value={date} onChange={(e) => setDate(e.target.value)} required/>
             </div>
             <div className="mb-4">
               <label htmlFor="selectedPackage" className="form-label">Select Package</label>
-              <select className="form-select" id="selectedPackage" value={selectedPackage} onChange={(e) => setSelectedPackage(e.target.value)}>
+              <select className="form-select" id="selectedPackage" value={selectedPackage} onChange={(e) => setSelectedPackage(e.target.value)} required>
                 <option value="">Select a Package</option>
                 {packages.map((pkg) => (
                   <option key={pkg._id} value={pkg.packageName}>{pkg.packageName}</option>

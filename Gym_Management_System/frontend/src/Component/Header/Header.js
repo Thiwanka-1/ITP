@@ -27,7 +27,7 @@ function Header() {
               <NavLink className={setActiveClass} to="/about" style={{ fontSize: '20px' }}>About Us</NavLink>
             </li>
             <li className="nav-item me-3">
-              <NavLink className={setActiveClass} to="/trainers" style={{ fontSize: '20px' }}>Trainers</NavLink>
+              <NavLink className={setActiveClass} to="/Trainers" style={{ fontSize: '20px' }}>Trainers</NavLink>
             </li>
             <li className="nav-item me-3">
               <NavLink className={setActiveClass} to="/packages" style={{ fontSize: '20px' }}>Packages</NavLink>

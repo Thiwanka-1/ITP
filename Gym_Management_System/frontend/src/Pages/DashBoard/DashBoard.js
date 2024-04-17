@@ -9,7 +9,7 @@ function Dashboard() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ display: 'flex', height: '200vh', fontFamily: 'Arial, sans-serif' }}>
       {/* Sidebar */}
       <div style={{
         width: '250px',
@@ -97,6 +97,31 @@ function Dashboard() {
           <div style={{ paddingLeft: '10px' }}>
             <div style={{ padding: '10px', cursor: 'pointer' }}>
               <Link to="/appoint" style={{ textDecoration: 'none', color: 'white' }}>Appointments</Link>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
+          <div style={{ padding: '10px', borderRadius: '5px', backgroundColor: '#333', textAlign: 'center', fontWeight: 'bold', fontSize: '18px' }}>
+            Trainer Bookings
+          </div>
+          <div style={{ paddingLeft: '10px' }}>
+            <div style={{ padding: '10px', cursor: 'pointer' }}>
+              <Link to="/scheduledisplay" style={{ textDecoration: 'none', color: 'white' }}>View Bookings</Link>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginBottom: '20px' }}>
+          <div style={{ padding: '10px', borderRadius: '5px', backgroundColor: '#333', textAlign: 'center', fontWeight: 'bold', fontSize: '18px' }}>
+            Trainer Request
+          </div>
+          <div style={{ paddingLeft: '10px' }}>
+            <div style={{ padding: '10px', cursor: 'pointer' }}>
+              <Link to="/TrainerRequest" style={{ textDecoration: 'none', color: 'white' }}>Workouts</Link>
+            </div>
+            <div style={{ padding: '10px', cursor: 'pointer' }}>
+              <Link to="/Report" style={{ textDecoration: 'none', color: 'white' }}>Generate Report</Link>
             </div>
           </div>
         </div>

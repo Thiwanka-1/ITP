@@ -74,7 +74,7 @@ function DisplayAppointment() {
     };
 
     return (
-        <div>
+        <div className='container'> 
             <h2>Appointment Details</h2>
             <table style={styles.table}>
                 <thead>

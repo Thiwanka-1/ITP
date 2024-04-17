@@ -1,84 +1,42 @@
+// UpdateWorkoutPage.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { Document, Page, Text, View, StyleSheet, PDFDownloadLink } from '@react-pdf/renderer';
 
-const styles = StyleSheet.create({
-    container: {
-        fontFamily: 'Arial, sans-serif',
-        textAlign: 'center',
-        padding: '20px',
-    },
-    heading: {
-        fontSize: '24px',
-        color: '#000000',
-        marginBottom: '20px',
-    },
-    exerciseContainer: {
-        marginBottom: '10px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    input: {
-        marginRight: '10px',
-        padding: '5px',
-        fontSize: '16px',
-    },
-    button: {
-        padding: '10px 20px',
-        fontSize: '16px',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        marginLeft: '10px',
-    },
-});
-
-function UpdatePage() {
+function UpdateWorkoutPage() {
     const { id } = useParams();
-    const [exercises, setExercises] = useState([]);
-    const [exerciseInputs, setExerciseInputs] = useState([{ exercise: '', sets: '', reps: '' }]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [formData, setFormData] = useState({
+        Email: '',
+        CustomerId: '',
+        Gender: '',
+        exercises1: [],
+        exercises2: [],
+        exercises3: []
+    });
 
     useEffect(() => {
-        fetchWorkoutPlan();
+        fetchWorkout();
     }, []);
 
-    const fetchWorkoutPlan = async () => {
+    const fetchWorkout = async () => {
         try {
-            const response = await axios.get(`http://localhost:8070/workoutplan/get/${id}`);
-            setExercises(response.data.exercises || []);
-            setLoading(false);
+            const response = await axios.get(`http://localhost:8070/Threedayworkoutplan/get/${id}`);
+            const { exercises1, exercises2, exercises3, ...rest } = response.data;
+            setFormData({ ...rest, exercises1, exercises2, exercises3 });
         } catch (error) {
             console.error('Error fetching workout plan:', error);
-            setError('Error fetching workout plan. Please try again.');
-            setLoading(false);
         }
     };
 
-    const handleChange = (index, field, value) => {
-        const updatedExercises = [...exercises];
-        updatedExercises[index][field] = value;
-        setExercises(updatedExercises);
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
 
-    const handleAddExercise = () => {
-        setExerciseInputs([...exerciseInputs, { exercise: '', sets: '', reps: '' }]);
-    };
-
-    const handleDeleteExercise = (index) => {
-        const updatedExercises = [...exercises];
-        updatedExercises.splice(index, 1);
-        setExercises(updatedExercises);
-    };
-
-    const handleSubmit = async () => {
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
         try {
-            await axios.put(`http://localhost:8070/workoutplan/update/${id}`, { exercises });
+            await axios.put(`http://localhost:8070/Threedayworkoutplan/update/${id}`, formData);
             alert('Workout plan updated successfully');
         } catch (error) {
             console.error('Error updating workout plan:', error);
@@ -86,82 +44,154 @@ function UpdatePage() {
         }
     };
 
-    // Function to generate PDF document
-    const generatePDF = () => {
-        return (
-            <Document>
-                <Page size="A4" style={styles.page}>
-                    <View style={styles.section}>
-                        <Text style={styles.heading}>Workout Plan</Text>
-                        {exercises.map((exercise, index) => (
-                            <View key={index} style={styles.section}>
-                                <Text>{`${exercise.exercise}, Sets: ${exercise.sets}, Reps: ${exercise.reps}`}</Text>
-                            </View>
-                        ))}
-                    </View>
-                </Page>
-            </Document>
-        );
+    const handleAddExercise = (day) => {
+        setFormData(prevState => ({
+            ...prevState,
+            [day]: [...prevState[day], { exercise: '', sets: '', reps: '' }]
+        }));
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    const handleDeleteExercise = (day, index) => {
+        setFormData(prevState => {
+            const exercises = [...prevState[day]];
+            exercises.splice(index, 1);
+            return { ...prevState, [day]: exercises };
+        });
+    };
+
+    const handleExerciseChange = (day, index, field, value) => {
+        setFormData(prevState => {
+            const exercises = [...prevState[day]];
+            exercises[index][field] = value;
+            return { ...prevState, [day]: exercises };
+        });
+    };
 
     return (
-        <div style={styles.container}>
-            <h1 style={styles.heading}>Update Workout Plan</h1>
-            {exercises.map((exercise, index) => (
-                <div key={index} style={styles.exerciseContainer}>
+        <div style={{ backgroundImage: 'url(https://img.freepik.com/free-photo/dumbbells-floor-gym-ai-generative_123827-23745.jpg?w=1060&t=st=1713289323~exp=1713289923~hmac=def0332af43577aec1ba958e5e2435759c1ff763ebcf9aa1b16139c7c3eebc73)', backgroundSize: 'cover', minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '30px', borderRadius: '10px' }}>
+            <h2 style={{ marginBottom: '20px', textAlign: 'center' }}>Update Workout Plan</h2>
+            <form onSubmit={handleFormSubmit} style={{ width: '400px', padding: '20px', backgroundColor: '#f2f2f2', borderRadius: '10px' }}>
+                <div style={{ marginBottom: '20px' }}>
+                    <label>Email:</label>
                     <input
                         type="text"
-                        value={exercise.exercise}
-                        onChange={(e) => handleChange(index, 'exercise', e.target.value)}
-                        style={styles.input}
+                        name="Email"
+                        value={formData.Email}
+                        onChange={handleInputChange}
+                        required
+                        style={{ width: '100%', padding: '10px', borderRadius: '5px' }}
                     />
-                    <input
-                        type="number"
-                        value={exercise.sets}
-                        onChange={(e) => handleChange(index, 'sets', e.target.value)}
-                        style={styles.input}
-                    />
-                    <input
-                        type="number"
-                        value={exercise.reps}
-                        onChange={(e) => handleChange(index, 'reps', e.target.value)}
-                        style={styles.input}
-                    />
-                    <button onClick={() => handleDeleteExercise(index)} style={styles.button}>Delete</button>
                 </div>
-            ))}
-            {exerciseInputs.map((input, index) => (
-                <div key={index} style={styles.exerciseContainer}>
+                <div style={{ marginBottom: '20px' }}>
+                    <label>Customer ID:</label>
                     <input
                         type="text"
-                        value={input.exercise}
-                        onChange={(e) => setExerciseInputs([...exerciseInputs.slice(0, index), { ...input, exercise: e.target.value }, ...exerciseInputs.slice(index + 1)])}
-                        style={styles.input}
-                    />
-                    <input
-                        type="number"
-                        value={input.sets}
-                        onChange={(e) => setExerciseInputs([...exerciseInputs.slice(0, index), { ...input, sets: e.target.value }, ...exerciseInputs.slice(index + 1)])}
-                        style={styles.input}
-                    />
-                    <input
-                        type="number"
-                        value={input.reps}
-                        onChange={(e) => setExerciseInputs([...exerciseInputs.slice(0, index), { ...input, reps: e.target.value }, ...exerciseInputs.slice(index + 1)])}
-                        style={styles.input}
+                        name="CustomerId"
+                        value={formData.CustomerId}
+                        onChange={handleInputChange}
+                        style={{ width: '100%', padding: '10px', borderRadius: '5px' }}
                     />
                 </div>
-            ))}
-            <button onClick={handleAddExercise} style={styles.button}>Add Exercise</button>
-            <button onClick={handleSubmit} style={styles.button}>Update Workout Plan</button>
-            <PDFDownloadLink document={generatePDF()} fileName="workout_plan.pdf">
-                {({ blob, url, loading, error }) => (loading ? 'Generating PDF...' : <button style={styles.button}>Download PDF</button>)}
-            </PDFDownloadLink>
-        </div>
+                <div style={{ marginBottom: '20px' }}>
+                    <label>Gender:</label>
+                    <select
+                        name="Gender"
+                        value={formData.Gender}
+                        onChange={handleInputChange}
+                        required
+                        style={{ width: '100%', padding: '10px', borderRadius: '5px' }}
+                    >
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div style={{ marginBottom: '20px' }}>
+                    <h3>One-Day Workout Plan</h3>
+                    {formData.exercises1 && formData.exercises1.map((exercise, index) => (
+                        <div key={index} style={{ marginBottom: '20px' }}>
+                            <input
+                                type="text"
+                                value={exercise.exercise}
+                                onChange={(e) => handleExerciseChange('exercises1', index, 'exercise', e.target.value)}
+                                style={{ width: 'calc(70% - 10px)', padding: '10px', borderRadius: '5px' }}
+                            />
+                            <input
+                                type="number"
+                                value={exercise.sets}
+                                onChange={(e) => handleExerciseChange('exercises1', index, 'sets', e.target.value)}
+                                style={{ width: 'calc(70% - 10px)', padding: '10px', borderRadius: '5px' }}
+                            />
+                            <input
+                                type="number"
+                                value={exercise.reps}
+                                onChange={(e) => handleExerciseChange('exercises1', index, 'reps', e.target.value)}
+                                style={{ width: 'calc(70% - 10px)', padding: '10px', borderRadius: '5px' }}
+
+                             />
+                           
+                         <button type="button" onClick={() => handleDeleteExercise('exercises1', index)} style={{ marginLeft: '5px' }}>Delete</button>
+                        </div>
+                    ))}
+                    <button type="button" onClick={() => handleAddExercise('exercises1')} style={{ marginLeft: '5px' }}>Add Exercise</button>
+                </div>
+                <div>
+                    <h3>Two-Day Workout Plan</h3>
+                    {formData.exercises2 && formData.exercises2.map((exercise, index) => (
+                        <div key={index} style={{ marginBottom: '20px' }}>
+                            <input
+                                type="text"
+                                value={exercise.exercise}
+                                onChange={(e) => handleExerciseChange('exercises2', index, 'exercise', e.target.value)}
+                                style={{ width: 'calc(70% - 10px)', padding: '10px', borderRadius: '5px' }}
+                            />
+                            <input
+                                type="number"
+                                value={exercise.sets}
+                                onChange={(e) => handleExerciseChange('exercises2', index, 'sets', e.target.value)}
+                            />
+                            <input
+                                type="number"
+                                value={exercise.reps}
+                                onChange={(e) => handleExerciseChange('exercises2', index, 'reps', e.target.value)}
+                            />
+                            <button type="button" onClick={() => handleDeleteExercise('exercises2', index)} style={{ marginLeft: '5px' }}>Delete</button>
+                        </div>
+                    ))}
+                    <button type="button" onClick={() => handleAddExercise('exercises2')} style={{ padding: '10px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px' }}>Add Exercise</button>
+                </div>
+                <div>
+                    <h3>Three-Day Workout Plan</h3>
+                    {formData.exercises3 && formData.exercises3.map((exercise, index) => (
+                        <div key={index} style={{ marginBottom: '20px' }}>
+                            <input
+                                type="text"
+                                value={exercise.exercise}
+                                onChange={(e) => handleExerciseChange('exercises2', index, 'exercise', e.target.value)}
+                                style={{ width: 'calc(70% - 10px)', padding: '10px', borderRadius: '5px' }}
+                            />
+                            <input
+                                type="number"
+                                value={exercise.sets}
+                                onChange={(e) => handleExerciseChange('exercises2', index, 'sets', e.target.value)}
+                                style={{ width: 'calc(70% - 10px)', padding: '10px', borderRadius: '5px' }}
+                            />
+                            <input
+                                type="number"
+                                value={exercise.reps}
+                                onChange={(e) => handleExerciseChange('exercises2', index, 'reps', e.target.value)}
+                                style={{ width: 'calc(70% - 10px)', padding: '10px', borderRadius: '5px' }}
+                            />
+                            <button type="button" onClick={() => handleDeleteExercise('exercises2', index)} style={{ marginLeft: '5px' }}>Delete</button>
+                        </div>
+                    ))}
+                    <button type="button" onClick={() => handleAddExercise('exercises2')} style={{ padding: '10px', backgroundColor: 'green', color: 'white', border: 'none', borderRadius: '5px' }}>Add Exercise</button>
+                </div>
+                <button type="submit" style={{ padding: '10px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}>Update</button>
+            </form>
+        </div></div>
     );
 }
 
-export default UpdatePage;
+export default UpdateWorkoutPage;

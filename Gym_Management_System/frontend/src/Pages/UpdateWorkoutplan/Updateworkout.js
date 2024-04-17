@@ -53,10 +53,21 @@ function UpdateWorkout() {
     };
 
     return (
-        <div>
+        <div style={{ textAlign: 'center', minHeight: '100vh', backgroundImage: 'url("https://img.freepik.com/free-photo/tall-stylish-shirtless-bodybuilder-dressed-sports-shorts-doing-exercise-bicep-with-barbell-standing-studio-isolated-dark-background_613910-18341.jpg?w=996&t=st=1713328129~exp=1713328729~hmac=5734082d651a73800f4112dd825e8c4e54024c9c79cd5afd96a1f104cf603a63")',
+        backgroundSize: '100% 100%', color: 'white' }}>
             <div className="container">
                 <h2>Enter Trainer Email</h2>
-                <input type="email" value={email} onChange={handleEmailChange} />
+                <input type="email" value={email} onChange={handleEmailChange}  style={{
+        padding: '10px',
+        borderRadius: '5px',
+        border: '1px solid #ccc',
+        marginBottom: '10px',
+        width: '100%',
+        maxWidth: '400px', // Adjust the max width as needed
+        backgroundColor: '#fff',
+        color: '#333',
+        fontSize: '16px',
+    }}/>
                 
                 {email.trim() !== '' && (
                     <>
