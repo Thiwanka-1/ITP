@@ -53,10 +53,20 @@ function UpdateWorkout() {
     };
 
     return (
-        <div>
+        <div style={{ textAlign: 'center', minHeight: '100vh', backgroundColor: 'black', color: 'white' }}>
             <div className="container">
                 <h2>Enter Trainer Email</h2>
-                <input type="email" value={email} onChange={handleEmailChange} />
+                <input type="email" value={email} onChange={handleEmailChange}  style={{
+        padding: '10px',
+        borderRadius: '5px',
+        border: '1px solid #ccc',
+        marginBottom: '10px',
+        width: '100%',
+        maxWidth: '400px', // Adjust the max width as needed
+        backgroundColor: '#fff',
+        color: '#333',
+        fontSize: '16px',
+    }}/>
                 
                 {email.trim() !== '' && (
                     <>
