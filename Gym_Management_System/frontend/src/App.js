@@ -1,5 +1,7 @@
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"; 
 import Header from './Component/Header/Header';
+import DashBoard from "./Pages/DashBoard/DashBoard";
+
 
 
 import AddAppointment from "./Pages/AddAppointment/AddAppointment";
@@ -43,7 +45,12 @@ import TwoUpdate from './Pages/TwodayUpdate/TwodayUpdate';
 import ThreeUpdate from './Pages/ThreedayUpdate/ThreedayUpdate';
 import TrainerRequest from './Pages/TrainerRequest/TrainerRequest';
 import SheduleRequest from './Pages/SheduleRequest/SheduleRequest'; 
-import DashBoard from "./Pages/DashBoard/DashBoard";
+
+
+import AddSchedule from './Pages/AddSchedule/AddSchedule';
+import DisplayRequest from './Pages/DisplaySchedule/DisplaySchedule';
+import UpdateRequest from './Pages/UpdateSchedule/UpdateSchedule';
+
 
 function App() {
   return (
@@ -89,7 +96,13 @@ function App() {
        <Route path='/update/twoday/:id' element={<TwoUpdate/>}/>
        <Route path='/update/threeday/:id' element={<ThreeUpdate/>}/>
        <Route path='/TrainerRequest' element={<TrainerRequest/>}/>
-       <Route path='/Shedule' element={<SheduleRequest/>}/>  
+       <Route path='/Shedule' element={<SheduleRequest/>}/> 
+         
+         
+       <Route path='/addSchedule' element={<AddSchedule/>}/>
+       <Route path='/scheduledisplay' element={<DisplayRequest/>}/>
+       <Route path='/update/:id' element={<UpdateRequest/>}/>  
+         
       </Routes>
      </Router>
   );
