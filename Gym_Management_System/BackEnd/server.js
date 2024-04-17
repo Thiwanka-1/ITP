@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 
 const URL = process.env.MONGODB_URL;
 
-
 mongoose.connect(URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -26,6 +25,9 @@ connection.once('open' , () =>{
     console.log("Mongodb Connection success!");
 
 })
+
+const ScheduleRoute = require("./routes/schedulesRoute.js");
+app.use("/TrainerSchedule", ScheduleRoute );
 
 const AppoinmentRouter = require("./routes/AppoinmentRoutes.js");
 app.use("/appointment", AppoinmentRouter );
