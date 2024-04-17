@@ -18,7 +18,7 @@ function Header() {
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item me-3">
-              <NavLink className={setActiveClass} to="/home" end style={{ fontSize: '20px' }}>Home</NavLink>
+              <NavLink className={setActiveClass} to="/" end style={{ fontSize: '20px' }}>Home</NavLink>
             </li>
             <li className="nav-item me-3">
               <NavLink className={setActiveClass} to="/contact" style={{ fontSize: '20px' }}>Contact</NavLink>

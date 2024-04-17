@@ -41,10 +41,7 @@ return (
       display: "flex",
       flexDirection: "column", // Stack children vertically
     }}>
-      <Header style={{
-        width: "100%", // Ensure the header is full width
-        // If adjustments needed, make them in the Header component or add className to target
-      }}/>
+      
       <div style={{
         backgroundImage: "url('/Images/AddPackage.png')",
         backgroundSize: "cover",

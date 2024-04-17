@@ -1,0 +1,77 @@
+/* Dashboard.css */
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .sidebar-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-menu-item {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-link {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  .sidebar-link:hover {
+    background-color: #555;
+  }
+  
+  .dropdown {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .dropdown-title {
+    margin-left: 10px;
+  }
+  
+  .dropdown-menu {
+    list-style: none;
+    padding: 0;
+    display: none; /* Hide by default */
+  }
+  
+  .dropdown-menu.show {
+    display: block; /* Show when .show class is applied */
+  }
+  
+  .dropdown-link {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  .dropdown-link:hover {
+    background-color: #555;
+  }
+  
+  .main-content {
+    flex: 1;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  
