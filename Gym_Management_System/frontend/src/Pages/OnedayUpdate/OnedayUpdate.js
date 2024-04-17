@@ -51,7 +51,7 @@ function UpdateWorkoutForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
+        try { 
             await axios.put(`http://localhost:8070/workoutplan/update/${id}`, formData);
             alert('Workout plan updated successfully');
         } catch (error) {
