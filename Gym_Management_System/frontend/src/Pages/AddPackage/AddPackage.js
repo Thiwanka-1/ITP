@@ -84,7 +84,7 @@ return (
                      <label htmlFor="description" className="form-label">Description</label>
                       <textarea className="form-control" id="description" onChange={(e)=>{setDescription(e.target.value)}}></textarea>
                  </div>
-                    <div style={{ textAlign: "center" }}>
+                    <div style={{ textAlign: "center",marginRight:"300px" }}>
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                 </form>

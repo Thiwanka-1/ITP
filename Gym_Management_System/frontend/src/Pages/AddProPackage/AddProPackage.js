@@ -85,7 +85,7 @@ return (
                      <label htmlFor="reason" className="form-label">Reason</label>
                       <textarea className="form-control" id="reason" onChange={(e)=>{setReason(e.target.value)}} required></textarea>
                  </div>
-                    <div style={{ textAlign: "center" }}>
+                    <div style={{ textAlign: "center" , marginRight:"300px"}}>
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
                 </form>
