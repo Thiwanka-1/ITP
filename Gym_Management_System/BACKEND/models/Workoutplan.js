@@ -1,0 +1,39 @@
+//modle
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const workoutSchema = new Schema({
+    
+
+    Email:{
+        type: String,
+        required: true,
+        unique: true
+    },
+
+    CustomerId:{
+        type: String,
+    },
+
+    Gender:{
+        type: String
+    },
+
+    exercises: [{
+        exercise: {
+            type: String
+        },
+        sets: {
+            type: Number
+        },
+        reps: {
+            type: Number
+        }
+    }]
+
+});
+
+const Workout= mongoose.model("workoutplan",workoutSchema);
+
+module.exports = Workout;
