@@ -7,8 +7,8 @@ import Cat from "./fff.jpg";
 export default function DashUsers() {
   
   const [Feed, setFeed] = useState([]);
-  
-  
+  //const [filter, setfilter] = useState([]);
+  //const [query, setQuery] = useState(" ");
 
   
   const { currentUser } = useSelector((state) => state.user);
@@ -86,7 +86,20 @@ export default function DashUsers() {
 
  
 
-
+//  //search funtion
+//  useEffect(() => {
+//   if (query.trim() === "") {
+//     // If the query is empty, display all data
+//     setfilter([...Feed]);
+//   } else {
+//     // If there's a query, filter the data
+//     const filteredData = Feed.filter(
+//       (Feed) =>
+//       Feed.email &&  Feed.email.toLowerCase().includes(query.toLowerCase())
+//     );
+//     setfilter(filteredData);
+//   }
+// }, [query, Feed]);
 
 
 
@@ -102,7 +115,16 @@ export default function DashUsers() {
    <div className="h-[600px] relative">
      {/* <div className="ml-8 mt-7 flex justify-center items-center"> */}
      <img src={Cat} alt="" className="w-full h-600px object-cover" />  
-     
+     {/* <div className="ml-8 mt-[-600px] flex justify-center items-center">
+        <form>
+          <input
+            type="text"
+            placeholder="Search... "
+            className=" w-[300px] h-8 mt-6 rounded-lg shadow-xl"
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </form>
+      </div> */}
       {/* </div> */}
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 flex justify-center items-center gap-14 mt-5">
         

@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import moment from 'moment';
 import Cat from "./fff.jpg";
+import logo from "./logo.jpeg";
 import jsPDF from "jspdf";
+import 'jspdf-autotable';
 
 export default function Feedback() {
   const { currentUser } = useSelector((state) => state.user);
@@ -53,6 +55,17 @@ export default function Feedback() {
     let yPos = 10;
 
     // Add Notification details to PDF
+    const companyName = "Gym flex";
+   
+    const logoUrl = logo; 
+    const imgWidth = 20; // Adjust the width of the logo as needed
+    const imgHeight = 20; // Adjust the height of the logo as needed
+    doc.addImage(logoUrl, "JPEG", 20, yPos, imgWidth, imgHeight);
+    doc.setFontSize(18);
+    doc.text(80, yPos + 10, companyName);
+  
+    yPos += 30;
+
     doc.setFontSize(16);
     doc.text(20, yPos, "Notification Details:");
     yPos += 10;

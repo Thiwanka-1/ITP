@@ -19,7 +19,46 @@ router.put('/update/:userId', async (req, res, next) => {
         }
         req.body.password = bcryptjs.hashSync(req.body.password, 10);
       }
+      if (req.body.Height) {
+        if (!/^\d+$/.test(req.body.Height)) {
+          return next(errorHandle(400, "Height  should contain only digits"));
+        }
+        if (req.body.Height.includes(" ")) {
+          return next(errorHandle(400, "Height cannot contain spaces"));
+        }
+        if (req.body.Height.length > 3 ) {
+          return next(errorHandle(400, "Height  must be 3 numbers"));
+        }
+        
+      }
+      if (req.body.weight) {
+        if (!/^\d+$/.test(req.body.weight)) {
+          return next(errorHandle(400, "weight  should contain only digits"));
+        }
+        if (req.body.weight.includes(" ")) {
+          return next(errorHandle(400, "weight cannot contain spaces"));
+        }
+        if (req.body.weight.length > 3 ) {
+          return next(errorHandle(400, "weight must be 3 numbers"));
+        }
+        
+      }
     
+      if (req.body.PhoneNumber) {
+        if (req.body.PhoneNumber.length < 10 ) {
+          return next(errorHandle(400, "Phone number must be 10 numbers"));
+        }
+        if (req.body.PhoneNumber.length > 10 ) {
+          return next(errorHandle(400, "Phone number must be 10 numbers"));
+        }
+        if (req.body.PhoneNumber.includes(" ")) {
+          return next(errorHandle(400, "PhoneNumber cannot contain spaces"));
+        }
+        if (!/^\d+$/.test(req.body.PhoneNumber)) {
+          return next(errorHandle(400, "Phone number should contain only digits"));
+        }
+        
+      }
       if (req.body.username) {
         if (req.body.username.length < 7 || req.body.username.length > 20) {
           return next(

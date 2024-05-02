@@ -5,6 +5,11 @@ function CheckBMI() {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [bmi, setBMI] = useState('');
+ 
+
+  const reload = ()=>{
+    window.location.reload()
+}
 
   const calculateBMI = () => {
     const weightInKg = parseFloat(weight);
@@ -28,7 +33,7 @@ function CheckBMI() {
         </div>{" "}
         {/* Added object-cover class */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center gap-14 mt-5">
-          <div className="w-[500px]   h-[300px] bg-white rounded-3xl">
+          <div className="w-[500px]   h-[400px] bg-white rounded-3xl">
           <div className='mt-8 ml-8'>
     <div >
     <h1 className="text-2xl mt-2 mb-2 ml-44 font-serif">
@@ -55,6 +60,8 @@ function CheckBMI() {
       <button 
         className=" bg-yellow-300 text-black shadow-sm mt-6 shadow-black p-3 rounded-lg w-[150px] ml-40  h-11 hover:opacity-90"
       onClick={calculateBMI}>Calculate BMI</button>
+      <button className=" bg-yellow-300 text-black shadow-sm mt-6 shadow-black p-3 rounded-lg w-[150px] ml-40  h-11 hover:opacity-90"
+       onClick={reload}>Reload</button>{' '}
       {bmi && (
         <div className='mt-6 ml-[160px] bg-yellow-300 w-36 rounded-lg'>
           <h2 className='ml-3' >Your BMI: {bmi}</h2>

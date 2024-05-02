@@ -39,3 +39,6 @@ body {
   .dark .post-content a {
     color: red;
   }
+  .bg-navy-blue {
+    background-color: rgb(12, 12, 55);
+  }

@@ -7,7 +7,7 @@ export default function DashUsers() {
   const { currentUser } = useSelector((state) => state.user);
   const [User, setUser] = useState([]);
   const [userDelete, setuserToDelete] = useState("");
-  console.log("sameea", User);
+  console.log("kavindu", User);
   const [filter, setfilter] = useState([]);
   const [query, setQuery] = useState(" ");
 
