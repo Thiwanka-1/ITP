@@ -80,7 +80,7 @@ function Addrequest() {
                             className="form-control"
                             id="TypeofEquipment"
                             placeholder="Enter Type of Equipment"
-                            value={TypefEquipment}
+                            value={TypeofEquipment}
                             onChange={(e) => setTypeofEquipment(e.target.value)}
                         />
                     </div>

@@ -98,7 +98,7 @@ function DisplayAppointment() {
                             <td style={styles.td}>{appointment.date}</td>
                             <td style={styles.td}>{appointment.time}</td>
                             <td style={styles.td}>
-                            <button style={styles.deleteButton} onClick={() => navigate(`/update/${appointment._id}`)}>Edit</button>
+                            <button style={styles.deleteButton} onClick={() => navigate(`/updateapoint/${appointment._id}`)}>Edit</button>
                                 <button style={styles.deleteButton} onClick={() => confirmDelete(appointment._id)}>Delete</button>
                             </td>
                         </tr>

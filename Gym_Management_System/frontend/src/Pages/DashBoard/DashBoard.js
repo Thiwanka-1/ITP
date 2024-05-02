@@ -9,7 +9,7 @@ function Dashboard() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '200vh', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ display: 'flex', height: '120vh', fontFamily: 'Arial, sans-serif' }}>
       {/* Sidebar */}
       <div style={{
         width: '250px',
@@ -128,7 +128,18 @@ function Dashboard() {
 
       </div>
       {/* Main Content */}
-      <div style={{ flex: 1, padding: '20px' }}>
+      <div style={{ flex: 1, padding: '20px' ,
+        backgroundImage: "url('/Images/AddPackage.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        flex: "1",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingTop: "20px",
+        
+        }}>
         {activeTab === 'home' && (
           <div>
             <h1>Welcome to Admin Dashboard</h1>

@@ -54,6 +54,8 @@ import DisplayRequest from './Pages/DisplaySchedule/DisplaySchedule';
 import UpdateRequest from './Pages/UpdateSchedule/UpdateSchedule';
 import AddEmployee from "./Pages/AddEmployee/AddEmployee";
 
+import Home from "./Pages/Home/Home";
+
 
 function App() {
   return (
@@ -61,7 +63,10 @@ function App() {
       <Header/>
        <Routes>
 
-       <Route path='/' element={<DashBoard />} />
+       <Route path='/' element={<Home />} />
+
+
+       <Route path='/dash' element={<DashBoard />} />
        <Route path='/user' element={<UserDash />} />
 
         <Route path='/viewpro' element={<ViewProPackage/>} />
@@ -87,7 +92,7 @@ function App() {
           
         <Route path='/addapoint' element={<AddAppointment />}/>
         <Route path='/appoint' element={<DisplayAppointment />}/>
-        <Route path='/update/:id' element={<UpdateAppointment />}/> 
+        <Route path='/updateapoint/:id' element={<UpdateAppointment />}/> 
           
           
        <Route path='/addworkout' element={<Addworkoutplan/>}/>

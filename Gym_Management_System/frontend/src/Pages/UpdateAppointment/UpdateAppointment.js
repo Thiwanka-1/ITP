@@ -29,7 +29,7 @@ function UpdateAppointment() {
     try {
       await axios.put(`http://localhost:8070/appointment/update/${id}`, appointments);
       alert('Task updated successfully');
-      navigate('/display');
+      navigate('/appoint');
     } catch (error) {
       console.error('Error updating appointment:', error);
       alert('Error updating appointment');
@@ -69,7 +69,7 @@ function UpdateAppointment() {
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button type="submit" style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>Update Request</button>
-              <button type="button" onClick={() => navigate('/display')} style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#ccc', color: 'white', border: 'none', cursor: 'pointer' }}>Cancel</button>
+              <button type="button" onClick={() => navigate('/appoint')} style={{ padding: '10px 20px', borderRadius: '4px', backgroundColor: '#ccc', color: 'white', border: 'none', cursor: 'pointer' }}>Cancel</button>
             </div>
           </form>
         </div>
