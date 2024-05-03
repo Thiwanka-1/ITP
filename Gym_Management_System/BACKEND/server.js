@@ -68,6 +68,9 @@ app.use("/Report",ReportRoute);
 const EmployeeRoute = require("./routes/EmployeeRoute.js");
 app.use("/Employee",EmployeeRoute);
 
+const authRoutes = require('./routes/authRoutes.js');
+app.use('/auth', authRoutes);
+
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`)
 })

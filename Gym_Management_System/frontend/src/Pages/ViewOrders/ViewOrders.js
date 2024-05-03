@@ -76,7 +76,7 @@ function ViewOrders() {
           </thead>
           <tbody>
             {orders.map((pkg) => (
-              <tr key={pkg._id}>
+              <tr key={pkg._id} style={{color:"black"}}>
                 <td style={tableCellStyle}>{pkg.cusName}</td>
                 <td style={tableCellStyle}>{pkg.email}</td>
                 <td style={tableCellStyle}>{pkg.phone}</td>

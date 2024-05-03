@@ -68,7 +68,7 @@ function Displaytask() {
                     </thead>
                     <tbody>
                         {tasks.map(task => (
-                            <tr key={task._id}>
+                            <tr key={task._id} style={{color:"black"}}>
                                 <td style={tableCellStyle}>{task.equipmentname}</td>
                                 <td style={tableCellStyle}>{task.taskname}</td>
                                 <td style={tableCellStyle}>{task.description}</td>

@@ -68,7 +68,7 @@ function Displayrequest() {
                     </thead>
                     <tbody>
                         {requests.map(request => (
-                            <tr key={request._id}>
+                            <tr key={request._id} style={{color:"black"}}>
                                 <td style={tableCellStyle}>{request.EmpId}</td>
                                 <td style={tableCellStyle}>{request.Type0fEquipment}</td>
                                 <td style={tableCellStyle}>{request.Date}</td>

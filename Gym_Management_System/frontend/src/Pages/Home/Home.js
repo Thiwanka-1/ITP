@@ -26,18 +26,26 @@ const Home = () => {
       <div className="hero-section">
       <Slider {...sliderSettings}>
         <div className="hero-slide">
-          <img src="/Images/photo.jpg" alt="Welcome to Future Gym" className="slider-image" />
+          <img src="/Images/gym.png" alt="Welcome to Future Gym" className="slider-image" />
           <div className="hero-content">
             <h1 style={{color: "white"}}>Welcome to Future Gym</h1>
-            <p>Your journey to fitness starts here.</p>
+            <p>Your journey to fitness starts here.</p><br></br>
             <Link to="/courses" className="cta-btn">Discover Courses</Link>
           </div>
         </div>
         <div className="hero-slide">
           <img src="/Images/photo1.jpg" alt="Personalized Training" className="slider-image" />
           <div className="hero-content">
+            <h1 style={{color: "white"}}>Workout Planing</h1>
+            <p>Get the best workout plans from our expert trainers.</p><br></br>
+            <Link to="/contact" className="cta-btn">Contact Us</Link>
+          </div>
+        </div>
+        <div className="hero-slide">
+          <img src="/Images/gym1.png" alt="Personalized Training" className="slider-image" />
+          <div className="hero-content">
             <h1 style={{color: "white"}}>Personalized Training</h1>
-            <p>Get the best training from our expert coaches.</p>
+            <p>Get the best training from our expert coaches.</p><br></br>
             <Link to="/contact" className="cta-btn">Contact Us</Link>
           </div>
         </div>

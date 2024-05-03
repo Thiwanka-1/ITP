@@ -67,7 +67,7 @@ function ViewProOrders() {
           </thead>
           <tbody>
             {proOrders.map((pkg) => (
-              <tr key={pkg._id}>
+              <tr key={pkg._id} style={{color:"black"}}>
                 <td style={tableCellStyle}>{pkg.custName}</td>
                 <td style={tableCellStyle}>{pkg.proEmail}</td>
                 <td style={tableCellStyle}>{pkg.proPhone}</td>

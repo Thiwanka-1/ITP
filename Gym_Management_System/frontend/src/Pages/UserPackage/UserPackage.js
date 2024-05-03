@@ -72,8 +72,8 @@ function UserPackage() {
           boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
           margin: "20px 0",
         }}>
-          <h2 style={{ textAlign: "center", marginBottom: "30px" }}>Select Package</h2>
-          <form onSubmit={handleSubmit}>
+          <h2 style={{ textAlign: "center", marginBottom: "30px", color:"black"}}>Select Package</h2>
+          <form onSubmit={handleSubmit}  style={{color:"black"}}>
             <div className="mb-4">
               <label htmlFor="customerName" className="form-label">Customer Name</label>
               <input type="text" className="form-control" id="customerName" value={cusName} onChange={(e) => setCustomerName(e.target.value)} required />

@@ -55,6 +55,8 @@ import UpdateRequest from './Pages/UpdateSchedule/UpdateSchedule';
 import AddEmployee from "./Pages/AddEmployee/AddEmployee";
 
 import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
+import SignUp from "./Pages/SignUp/SignUp";
 
 
 function App() {
@@ -63,7 +65,7 @@ function App() {
       <Header/>
        <Routes>
 
-       <Route path='/' element={<Home />} />
+       <Route path='/home' element={<Home />} />
 
 
        <Route path='/dash' element={<DashBoard />} />
@@ -114,7 +116,15 @@ function App() {
        <Route path='/updatesc/:id' element={<UpdateRequest/>}/>  
 
 
-       <Route path='/addemp' element={<AddEmployee />}/>  
+       <Route path='/addemp' element={<AddEmployee />}/>
+
+       <Route path='/login' element={<Login />}/>
+       <Route path='/signup' element={<SignUp />}/>
+
+
+
+
+
 
 
          

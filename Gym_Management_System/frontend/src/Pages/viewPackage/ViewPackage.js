@@ -74,7 +74,7 @@ function ViewPackage() {
           </thead>
           <tbody>
             {packages.map(pkg => (
-              <tr key={pkg._id}>
+              <tr key={pkg._id} style={{color:"black"}}>
                 <td style={tableCellStyle}>{pkg.packageType}</td>
                 <td style={tableCellStyle}>{pkg.packageName}</td>
                 <td style={tableCellStyle}>{pkg.duration}</td>

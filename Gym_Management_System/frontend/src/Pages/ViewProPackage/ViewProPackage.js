@@ -68,7 +68,7 @@ function ViewProPackage() {
           </thead>
           <tbody>
             {proPackages.map((pkg) => (
-              <tr key={pkg._id}>
+              <tr key={pkg._id} style={{color:"black"}}>
                 <td style={tableCellStyle}>{pkg.packageType}</td>
                 <td style={tableCellStyle}>{pkg.proPackageName}</td>
                 <td style={tableCellStyle}>Rs.{pkg.proPrice}</td>
