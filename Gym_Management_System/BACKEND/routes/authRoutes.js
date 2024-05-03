@@ -3,35 +3,38 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 
-// Middleware to find user by ID
-async function findUserById(req, res, next) {
+// Middleware to find a user by ID
+const findUserById = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
     if (!user) {
       return res.status(404).send({ message: 'User not found' });
     }
-    req.user = user; // Store the user in the request object for subsequent use
+    req.user = user; // Store user in request object for subsequent use
     next(); // Proceed to the next middleware
   } catch (error) {
     res.status(500).send({ message: 'Error retrieving user', error });
   }
-}
+};
 
 // Sign up
 router.post('/signup', async (req, res) => {
-  const { username, email, password, cname, cphone, height, weight, isAdmin } = req.body;
+  const { username, email, password, isAdmin, cname, cphone, cheight, cweight, caddress } = req.body;
+
   try {
-    const hashedPassword = await bcrypt.hash(password, 12); // Hash the password before saving
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
     const user = new User({
       username,
       email,
       password: hashedPassword,
+      isAdmin,
       cname,
       cphone,
-      height,
-      weight,
-      isAdmin,
+      cheight,
+      cweight,
+      caddress,
     });
+
     await user.save();
     res.status(201).send({ message: 'User created successfully' });
   } catch (error) {
@@ -42,53 +45,65 @@ router.post('/signup', async (req, res) => {
 // Login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
+
   try {
     const user = await User.findOne({ email });
-    if (!user) {
+    if (!user || !(await user.comparePassword(password))) {
       return res.status(401).send({ message: 'Invalid email or password' });
     }
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).send({ message: 'Invalid email or password' });
-    }
+
+    const userRole = user.isAdmin ? 'admin' : 'user'; 
+
     res.send({
       message: 'Logged in successfully',
-      user: { username: user.username, isAdmin: user.isAdmin, id: user._id },
+      user: {
+        id: user._id,
+        username: user.username,
+        role: userRole,
+      },
     });
+
   } catch (error) {
-    res.status(500).send({ message: 'Error logging in', error });
+    res.status(500).send({ message: 'An error occurred during login', error });
   }
 });
 
 // Get user by ID
 router.get('/user/:id', findUserById, (req, res) => {
-  res.send({
+  res.status(200).send({
+    message: 'User found',
     user: {
+      id: req.user._id,
       username: req.user.username,
       email: req.user.email,
+      isAdmin: req.user.isAdmin,
       cname: req.user.cname,
       cphone: req.user.cphone,
-      height: req.user.height,
-      weight: req.user.weight,
-      isAdmin: req.user.isAdmin,
+      cheight: req.user.cheight,
+      cweight: req.user.cweight,
+      caddress: req.user.caddress,
     },
   });
 });
 
 // Update user by ID
 router.put('/user/:id', findUserById, async (req, res) => {
-  const { username, cname, cphone, height, weight, isAdmin } = req.body;
+  const { username, email, isAdmin, cname, cphone, cheight, cweight, caddress } = req.body;
+
   try {
+    // Update the fields based on input
     if (username) req.user.username = username;
+    if (email) req.user.email = email;
+    req.user.isAdmin = isAdmin ?? req.user.isAdmin;
     if (cname) req.user.cname = cname;
     if (cphone) req.user.cphone = cphone;
-    if (height) req.user.height = height;
-    if (weight) req.user.weight = weight;
-    if (isAdmin !== undefined) req.user.isAdmin = isAdmin;
+    if (cheight) req.user.cheight = cheight;
+    if (cweight) req.user.cweight = cweight;
+    if (caddress) req.user.caddress = caddress;
 
     await req.user.save(); // Save the updated user information
 
-    res.send({ message: 'User updated successfully' });
+    res.status(200).send({ message: 'User updated successfully' });
   } catch (error) {
     res.status(500).send({ message: 'Error updating user', error });
   }
@@ -98,7 +113,7 @@ router.put('/user/:id', findUserById, async (req, res) => {
 router.delete('/user/:id', findUserById, async (req, res) => {
   try {
     await req.user.remove(); // Remove the user from the database
-    res.send({ message: 'User deleted successfully' });
+    res.status(200).send({ message: 'User deleted successfully' });
   } catch (error) {
     res.status(500).send({ message: 'Error deleting user', error });
   }

@@ -63,7 +63,7 @@ return (
                 boxShadow: "0 4px 6px rgba(0,0,0,0.1)", // Soft shadow for depth
                 margin: "20px 0", // Space between header and form
             }}>
-                <h2 style={{ textAlign: "center", marginBottom: "30px" }}>Add Promotional Packages</h2>
+                <h2 style={{ textAlign: "center", marginBottom: "30px",color:"black" }}>Add Promotional Packages</h2>
                 <form onSubmit={sendData}>
                     <div className="mb-4">
                         <label htmlFor="packageType" className="form-label">Package Type</label>

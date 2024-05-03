@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Use `useNavigate` in React Router v6
+import { useNavigate } from 'react-router-dom'; // For navigation
 import axios from 'axios';
+import './Login.css'; // Styling for login page
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Use `useNavigate`
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault(); // Prevent default form submission
 
     try {
       const response = await axios.post('http://localhost:8070/auth/login', {
@@ -17,7 +18,7 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        const userRole = response.data.user.role; // Determine the user's role
+        const userRole = response.data.user.role;
         if (userRole === 'admin') {
           navigate('/dash'); // Redirect to admin dashboard
         } else {
@@ -31,24 +32,40 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div className="login-container" style={{backgroundImage: "url('/Images/log.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    flex: "1", // Take up remaining space
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center", // Center children horizontally
+    justifyContent: "center", // Center children vertically
+    paddingTop: "20px",}}>
+      <form onSubmit={handleLogin} className="login-form">
+        <h2 style={{color:"black"}}>Login</h2>
+        <div className="form-group">
+          <label>Email :</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Password : </label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+          />
+        </div>
+        <button type="submit" className="login-btn">Login</button> {/* Button styling */}
+      </form>
+    </div>
   );
 };
 

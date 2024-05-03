@@ -112,7 +112,7 @@ function AddPackage() {
                     boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
                     margin: "20px 0",
                 }}>
-                    <h2 style={{ textAlign: "center", marginBottom: "30px" }}>Add Packages</h2>
+                    <h2 style={{ textAlign: "center", marginBottom: "30px" ,color:"black"}}>Add Packages</h2>
                     <form onSubmit={sendData}>
                         <div className="mb-4">
                             <label htmlFor="packageType" className="form-label">Package Type</label>

@@ -57,15 +57,25 @@ import AddEmployee from "./Pages/AddEmployee/AddEmployee";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/SignUp/SignUp";
+import ContactUs from "./Pages/ContactUs/ContactUs";
+import AboutUs from "./Pages/AboutUs/AboutUs";
+
+import { AuthProvider } from './Auth/AuthContext'
+// import ProtectedRoute from './Auth/ProtectedRoute';
 
 
 function App() {
   return (
-     <Router>
+    <Router>
+    <AuthProvider>
       <Header/>
        <Routes>
 
-       <Route path='/home' element={<Home />} />
+       <Route path='/' element={<Home />} />
+       <Route path='/contact' element={<ContactUs />} />
+       <Route path='/about' element={<AboutUs />} />
+
+
 
 
        <Route path='/dash' element={<DashBoard />} />
@@ -122,13 +132,9 @@ function App() {
        <Route path='/signup' element={<SignUp />}/>
 
 
-
-
-
-
-
-         
       </Routes>
+     
+     </AuthProvider>
      </Router>
   );
 }

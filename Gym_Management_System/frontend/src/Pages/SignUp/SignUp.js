@@ -1,102 +1,153 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './SignUp.css'; // Include the updated CSS file for styling
 
 const SignUp = () => {
-  // Initialize state for form inputs
+  // State variables for all input fields
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [cname, setCname] = useState(''); // New field for name
-  const [cphone, setCphone] = useState(''); // New field for phone number
-  const [height, setHeight] = useState(''); // New field for height
-  const [weight, setWeight] = useState(''); // New field for weight
   const [isAdmin, setIsAdmin] = useState(false);
+  const [cname, setCname] = useState('');
+  const [cphone, setCphone] = useState('');
+  const [cheight, setHeight] = useState('');
+  const [cweight, setWeight] = useState('');
+  const [caddress, setAddress] = useState('');
 
-  // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload on form submission
+    e.preventDefault(); // Prevent default form submission
     try {
-      // Send a POST request to the server with the user data
+      // POST request to create a new user
       await axios.post('http://localhost:8070/auth/signup', {
         username,
         email,
         password,
+        isAdmin,
         cname,
         cphone,
-        height,
-        weight,
-        isAdmin,
+        cheight,
+        cweight,
+        caddress,
       });
-      alert('User created successfully');
+
+      alert('User created successfully'); // Success message
     } catch (error) {
-      // Detailed error message if available
-      alert(error.response?.data?.message || 'An error occurred during sign-up.');
+      alert(error.response?.data?.message || 'An error occurred during signup.'); // Error handling
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Sign Up</h1>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-        required
-      />
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        required
-      />
-      {/* New input fields */}
-      <input
-        type="text"
-        value={cname}
-        onChange={(e) => setCname(e.target.value)}
-        placeholder="Full Name"
-        required
-      />
-      <input
-        type="text"
-        value={cphone}
-        onChange={(e) => setCphone(e.target.value)}
-        placeholder="Phone Number"
-        required
-      />
-      <input
-        type="number"
-        value={height}
-        onChange={(e) => setHeight(e.target.value)}
-        placeholder="Height (in cm)"
-        required
-      />
-      <input
-        type="number"
-        value={weight}
-        onChange={(e) => setWeight(e.target.value)}
-        placeholder="Weight (in kg)"
-        required
-      />
-      <label>
-        <input
-          type="checkbox"
-          checked={isAdmin}
-          onChange={(e) => setIsAdmin(e.target.checked)}
-        />
-        Register as Admin
-      </label>
-      <button type="submit">Sign Up</button>
-    </form>
+    <div className="signup-container" style={{backgroundImage: "url('/Images/sign.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    flex: "1", // Take up remaining space
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center", // Center children horizontally
+    justifyContent: "center", // Center children vertically
+    paddingTop: "50px",
+    paddingBottom:"50px"}}>
+      <form onSubmit={handleSubmit} className="signup-form">
+        <h2 style={{color:"black"}}>Create an Account</h2>
+
+        {/* Username */}
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Email */}
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Password */}
+        <div className="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Customer Details */}
+        <div className="form-group">
+          <label>Customer Name</label>
+          <input
+            type="text"
+            value={cname}
+            onChange={(e) => setCname(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Customer Phone</label>
+          <input
+            type="text"
+            value={cphone}
+            onChange={(e) => setCphone(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Height</label>
+          <input
+            type="text"
+            value={cheight}
+            onChange={(e) => setHeight(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Weight</label>
+          <input
+            type="text"
+            value={cweight}
+            onChange={(e) => setWeight(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Address</label>
+          <input
+            type="text"
+            value={caddress}
+            onChange={(e) => setAddress(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* Admin Checkbox */}
+        <div className="form-group form-group-inline">
+        <label>Register as Admin</label> {/* Properly aligned */}
+          <input
+            type="checkbox"
+            checked={isAdmin}
+            onChange={(e) => setIsAdmin(e.target.checked)}
+          />
+          
+        </div>
+
+        <button type="submit" className="signup-btn">Sign Up</button>
+      </form>
+    </div>
   );
 };
 

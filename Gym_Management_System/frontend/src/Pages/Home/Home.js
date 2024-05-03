@@ -30,7 +30,7 @@ const Home = () => {
           <div className="hero-content">
             <h1 style={{color: "white"}}>Welcome to Future Gym</h1>
             <p>Your journey to fitness starts here.</p><br></br>
-            <Link to="/courses" className="cta-btn">Discover Courses</Link>
+            <Link to="/login" className="cta-btn">Discover Courses</Link>
           </div>
         </div>
         <div className="hero-slide">
@@ -59,7 +59,7 @@ const Home = () => {
           <div className="category-content">
             <h2>Strength Training</h2>
             <p>Build muscle and increase strength with our specialized programs.</p>
-            <Link to="/courses" className="category-btn">Learn More</Link>
+            <Link to="/about" className="category-btn">Learn More</Link>
           </div>
         </div>
         <div className="category">
@@ -67,7 +67,7 @@ const Home = () => {
           <div className="category-content">
             <h2>Cardio</h2>
             <p>Improve your cardiovascular health with high-energy workouts.</p>
-            <Link to="/courses" className="category-btn">Learn More</Link>
+            <Link to="/about" className="category-btn">Learn More</Link>
           </div>
         </div>
         <div className="category">
@@ -75,7 +75,7 @@ const Home = () => {
           <div className="category-content">
             <h2>Yoga</h2>
             <p>Find balance and flexibility with our yoga classes.</p>
-            <Link to="/courses" className="category-btn">Learn More</Link>
+            <Link to="/about" className="category-btn">Learn More</Link>
           </div>
         </div>
       </div>
@@ -114,7 +114,7 @@ const Home = () => {
               <li>Basic group classes</li>
               <li>Standard support</li>
             </ul>
-            <Link to="/pricing" className="plan-btn">Get Started</Link>
+            <Link to="/signup" className="plan-btn">Get Started</Link>
           </div>
           <div className="plan">
             <h3>Premium Plan</h3>
@@ -124,7 +124,7 @@ const Home = () => {
               <li>All group classes</li>
               <li>1 personal training session per month</li>
             </ul>
-            <Link to="/pricing" className="plan-btn">Get Started</Link>
+            <Link to="/login" className="plan-btn">Get Started</Link>
           </div>
           <div className="plan">
             <h3>Ultimate Plan</h3>
@@ -134,7 +134,7 @@ const Home = () => {
               <li>All group classes</li>
               <li>Weekly personal training sessions</li>
             </ul>
-            <Link to="/pricing" className="plan-btn">Get Started</Link>
+            <Link to="/login" className="plan-btn">Get Started</Link>
           </div>
         </div>
       </div>

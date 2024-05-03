@@ -1,0 +1,43 @@
+.about-us-container {
+    padding: 40px;
+    background: linear-gradient(45deg, #333, #444); /* Professional gradient */
+    color: #fff; /* White text for contrast */
+  }
+  
+  h1 {
+    text-align: center; /* Center the main heading */
+    font-size: 36px; /* Large font size for main heading */
+  }
+  
+  .about-section {
+    margin: 30px 0; /* Spacing between sections */
+  }
+  
+  h2 {
+    font-size: 24px; /* Large font size for section headings */
+    color: #ff4081; /* Accent color for headings */
+  }
+  
+  p, ul {
+    font-size: 16px; /* Standard font size for content */
+  }
+  
+  ul {
+    list-style-type: disc; /* Use bullet points for lists */
+    padding-left: 20px; /* Indent the list */
+  }
+  
+  .contact-button {
+    background: #ff4081; /* Bold color for the button */
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 5px; /* Rounded corners */
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s; /* Smooth transition */
+  }
+  
+  .contact-button:hover {
+    background: #e91e63; /* Darker on hover */
+  }
+  
