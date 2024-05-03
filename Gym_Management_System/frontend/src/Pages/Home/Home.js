@@ -24,30 +24,30 @@ const Home = () => {
     <div className="home">
       {/* Hero Slider */}
       <div className="hero-section">
-        <Slider {...sliderSettings}>
-          <div className="hero-slide">
-            <img src="/images/slider1.jpg" alt="Welcome to Future Gym" className="slider-image" />
-            <div className="hero-content">
-              <h1>Welcome to Future Gym</h1>
-              <p>Your journey to fitness starts here.</p>
-              <Link to="/courses" className="cta-btn">Discover Courses</Link>
-            </div>
+      <Slider {...sliderSettings}>
+        <div className="hero-slide">
+          <img src="/Images/photo.jpg" alt="Welcome to Future Gym" className="slider-image" />
+          <div className="hero-content">
+            <h1 style={{color: "white"}}>Welcome to Future Gym</h1>
+            <p>Your journey to fitness starts here.</p>
+            <Link to="/courses" className="cta-btn">Discover Courses</Link>
           </div>
-          <div className="hero-slide">
-            <img src="/images/slider2.jpg" alt="Personalized Training" className="slider-image" />
-            <div className="hero-content">
-              <h1>Personalized Training</h1>
-              <p>Get the best training from our expert coaches.</p>
-              <Link to="/contact" className="cta-btn">Contact Us</Link>
-            </div>
+        </div>
+        <div className="hero-slide">
+          <img src="/Images/photo1.jpg" alt="Personalized Training" className="slider-image" />
+          <div className="hero-content">
+            <h1 style={{color: "white"}}>Personalized Training</h1>
+            <p>Get the best training from our expert coaches.</p>
+            <Link to="/contact" className="cta-btn">Contact Us</Link>
           </div>
-        </Slider>
-      </div>
+        </div>
+      </Slider>
+    </div>
 
       {/* Training Categories */}
       <div className="training-categories">
         <div className="category">
-          <img src="/images/category1.jpg" alt="Strength Training" />
+          <img src="/Images/strength.png" alt="Strength Training" />
           <div className="category-content">
             <h2>Strength Training</h2>
             <p>Build muscle and increase strength with our specialized programs.</p>
@@ -55,7 +55,7 @@ const Home = () => {
           </div>
         </div>
         <div className="category">
-          <img src="/images/category2.jpg" alt="Cardio" />
+          <img src="/Images/cardio.png" alt="Cardio" />
           <div className="category-content">
             <h2>Cardio</h2>
             <p>Improve your cardiovascular health with high-energy workouts.</p>
@@ -63,7 +63,7 @@ const Home = () => {
           </div>
         </div>
         <div className="category">
-          <img src="/images/category3.jpg" alt="Yoga" />
+          <img src="/Images/yoga.png" alt="Yoga" />
           <div className="category-content">
             <h2>Yoga</h2>
             <p>Find balance and flexibility with our yoga classes.</p>
@@ -77,17 +77,17 @@ const Home = () => {
         <h2>Our Services</h2>
         <div className="services">
           <div className="service">
-            <img src="/images/service1.jpg" alt="Personal Training" />
+            <img src="/Images/train.png" alt="Personal Training" />
             <h3>Personal Training</h3>
             <p>One-on-one sessions with our expert trainers.</p>
           </div>
           <div className="service">
-            <img src="/images/service2.jpg" alt="Group Classes" />
+            <img src="/Images/group.png" alt="Group Classes" />
             <h3>Group Classes</h3>
             <p>Join our vibrant group sessions for a fun workout.</p>
           </div>
           <div className="service">
-            <img src="/images/service3.jpg" alt="Nutrition Advice" />
+            <img src="/Images/advice.png" alt="Nutrition Advice" />
             <h3>Nutrition Advice</h3>
             <p>Get personalized nutrition advice to complement your training.</p>
           </div>
@@ -100,7 +100,7 @@ const Home = () => {
         <div className="pricing">
           <div className="plan">
             <h3>Basic Plan</h3>
-            <p>$30/month</p>
+            <p>Rs.1000/month</p>
             <ul>
               <li>Access to all gym facilities</li>
               <li>Basic group classes</li>
@@ -110,7 +110,7 @@ const Home = () => {
           </div>
           <div className="plan">
             <h3>Premium Plan</h3>
-            <p>$60/month</p>
+            <p>Rs.5000/month</p>
             <ul>
               <li>Access to all gym facilities</li>
               <li>All group classes</li>
@@ -120,7 +120,7 @@ const Home = () => {
           </div>
           <div className="plan">
             <h3>Ultimate Plan</h3>
-            <p>$90/month</p>
+            <p>Rs.7000/month</p>
             <ul>
               <li>Access to all gym facilities</li>
               <li>All group classes</li>
