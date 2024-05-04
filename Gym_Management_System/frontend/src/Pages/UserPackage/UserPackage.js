@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function UserPackage() {
-  const [cusName, setCustomerName] = useState('');
+  const [cusName, setCusName] = useState('');
   const [email, setEmail] = useState('');
-  const [phone, setPhoneNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const [date, setDate] = useState('');
   const [packages, setPackages] = useState([]);
-  const [selectedPackage, setSelectedPackage] = useState('');
-  const navigate = useNavigate(); // For navigation
+  const [selectedPackage, setSelectedPackage] = useState(''); // Store selected package ID
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate(); // Initialize useNavigate for navigation
 
   useEffect(() => {
     fetchPackages();
@@ -24,34 +25,82 @@ function UserPackage() {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const validateInput = (name, value) => {
+    let errorMessage = '';
 
-    const newPackage = {
-      cusName,
-      email,
-      phone,
-      date,
-      selectedPackage,
-    };
-
-    try {
-      await axios.post('http://localhost:8070/userPkg/add', newPackage);
-
-      alert('Package Added');
-
-      // Redirect to the payment page with the package ID
-      const selectedPackageId = packages.find((pkg) => pkg.packageName === selectedPackage)._id;
-      navigate(`/payment/${selectedPackageId}`); // Navigate to the payment page
-    } catch (error) {
-      alert(`Error adding package: ${error.message}`);
+    switch (name) {
+      case 'cusName':
+        if (/\d/.test(value)) {
+          errorMessage = 'Customer name cannot contain numbers.';
+        } else if (!/^[a-zA-Z\s]*$/.test(value)) {
+          errorMessage = 'Only letters and spaces are allowed.';
+        }
+        break;
+      case 'phone':
+        if (!/^\d+$/.test(value)) {
+          errorMessage = 'Phone number must contain only digits.';
+        } else if (value.length < 10) {
+          errorMessage = 'Phone number must be at least 10 digits long.';
+        }
+        break;
+      case 'email':
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+          errorMessage = 'Invalid email format.';
+        }
+        break;
+      default:
+        break;
     }
 
-    setCustomerName('');
-    setEmail('');
-    setPhoneNumber('');
-    setDate('');
-    setSelectedPackage('');
+    return errorMessage;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // Validate input
+    const error = validateInput(name, value);
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+
+    switch (name) {
+      case 'cusName':
+        setCusName(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'phone':
+        setPhone(value);
+        break;
+      case 'date':
+        setDate(value);
+        break;
+      case 'selectedPackage':
+        setSelectedPackage(value); // Set the selected package ID
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Check for errors before submission
+    if (Object.values(errors).some((error) => error !== '')) {
+      alert('Please correct the errors before submitting.');
+      return;
+    }
+
+    // If there are no errors, redirect to the payment page with the selected package ID
+    navigate(`/payment/${selectedPackage}/Standard`, {
+      state: { email },
+    });
   };
 
   return (
@@ -60,118 +109,142 @@ function UserPackage() {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px',
+        backgroundImage: "url('/Images/UserPackage.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <div
         style={{
-          backgroundImage: 'url("/Images/UserPackage.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          flex: '1',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingTop: '20px',
+          maxWidth: '500px',
+          width: '100%',
+          background: 'rgba(255, 255, 255, 0.8)',
+          padding: '20px',
+          borderRadius: '10px',
+          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
         }}
       >
-        <div
-          style={{
-            width: '90%',
-            maxWidth: '500px',
-            background: 'rgba(255, 255, 255, 0.8)',
-            padding: '20px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-            margin: '20px 0',
-          }}
-        >
-          <h2 style={{ textAlign: 'center', marginBottom: '30px', color: 'black' }}>
-            Select Package
-          </h2>
-          <form onSubmit={handleSubmit} style={{ color: 'black' }}>
-            <div className="mb-4">
-              <label htmlFor="customerName" className="form-label">
-                Customer Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="customerName"
-                value={cusName}
-                onChange={(e) => setCustomerName(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="phoneNumber" className="form-label">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                className="form-control"
-                id="phoneNumber"
-                value={phone}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="date" className="form-label">
-                Date
-              </label>
-              <input
-                type="date"
-                className="form-control"
-                id="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="selectedPackage" className="form-label">
-                Select Package
-              </label>
-              <select
-                className="form-select"
-                id="selectedPackage"
-                value={selectedPackage}
-                onChange={(e) => setSelectedPackage(e.target.value)}
-                required
-              >
-                <option value="">Select a Package</option>
-                {packages.map((pkg) => (
-                  <option key={pkg._id} value={pkg.packageName}>
-                    {pkg.packageName}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <button
-                type="submit"
-                className="btn btn-primary"
-                style={{ padding: '10px 20px', background: 'blue', color: 'white' }}
-              >
-                Proceed to Payment
-              </button>
-            </div>
-          </form>
-        </div>
+        <h2 style={{ textAlign: 'center', fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' , color:"black"}}>
+          Select Package
+        </h2>
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '20px' }}>
+            <label htmlFor='cusName' style={{ fontWeight: 'bold' }}>
+              Customer Name
+            </label>
+            <input
+              type='text'
+              name='cusName'
+              value={cusName}
+              onChange={handleChange}
+              required
+              style={{
+                width: '100%',
+                padding: '10px',
+                borderRadius: '5px',
+                border: '1px solid lightgray',
+              }}
+            />
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+            <label htmlFor='email' style={{ fontWeight: 'bold' }}>
+              Email
+            </label>
+            <input
+              type='email'
+              name='email'
+              required
+              style={{
+                width: '100%',
+                padding: '10px',
+                borderRadius: '5px',
+                border: '1px solid lightgray',
+              }}
+              value={email}
+              onChange={handleChange}
+            />
+            {errors.email && <div style={{ color: 'red' }}>{errors.email}</div>}
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+            <label htmlFor='phone' style={{ fontWeight: 'bold' }}>
+              Phone Number
+            </label>
+            <input
+              type='tel'
+              required
+              name='phone'
+              value={phone}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+                padding: '10px',
+                borderRadius: '5px',
+                border: '1px solid lightgray',
+              }}
+            />
+            {errors.phone && <div style={{ color: 'red' }}>{errors.phone}</div>}
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+            <label htmlFor='date' style={{ fontWeight: 'bold' }}>
+              Date
+            </label>
+            <input
+              type='date'
+              name='date'
+              required
+              style={{
+                width: '100%',
+                padding: '10px',
+                borderRadius: '5px',
+                border: '1px solid lightgray',
+              }}
+              value={date}
+              onChange={handleChange}
+            />
+          </div>
+          <div style={{ marginBottom: '20px' }}>
+            <label htmlFor='selectedPackage' style={{ fontWeight: 'bold' }}>
+              Select Package
+            </label>
+            <select
+              name='selectedPackage'
+              required
+              style={{
+                width: '100%',
+                padding: '10px',
+                borderRadius: '5px',
+                border: '1px solid lightgray',
+              }}
+              value={selectedPackage}
+              onChange={handleChange}
+            >
+              <option value=''>Select a Package</option>
+              {packages.map((pkg) => (
+                <option key={pkg._id} value={pkg._id}>
+                  {pkg.packageName}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <button
+              type='submit'
+              style={{
+                padding: '10px 30px',
+                backgroundColor: 'blue',
+                color: 'white',
+                borderRadius: '5px',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              Proceed to Payment
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

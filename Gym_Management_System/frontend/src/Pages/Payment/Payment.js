@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+
+// Example background image URL
+const backgroundImage = '/Images/new.jpg';
 
 function PaymentPage() {
-  const { id } = useParams(); // Get package ID from URL
-  const [packageData, setPackageData] = useState({ price: '' });
+  const { packageId, packageType } = useParams();
+  const [packageData, setPackageData] = useState(null);
   const [email, setEmail] = useState('');
   const [cardNumber, setCardNumber] = useState('');
-  const [cvv, setCVV] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCVV] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchPackageDetails();
-  }, [id]); // Run when the ID changes
+    const fetchPackage = async () => {
+      try {
+        let response;
+        if (packageType === 'Standard') {
+          response = await axios.get(`http://localhost:8070/package/get/${packageId}`);
+        } else if (packageType === 'Promotional') {
+          response = await axios.get(`http://localhost:8070/proPackage/get/${packageId}`);
+        }
+        setPackageData(response.data.Package);
+      } catch (error) {
+        console.error('Error fetching package:', error);
+      }
+    };
 
-  const fetchPackageDetails = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8070/package/get/${id}`);
-      const packageInfo = response.data;
-      setPackageData({
-        price: packageInfo.price || '',
-      });
-    } catch (error) {
-      console.error('Error fetching package details:', error);
-    }
-  };
+    fetchPackage();
+  }, [packageId, packageType]);
 
   const handleNumberInput = (e) => {
-    const numericValue = e.target.value.replace(/[^0-9]/g, '');
+    const numericValue = e.target.value.replace(/[^0-9 /]/g, '');
     const { name } = e.target;
 
     if (name === 'cardNumber') {
@@ -42,49 +48,71 @@ function PaymentPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const paymentData = {
-      packageId: id,
-      email,
-      cardNumber,
-      cvv,
-      expiryDate,
-    };
-
     try {
-      await axios.post('http://localhost:8070/payment/add', paymentData);
+      await axios.post('http://localhost:8070/payment/create', {
+        packageId,
+        packageType,
+        email,
+        cardNumber,
+        expiryDate,
+        cvv,
+      });
 
-      alert('Payment successful!'); // Indicate payment success
-      setEmail('');
-      setCardNumber('');
-      setCVV('');
-      setExpiryDate('');
+      alert('Payment successful!');
+      navigate('/user');
     } catch (error) {
-      alert(`Error making payment: ${error.message}`); // Display error message if any
+      alert(`Error making payment: ${error.message}`);
     }
   };
 
-  return (
-    <div style={{
-      padding: '20px',
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
-      <div style={{
-        background: 'rgba(255, 255, 255, 0.8)',
-        padding: '20px',
-        borderRadius: '8px',
-        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-        maxWidth: '500px',
-      }}>
-        <h2>Payment for Package</h2>
-        <p>Package Price: ${packageData.price}</p> {/* Display the package price */}
+  if (!packageData) {
+    return (
+      <div style={{ fontSize: '16px', color: '#666', textAlign: 'center', marginTop: '20px' }}>
+        Loading package details...
+      </div>
+    );
+  }
 
-        <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '15px' }}>
-            <label>Email:</label>
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '100px 0',
+      }}
+    >
+      <div
+        style={{
+          padding: '20px',
+          maxWidth: '500px', // Adjusted the width for a more normal form size
+          margin: '0 auto',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          border: '1px solid #ddd',
+          borderRadius: '8px',
+          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <h2 style={{ fontSize: '24px', color: '#333', textAlign: 'center', marginBottom: '10px' }}>
+          Payment for {packageData.packageName || packageData.proPackageName}
+        </h2>
+        <p style={{ fontSize: '18px', color: '#555', textAlign: 'center', marginBottom: '20px' }}>
+          Price: Rs.{packageData.price || packageData.proPrice}
+        </p>
+
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        >
+          <div style={{ marginBottom: '15px', width: '100%' }}>
+            <label
+              style={{ display: 'block', fontSize: '16px', color: '#333', marginBottom: '5px' }}
+            >
+              Email:
+            </label>
             <input
               type='email'
               value={email}
@@ -93,63 +121,99 @@ function PaymentPage() {
               style={{
                 padding: '10px',
                 borderRadius: '5px',
-                border: '1px solid lightgray',
+                border: '1px solid #ccc',
+                width: '100%',
+                boxSizing: 'border-box',
               }}
             />
           </div>
 
-          <div style={{ marginBottom: '15px' }}>
-            <label>Card Number:</label>
+          <div style={{ marginBottom: '15px', width: '100%' }}>
+            <label
+              style={{ display: 'block', fontSize: '16px', color: '#333', marginBottom: '5px' }}
+            >
+              Card Number:
+            </label>
             <input
               type='text'
               name='cardNumber'
               value={cardNumber}
               required
+              maxLength={16}
               onChange={handleNumberInput}
-              maxLength={16} // Maximum length for card number
+              placeholder='1234 5678 9012 3456'
               style={{
                 padding: '10px',
                 borderRadius: '5px',
-                border: '1px solid lightgray',
+                border: '1px solid #ccc',
+                width: '100%',
+                boxSizing: 'border-box',
               }}
             />
           </div>
 
-          <div style={{ marginBottom: '15px' }}>
-            <label>CVV:</label>
-            <input
-              type='text'
-              name='cvv'
-              value={cvv}
-              required
-              maxLength={3} // CVV should be 3 digits
-              onChange={handleNumberInput}
-              style={{
-                padding: '10px',
-                borderRadius: '5px',
-                border: '1px solid lightgray',
-              }}
-            />
-          </div>
-
-          <div style={{ marginBottom: '15px' }}>
-            <label>Expiry Date (MM/YY):</label>
+          <div style={{ marginBottom: '15px', width: '100%' }}>
+            <label
+              style={{ display: 'block', fontSize: '16px', color: '#333', marginBottom: '5px' }}
+            >
+              Expiry Date (MM/YY):
+            </label>
             <input
               type='text'
               name='expiryDate'
               value={expiryDate}
               required
-              maxLength={4} // Maximum length for expiry date (MMYY)
+              maxLength={5}
               onChange={handleNumberInput}
+              placeholder='MM/YY'
               style={{
                 padding: '10px',
                 borderRadius: '5px',
-                border: '1px solid lightgray',
+                border: '1px solid #ccc',
+                width: '100%',
+                boxSizing: 'border-box',
               }}
             />
           </div>
-          
-          <button type='submit' style={{ padding: '10px', background: 'blue', color: 'white', borderRadius: '5px' }}>
+
+          <div style={{ marginBottom: '15px', width: '100%' }}>
+            <label
+              style={{ display: 'block', fontSize: '16px', color: '#333', marginBottom: '5px' }}
+            >
+              CVV:
+            </label>
+            <input
+              type='text'
+              name='cvv'
+              value={cvv}
+              required
+              maxLength={3}
+              onChange={handleNumberInput}
+              placeholder='123'
+              style={{
+                padding: '10px',
+                borderRadius: '5px',
+                border: '1px solid #ccc',
+                width: '100%',
+                boxSizing: 'border-box',
+              }}
+            />
+          </div>
+        
+          <button
+            type="submit"
+            style={{
+              padding: '12px 20px',
+              backgroundColor: '#007BFF',
+              color: 'white',
+              borderRadius: '5px',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '16px',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.2)',
+              transition: 'background-color 0.3s, box-shadow 0.3s',
+            }}
+          >
             Pay Now
           </button>
         </form>

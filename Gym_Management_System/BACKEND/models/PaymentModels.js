@@ -1,18 +1,38 @@
 const mongoose = require('mongoose');
 
-// Payment Schema
-const paymentSchema = new mongoose.Schema({
-  
+const Schema = mongoose.Schema;
+
+const paymentSchema = new Schema({
+  packageId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Package', // Reference to the package model
+  },
+  packageType: {
+    type: String,
+    required: true,
+  },
+  packageName: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  paymentDate: {
+    type: Date,
+    default: Date.now,
+  },
   email: {
     type: String,
     required: true,
   },
-  packageId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Package',
+  cardNumber: {
+    type: String,
     required: true,
   },
-  cardNumber: {
+  expiryDate: {
     type: String,
     required: true,
   },
@@ -20,11 +40,8 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  expirationDate: {
-    type: String,
-    required: true,
-  },
-  
 });
 
 const Payment = mongoose.model('Payment', paymentSchema);
+
+module.exports = Payment;

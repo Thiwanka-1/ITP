@@ -1,35 +1,54 @@
-const router = require("express").Router();
-let Payment = require("../models/PaymentModels.js");
+const express = require('express');
+const Payment = require('../models/PaymentModels');
+const Package = require('../models/PackageModel');
+const proPackage = require('../models/proPackageModel');
 
-router.route("/add").post((req, res) => {
-  const email = req.body.email;
-  const cardNumber = req.body.cardNumber;
-  const cvv = req.body.cvv;
-  const expirationDate = req.body.expirationDate;
+const router = express.Router();
 
-  const newPackage = new Payment({
+// Create payment
+router.post('/create', async (req, res) => {
+  const { packageId, packageType, email, cardNumber, expiryDate, cvv } = req.body;
+
+  try {
+    let packageData;
+
+    if (packageType === 'Standard') {
+      packageData = await Package.findById(packageId);
+    } else if (packageType === 'Promotional') {
+      packageData = await proPackage.findById(packageId);
+    }
+
+    if (!packageData) {
+      return res.status(404).json({ error: 'Package not found' });
+    }
+
+    const newPayment = new Payment({
+      packageId,
+      packageType,
+      packageName: packageData.packageName || packageData.proPackageName,
+      price: packageData.price || packageData.proPrice,
       email,
       cardNumber,
+      expiryDate,
       cvv,
-      expirationDate
-  })
+    });
 
-  newPackage.save().then(() => {
-      res.json("Package Added")
-  }).catch((err) => {
-      console.log(err);
-  })
-})
+    await newPayment.save();
 
-//read part
+    res.status(201).json({ message: 'Payment created successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error creating payment', details: error.message });
+  }
+});
 
-router.route("/").get((req,res) => {
-  Payment.find().then((packages) => {
-      res.json(packages)
-  }).catch((err) => {
-      console.log(err)
-  })
-})
-
+// Get all payments
+router.get('/', async (req, res) => {
+  try {
+    const payments = await Payment.find();
+    res.status(200).json(payments);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching payments', details: error.message });
+  }
+});
 
 module.exports = router;

@@ -63,8 +63,8 @@ import AboutUs from "./Pages/AboutUs/AboutUs";
 
 
 import { AuthProvider } from './Auth/AuthContext'
-import Payment from "./Pages/Payment/Payment";
 import PaymentPage from "./Pages/Payment/Payment";
+import PaymentsPage from "./Pages/ViewPayment/ViewPayment";
 // import ProtectedRoute from './Auth/ProtectedRoute';
 
 
@@ -79,8 +79,11 @@ function App() {
        <Route path='/contact' element={<ContactUs />} />
        <Route path='/about' element={<AboutUs />} />
 
-       <Route path='/payment/:id' element={<PaymentPage />} />
-
+       <Route
+          path="/payment/:packageId/:packageType"
+          element={<PaymentPage />}
+        />
+        <Route path='/viewpay' element={<PaymentsPage />}/>
 
 
 
