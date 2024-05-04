@@ -71,6 +71,11 @@ app.use("/Employee",EmployeeRoute);
 const authRoutes = require('./routes/authRoutes.js');
 app.use('/auth', authRoutes);
 
+
+const PaymentRoutes = require('./routes/PaymentRoutes.js');
+app.use('/Payment', PaymentRoutes);
+
+
 app.listen(PORT, () => {
     console.log(`Server is up and running on port number: ${PORT}`)
 })

@@ -1,82 +1,35 @@
-const express = require('express');
-const router = express.Router();
-const { Package, Payment } = require('./models'); // Importing the models
-const nodemailer = require('nodemailer'); // For sending emails
+const router = require("express").Router();
+let Payment = require("../models/PaymentModels.js");
 
-// Route to fetch package by ID
-router.get('/package/:id', async (req, res) => {
-  try {
-    const packageData = await Package.findById(req.params.id);
-    if (!packageData) {
-      return res.status(404).json({ message: 'Package not found' });
-    }
-    res.json(packageData);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching package', error });
-  }
-});
+router.route("/add").post((req, res) => {
+  const email = req.body.email;
+  const cardNumber = req.body.cardNumber;
+  const cvv = req.body.cvv;
+  const expirationDate = req.body.expirationDate;
 
-// Payment processing route
-router.post('/payment', async (req, res) => {
-  const { customerName, email, cardNumber, cvv, expirationDate, packageId } = req.body;
+  const newPackage = new Payment({
+      email,
+      cardNumber,
+      cvv,
+      expirationDate
+  })
 
-  // Fetch the package details
-  const packageData = await Package.findById(packageId);
-  if (!packageData) {
-    return res.status(404).json({ message: 'Package not found' });
-  }
+  newPackage.save().then(() => {
+      res.json("Package Added")
+  }).catch((err) => {
+      console.log(err);
+  })
+})
 
-  // Create the payment record
-  const newPayment = new Payment({
-    customerName,
-    email,
-    cardNumber,
-    cvv,
-    expirationDate,
-    package: packageId,
-  });
+//read part
 
-  try {
-    await newPayment.save();
+router.route("/").get((req,res) => {
+  Payment.find().then((packages) => {
+      res.json(packages)
+  }).catch((err) => {
+      console.log(err)
+  })
+})
 
-    // Send a confirmation email to the customer
-    const transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-        user: 'your-email@gmail.com', // Your email
-        pass: 'your-email-password', // Your email password
-      },
-    });
-
-    const mailOptions = {
-      from: 'your-email@gmail.com',
-      to: email,
-      subject: 'Payment Confirmation',
-      text: `Thank you, ${customerName}, for purchasing the ${packageData.name}. Your payment of $${packageData.price} was successful.`,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log(`Email sent: ${info.response}`);
-      }
-    });
-
-    res.json({ message: 'Payment successful' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error processing payment', error });
-  }
-});
-
-// Route to view all payments
-router.get('/payments', async (req, res) => {
-  try {
-    const payments = await Payment.find().populate('package');
-    res.json(payments);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching payments', error });
-  }
-});
 
 module.exports = router;

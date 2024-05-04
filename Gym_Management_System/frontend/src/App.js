@@ -60,7 +60,11 @@ import SignUp from "./Pages/SignUp/SignUp";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 
+
+
 import { AuthProvider } from './Auth/AuthContext'
+import Payment from "./Pages/Payment/Payment";
+import PaymentPage from "./Pages/Payment/Payment";
 // import ProtectedRoute from './Auth/ProtectedRoute';
 
 
@@ -74,6 +78,9 @@ function App() {
        <Route path='/' element={<Home />} />
        <Route path='/contact' element={<ContactUs />} />
        <Route path='/about' element={<AboutUs />} />
+
+       <Route path='/payment/:id' element={<PaymentPage />} />
+
 
 
 
