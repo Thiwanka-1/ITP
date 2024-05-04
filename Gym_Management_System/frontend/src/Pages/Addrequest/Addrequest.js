@@ -1,106 +1,157 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-function Addrequest() {
+function AddRequest() {
     const [EmpId, setEmpId] = useState("");
-    const [TypeofEquipment, setTypeofEquipment] = useState("");
+    const [empName, setEmpName] = useState("");
+    const [Type0fEquipment, setTypeofEquipment] = useState("");
     const [Date, setDate] = useState("");
     const [Description, setDescription] = useState("");
-    const [empname, setEmpName] = useState(""); // New state variable for employee name
 
-    // Function to fetch employee name
-    const fetchEmployeeName = (id) => {
-        axios.get(`http://localhost:8070/Employee/get/${id}`)
-            .then((response) => {
-                setEmpName(response.data.name);
-            })
-            .catch((err) => {
-                console.error("Error fetching employee name:", err);
-                setEmpName(""); // Clear employee name if error occurs
-            });
+    const fetchEmployeeName = async (id) => {
+        try {
+            const response = await axios.get(`http://localhost:8070/emp/get/${id}`);
+            setEmpName(response.data.empName);
+        } catch (error) {
+            setEmpName('');
+            alert("Failed to fetch employee name");
+        }
     };
 
-    function sendData(e) {
+    useEffect(() => {
+        if (EmpId) {
+            fetchEmployeeName(EmpId);
+        }
+    }, [EmpId]);
+
+    const sendData = async (e) => {
         e.preventDefault();
         
-        const newMaintenance = {
+        const newmaintenance = {
             EmpId,
-            TypeofEquipment,
+            Type0fEquipment,
             Date,
             Description
         };
 
-        axios.post('http://localhost:8070/maintenance/add', newMaintenance)
-            .then(() => {
-                alert("Request Added");
-                // Clear input fields after successful submission
-                setEmpId("");
-                setTypeofEquipment("");
-                setDate("");
-                setDescription("");
-                setEmpName(""); // Clear employee name after submission
-            })
-            .catch((err) => {
-                alert(err);
-            });
-    }
+        try {
+            await axios.post('http://localhost:8070/maintenance/add', newmaintenance);
+            alert("Request Added");
+            // Clear input fields after successful submission
+            setEmpId("");
+            setEmpName("");
+            setTypeofEquipment("");
+            setDate("");
+            setDescription("");
+        } catch (error) {
+            alert("Error adding request: " + error.message);
+        }
+    };
 
     return (
-        <div className="main-container">
-            <div className="form-container">
-                <h2 className="form-title">Maintain Request</h2>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh',
+            backgroundImage: "url('Images/fff.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+        }}>
+            <div style={{
+                width: '100%',
+                maxWidth: '550px',
+                margin: 'auto',
+                padding: '20px',
+                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                borderRadius: '10px',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                marginTop: '50px'
+            }}>
+                <h2 style={{
+                    textAlign: 'center',
+                    fontWeight: 'bold',
+                    marginBottom: '30px',
+                    color: '#333',
+                    fontSize: '30px'
+                }}>Maintenance Request</h2>
                 <form onSubmit={sendData}>
-                    <div className="form-group">
-                        <label htmlFor="EmployeeId">Employee ID</label>
+                    <div className="form-group" style={{ marginBottom: '20px' }}>
+                        <label htmlFor="EmployeeId" style={{ fontWeight: 'bold', marginBottom: '5px' }}>Employee ID</label>
                         <input
                             type="text"
-                            className="form-control"
+                            style={{
+                                padding: '10px',
+                                border: '1px solid #ccc',
+                                borderRadius: '5px',
+                                width: '100%'
+                            }}
                             id="EmployeeId"
                             placeholder="Enter Employee ID"
                             value={EmpId}
-                            onChange={(e) => {
-                                setEmpId(e.target.value);
-                                fetchEmployeeName(e.target.value); // Fetch employee name when ID is entered
-                            }}
+                            onChange={(e) => setEmpId(e.target.value)}
                         />
                     </div>
-                    
-                    {/* Display employee name */}
-                    {empname && (
-                        <div className="form-group">
-                            <label>Employee Name</label>
-                            <p>{empname}</p>
-                        </div>
-                    )}
 
-                    <div className="form-group">
-                        <label htmlFor="TypeofEquipment">Type of Equipment</label>
+                    <div className="form-group" style={{ marginBottom: '20px' }}>
+                        <label htmlFor="EmployeeName" style={{ fontWeight: 'bold', marginBottom: '5px' }}>Employee Name</label>
                         <input
                             type="text"
-                            className="form-control"
-                            id="TypeofEquipment"
+                            style={{
+                                padding: '10px',
+                                border: '1px solid #ccc',
+                                borderRadius: '5px',
+                                width: '100%'
+                            }}
+                            id="EmployeeName"
+                            placeholder="Employee Name"
+                            value={empName}
+                            readOnly
+                        />
+                    </div>
+
+                    <div className="form-group" style={{ marginBottom: '20px' }}>
+                        <label htmlFor="Type0fEquipment" style={{ fontWeight: 'bold', marginBottom: '5px' }}>Type of Equipment</label>
+                        <input
+                            type="text"
+                            style={{
+                                padding: '10px',
+                                border: '1px solid #ccc',
+                                borderRadius: '5px',
+                                width: '100%'
+                            }}
+                            id="Type0fEquipment"
                             placeholder="Enter Type of Equipment"
-                            value={TypeofEquipment}
+                            value={Type0fEquipment}
                             onChange={(e) => setTypeofEquipment(e.target.value)}
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="Date">Date</label>
+                    <div className="form-group" style={{ marginBottom: '20px' }}>
+                        <label htmlFor="Date" style={{ fontWeight: 'bold', marginBottom: '5px' }}>Date</label>
                         <input
                             type="date"
-                            className="form-control"
+                            style={{
+                                padding: '10px',
+                                border: '1px solid #ccc',
+                                borderRadius: '5px',
+                                width: '100%'
+                            }}
                             id="Date"
                             value={Date}
                             onChange={(e) => setDate(e.target.value)}
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label htmlFor="Description">Description</label>
+                    <div className="form-group" style={{ marginBottom: '20px' }}>
+                        <label htmlFor="Description" style={{ fontWeight: 'bold', marginBottom: '5px' }}>Description</label>
                         <input
                             type="text"
-                            className="form-control"
+                            style={{
+                                padding: '10px',
+                                border: '1px solid #ccc',
+                                borderRadius: '5px',
+                                width: '100%'
+                            }}
                             id="Description"
                             placeholder="Enter Description"
                             value={Description}
@@ -108,10 +159,22 @@ function Addrequest() {
                         />
                     </div>
 
-                    <div className="form-group">
+                    <div style={{ textAlign: 'center' }}>
                         <button
                             type="submit"
-                            className="btn btn-dark btn-lg"
+                            style={{
+                                marginTop: '20px',
+                                padding: '10px 20px',
+                                display: 'block',
+                                marginLeft: 'auto',
+                                marginRight: 'auto',
+                                color: 'white',
+                                borderRadius: '10px',
+                                fontSize: '20px',
+                                background: 'black',
+                                border: 'none',
+                                cursor: 'pointer'
+                            }}
                         >
                             Submit
                         </button>
@@ -122,54 +185,4 @@ function Addrequest() {
     );
 }
 
-export default Addrequest;
-
-// CSS Styles
-const styles = `
-.main-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-image: url('Images/background.jpg');
-    background-size: cover;
-}
-
-.form-container {
-    width: 100%;
-    max-width: 550px;
-    margin: auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5); /* Box shadow for a card-like effect */
-}
-
-.form-title {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-control {
-    background-color: #a6a8a6; /* Set light grey background color */
-}
-
-.btn {
-    margin-top: 20px;
-    margin-left: 205px;
-}
-
-/* Ensure Header spans the full width */
-.Header1 {
-    width: 100%;
-}
-`;
-
-// Apply styles
-const styleElement = document.createElement('style');
-styleElement.innerHTML = styles;
-document.head.appendChild(styleElement);
+export default AddRequest;

@@ -129,7 +129,7 @@ function Dashboard() {
       </div>
       {/* Main Content */}
       <div style={{ flex: 1, padding: '20px' ,
-        backgroundImage: "url('/Images/AddPackage.png')",
+        backgroundImage: "url('/Images/fff.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         flex: "1",

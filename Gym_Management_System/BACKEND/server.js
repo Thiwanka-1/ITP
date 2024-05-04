@@ -66,7 +66,7 @@ const ReportRoute = require("./routes/TrainerReportRoutes.js");
 app.use("/Report",ReportRoute);
 
 const EmployeeRoute = require("./routes/EmployeeRoute.js");
-app.use("/Employee",EmployeeRoute);
+app.use("/emp",EmployeeRoute);
 
 const authRoutes = require('./routes/authRoutes.js');
 app.use('/auth', authRoutes);

@@ -42,7 +42,7 @@ function Addtask() {
         <div style={{ position: "relative" }}>
             <div
                 style={{
-                    backgroundImage: "url('Images/photo.jpg')",
+                    backgroundImage: "url('Images/tgd.jpg')",
                     backgroundSize: "cover",
                     minHeight: "100vh",
                     display: "flex",

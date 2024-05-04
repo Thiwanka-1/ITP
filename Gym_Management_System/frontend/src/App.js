@@ -65,6 +65,8 @@ import AboutUs from "./Pages/AboutUs/AboutUs";
 import { AuthProvider } from './Auth/AuthContext'
 import PaymentPage from "./Pages/Payment/Payment";
 import PaymentsPage from "./Pages/ViewPayment/ViewPayment";
+import EmployeeList from "./Pages/ViewEmployee/ViewEmployee";
+import UpdateEmployee from "./Pages/UpdateEmployee/UpdateEmployee";
 // import ProtectedRoute from './Auth/ProtectedRoute';
 
 
@@ -84,6 +86,8 @@ function App() {
           element={<PaymentPage />}
         />
         <Route path='/viewpay' element={<PaymentsPage />}/>
+
+        <Route path="/addemp" element={<AddEmployee />} />
 
 
 
@@ -135,11 +139,13 @@ function App() {
        <Route path='/scheduledisplay' element={<DisplayRequest/>}/>
        <Route path='/updatesc/:id' element={<UpdateRequest/>}/>  
 
-
-       <Route path='/addemp' element={<AddEmployee />}/>
-
        <Route path='/login' element={<Login />}/>
        <Route path='/signup' element={<SignUp />}/>
+
+       <Route path='/viewemp' element={<EmployeeList />}/>
+       <Route path='/updateemp/:id' element={<UpdateEmployee />}/>
+
+
 
 
       </Routes>

@@ -1,25 +1,44 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-
-const empSchema = new Schema({
-    empid : {
+const employeeSchema = new mongoose.Schema({
+    EmpId: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    empName: {
         type: String,
         required: true
     },
-
-    empname : {
+    eAge: {
+        type: Number,
+        required: true
+    },
+    eGender: {
+        type: String,
+        required: true,
+        enum: ['Male', 'Female', 'Other'] // Ensuring the gender field accepts only specified values
+    },
+    eHeight: {
+        type: Number,
+        required: true
+    },
+    eWeight: {
+        type: Number,
+        required: true
+    },
+    eAddress: {
         type: String,
         required: true
     },
-
-    job : {
-        type : String,
-        required: true
+    ePhone: {
+        type: String,
+        required: true,
     },
-})
+    empEmail: {
+        type: String,
+        required: true,
+    }
+});
 
-const Package = mongoose.model("Employee", empSchema);
-
-module.exports = Package;
-
+module.exports = mongoose.model('Employee', employeeSchema);
