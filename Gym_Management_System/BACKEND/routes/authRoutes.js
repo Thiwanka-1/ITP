@@ -32,7 +32,7 @@ router.post('/signup', async (req, res) => {
       cphone,
       cheight,
       cweight,
-      caddress,
+      caddress, 
     });
 
     await user.save();
