@@ -118,17 +118,10 @@ export default function SignIn() {
                       Sign Up
                     </Link>
                   </div>
-                  <div className="flex gap-2 text-sm mt-5">
-                    <span>Employee Login</span>
-                    <Link to="/attend" className="text-blue-500">
-                      Sign in
-                    </Link>
-                  </div>
                   {errorMessage && (
                     <p className="mt-5 text-black bg-yellow-300 w-30 h-7 rounded-lg text-center ">
                       {errorMessage}
                     </p>
-                    
                   )}
                 </div>
               </div>

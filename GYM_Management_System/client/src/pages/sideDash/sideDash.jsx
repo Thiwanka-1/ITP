@@ -29,13 +29,6 @@ export default function DashSidebar() {
             </Link>
           </li>
         )}
-         <li className="">
-          <Link to="/profile" className={`block py-2 px-4 rounded-lg text-white hover:bg-yellow-300 hover:text-black `}>
-          
-          Employee Dashboard
-          </Link>
-        </li>
-     
         <li className="">
           <Link to="/viewuser" className={`block py-2 px-4 rounded-lg text-white hover:bg-yellow-300 hover:text-black `}>
           
@@ -48,7 +41,6 @@ export default function DashSidebar() {
            profile
           </Link>
         </li>
-       
         <li className="">
           <Link to="/notification" className={`block py-2 px-4 rounded-lg text-white hover:bg-yellow-300 hover:text-black`}>
           
@@ -59,12 +51,6 @@ export default function DashSidebar() {
           <Link to="/viewuserall" className={`block py-2 px-4 rounded-lg text-white hover:bg-yellow-300 hover:text-black`}>
           
             all Feedback 
-          </Link>
-        </li>
-        <li className="">
-          <Link to="/create-post" className={`block py-2 px-4 rounded-lg text-white hover:bg-yellow-300 hover:text-black `}>
-          <FontAwesomeIcon icon="fa-light fausersecret" />
-           Add New Item
           </Link>
         </li>
 
