@@ -138,7 +138,7 @@ export default function DashUsers() {
 
     // Add employee details to PDF
     doc.setFontSize(16);
-    doc.text(20, yPos, "Employee Details:");
+    doc.text(20, yPos, "Monthly Salary Report On Arrival");
     yPos += 10;
 
     Employe.forEach((detail, index) => {
@@ -156,7 +156,7 @@ export default function DashUsers() {
             yPos = 10; // Reset yPos for new page
             // Add header on new page if needed
             doc.setFontSize(16);
-            doc.text(20, yPos, `Employee Details (Page ${doc.internal.getNumberOfPages() + 1}):`);
+            doc.text(20, yPos, `Monthly Salary Report On Arrival (Page ${doc.internal.getNumberOfPages() + 1})`);
             yPos += 10;
         }
 
@@ -330,8 +330,8 @@ return (
 
      {showCheckoutPopup && (
        <div>
-         <div className="fixed top-0 left-0 w-full h-full bg-gray-900 opacity-50 z-40"></div>
-         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 shadow-lg rounded-lg p-4 text-white z-50">
+         <div className="fixed top-0 left-0 w-full h-full bg-gray-900  z-40"></div>
+         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-80 shadow-lg rounded-lg p-4 text-white z-50">
            <div className="overflow-y-auto max-h-[350px] w-[600px] ">
              {/* Popup window content */}
              {Employe.map((detail, index) => (
@@ -358,7 +358,7 @@ return (
                className="bg-blue-500 bg-opacity-50 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 "
                onClick={() => generatePDF()}
              >
-             Salaray Report 
+             Monthly Salaray Report on Arrival
              </button>
              <button
                className="bg-blue-500 bg-opacity-50 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 "
